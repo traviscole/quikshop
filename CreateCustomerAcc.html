@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang= 'en'>
+	<title>QuikShop</title>
+        <head>
+        		
+                <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+                <meta name="viewport" content="width=device-width, initial-scale=1">
+
+                <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />
+                <script src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+                <script src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+                <script type="text/javascript" charset="utf-8" src="cordova/cordova.js"></script>
+        </head>
+        
+ 
+        <body>
+        	
+        	   <script>
+				function checkInput()
+				{
+					
+					location.href = 'loggedIn.html';
+				}
+				</script>
+        	
+                <!-- Start of first page I -->
+                <div data-role="page" id="page1">
+                        <!-- Header -->
+                        <div data-role="header">
+                                <h1>QuikShop</h1>
+                                <center>
+                                <img src="images/NewQuikShop.png"  width = 300 HEIGHT = 117 align ="Center" alt="QS LOGO"/>
+                                </center>
+
+                        </div>
+                        <!-- /header -->
+                       
+						<form action="www.google.com" method="checkInput()">
+						<table  cellspacing="25">
+							<tr>
+								<td>	Name: <input type="text" name="name" maxlength ='25' style="width: 200px;" autofocus required /> 
+								<td>	<center>Mi: <input type="text" name="name" maxlength ='1' style="width: 30px;"  /></center>
+							</tr>
+							<tr>
+								<td>	Last Name: <input type="text" maxlength ='25' name="lastname"  style="width: 200px;" required/> </td>
+							</td>
+							<tr>
+								<td>	 DOB: <input type="date" name="date1" 
+								pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD" maxlength ='25' style="width: 150px;" required/> </td>
+							</td>
+							<tr>
+								<td>	Email: <input type="email" maxlength ='35' name="email"  style="width: 250px;" required/></td>
+							</td>
+							<tr>
+								<td>	Password: <input type="password" name="password1" maxlength ='25' style="width: 250px;" required/> </td>
+							</td>
+							<tr>
+								<td>	<input type="submit" name="submit1" value="Create" style="length: 100px;" />  </td>
+								<td>	<input type="submit" name="cancel" value="Cancel" style="length: 100px; " onclick="location.href='HomeTemplate.html';"/>  </td>
+							</td>
+						</table>
+						</form>
+										
+						
+
+                </div>
+                <!-- /page -->
+ 						<!-- footer -->
+                        <div data-role="footer">
+                                <h4>&copy; 2013 QuikShop</h4>
+                        </div>
+                        <!-- /footer -->
+        </body>
+		                        <!-- footer -->
+                       
+                        <!-- /footer -->
+</html>
