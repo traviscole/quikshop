@@ -1,0 +1,64 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<title>Quikshop Mobile Demo</title>   
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />  
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+</head>
+<body>
+<div data-role="page" data-theme="b">
+	<div data-role="header" data-theme="b">
+		<h1>Quikshop</h1>
+	</div>
+	<div data-role="content"> 	<ul data-role="listview" data-inset="true" data-theme="c" data-dividertheme="a">
+		<li data-role="list-divider">Transition Effects</li>
+		<li><a href="effects.php?id=slide" data-transition="slide">Slide</a></li>
+		<li><a href="effects.php?id=slideup" data-transition="slideup">Slide Up</a></li>
+		<li><a href="effects.php?id=slidedown" data-transition="slidedown">Slide Down</a></li>
+		<li><a href="effects.php?id=pop" data-transition="pop">Pop</a></li>
+		<li><a href="effects.php?id=flip" data-transition="flip">Flip</a></li>
+		<li><a href="effects.php?id=fade" data-transition="fade">Fade</a></li>
+	</ul>
+	<br /><br />
+	<ul data-role="listview" data-dividertheme="e">
+		<li data-role="list-divider">Seamless List (margin-less)</li>
+		<li><a href="#foo" data-transition="slide">Internal Link 1</a></li>
+		<li><a href="#bar" data-transition="slide">Internal Link 2</a></li>
+		<li><a href="http://cipps.eng.ufl.edu" data-transition="slide">CIPPS Website</a></li>
+	</ul>
+		<br /><br />
+		<a href="http://www.traviscole.me/" data-role="button" data-theme="a" data-icon="back" data-inline="true">traviscole.me</a> 
+		<a href="http://cipps.eng.ufl.edu" data-role="button" data-theme="c" data-icon="check" data-inline="true">CIPPS</a> 
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h1>&copy; Quikshop 2014</h1>
+	</div>
+
+</div>
+
+<div data-role="page" data-theme="b" id="foo">
+	<div data-role="header" data-theme="b">
+		<h1>Quikshop</h1>
+	</div>
+	<div data-role="content">
+		<h1>This is an internal page 1 - the HTML is located in the footer, inside a div.</h1>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h1>&copy; Quikshop 2014</h1>
+	</div>
+</div>
+<div data-role="page" data-theme="b" id="bar">
+	<div data-role="header" data-theme="b">
+		<h1>Quikshop</h1>
+	</div>
+	<div data-role="content">
+		<h1>This is an internal page 2 - the HTML is located in the footer, inside a div.</h1>
+	</div>
+	<div data-role="footer" data-position="fixed">
+		<h1>&copy; Quikshop 2014</h1>
+	</div>
+</div>
+</body>
+</html>
