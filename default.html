@@ -1,0 +1,86 @@
+// ******************************************************************************
+// NOTE: The form submit only works with the "Enter" key on keyboard
+// Maybe someone with more experience can tie it into the form button
+// ******************************************************************************
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<title>Quikshop Mobile</title>   
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.css" />  
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.4.3.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.0a1/jquery.mobile-1.0a1.min.js"></script>
+	<script type="text/javascript" src="jquery.validate.min.js"></script>
+    <script type="text/javascript" src="additional-methods.min.js"></script>
+      
+</head>
+
+<body>
+<div data-role="page" data-theme="b">
+
+	<div data-role="header" data-theme="b">
+		<h1><img src="logo.png" width="138" height="29" align="middle" /></h1>
+	</div>
+    
+	<div data-role="content">  
+     
+    	<div id="landmark-1" data-landmark-id="1">
+        <center> Welcome to QuikShop! </center>
+    		<form id="loginForm">
+    			<div data-role="fieldcontain" class="ui-hide-label">
+       			<label for="username">Enter Email Address:</label>              
+        			<input type="text" name="username" id="username" value="" placeholder="Username" class="required"/>
+                    <br />
+                    <label for="password">Enter Password:</label>
+        			<input type="password" name="password" id="password" value="" placeholder="Password" class="required"/>
+   	 			</div>        
+    			<input type="submit" value="Login"  id="submitButton"/>
+                <br />
+    		</form>            
+		</div> 
+        
+        <div data-role="filedcontain"> 
+        	<ul data-role="listview" data-theme="e">
+<!--				<li data-role="list-divider">No Account?</li> -->
+				<li data-icon="arrow-r"><a href="createAccount.php" data-transition="slide">Create An Account</a></li>
+			</ul>	
+        </div>
+        
+    </div>
+
+
+	<div data-role="footer" data-position="fixed">
+		<h1>&copy; Quikshop 2014</h1>
+	</div>
+
+</div>
+
+
+    <script>
+// This is incase someone presses "enter"
+		$('#loginForm').submit(function(e){
+ 		e.preventDefault();
+ 		jQuery.support.cors = true; 
+ 			$.ajax({ 
+     			url: 'loginAuth.php',
+     			crossDomain: false,
+     			type: 'post',
+     			data: $("#loginForm").serialize(), 
+     			success: function(data){
+         			if(data.status == 'success'){
+						alert("Authentication Successful!");
+//            			window.location.href = 'http://www.globalresorthomes.com'; 
+						return false;
+					}
+					else if(data.status == 'error'){
+             			alert("Authentication Invalid. Please try again!");
+             			return false;        
+        			}
+     			}
+ 			}); 
+ 		}); 
+	</script>
+
+</body>
+</html>
