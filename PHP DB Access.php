@@ -22,13 +22,13 @@ $('#loginForm').submit(function(e){
   e.preventDefault();
   jQuery.support.cors = true; 
     $.ajax({ 
-      url: 'http://quikshop.co:11080/auth.php',
+      url: 'http://quikshop.co/auth.php',
       crossDomain: true,
       type: 'post',
       data: $("#loginForm").serialize(), 
       success: function(data){
         if(data.status == 'success'){
-          window.location.href = 'http://quikshop.co:11080/app.html'; 
+          window.location.href = 'http://quikshop.co/app.html'; 
         }
         else if(data.status == 'error'){
           alert("Authentication Invalid. Please try again!");
