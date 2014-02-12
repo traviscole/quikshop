@@ -1,4 +1,4 @@
-<!--Create the form in jQuery:-->
+// Create the form in jQuery:
 
 <form id="loginForm">
     <div data-role="fieldcontain" class="ui-hide-label">
@@ -15,7 +15,7 @@
 </form>
 
 
-<!--Package and send it to your php call using Ajax-->
+// Package and send it to your php call using Ajax
 
 
 $('#loginForm').submit(function(e){
@@ -40,26 +40,26 @@ $('#loginForm').submit(function(e){
  
  
  
- <!--Receive it in your PHP call-->
+// Receive it in your PHP call
  
  
  
 <?php
- <!--Allow for errors-->
+// Allow for errors
 error_reporting(E_ALL);
 ini_set('display_errors', '1');
 
- <!--Connect to the database NOTE: Hostgator may need another connection route than 'localhost'-->
+// Connect to the database NOTE: Hostgator may need another connection route than 'localhost'
 $mysqli = new mysqli("localhost","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
- <!--Various Includes-->
+// Various Includes
 header("access-control-allow-origin: *");
 header("access-control-allow-methods: GET, POST, OPTIONS");
 header("access-control-allow-credentials: true");
 header("access-control-allow-headers: Content-Type, *");
 header("Content-type: application/json");
 
- <!--Implementation-->
+// Implementation
 // Parse the log in form if the user has filled it out and pressed "Log In"
 if (isset($_POST["username"]) && isset($_POST["password"])) {
 
@@ -81,10 +81,10 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
            <!--If not, write error to response-->
           $response_array['status'] = 'error'; 
       }
- <!--Encode the response in JSON, it is auto matically passed back to the caller. Also echo this to the console-->
+// Encode the response in JSON, it is auto matically passed back to the caller. Also echo this to the console
 echo json_encode($response_array);
 
 }
- <!--Close the connection-->
+// Close the connection
 $mysqli->close();
 ?>
