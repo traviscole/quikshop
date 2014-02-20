@@ -22,13 +22,13 @@ if (isset($_POST["username"]) && isset($_POST["password"])) {
       $password = $_POST['password'];
 
 //		Find the correct table and row. Limit this to 1 result-->
-      $sql = "SELECT user_id, user_password, user_email FROM Users WHERE user_email='$username' LIMIT 1";
+      $sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
 //		Assign this result to another veriable-->
       $result = $mysqli->query($sql) or die( $mysqli->error );
       $row = mysqli_fetch_assoc($result);
 
 //		See if the password matches-->
-      if ($password == $row['user_password']) {
+      if ($password == $row['passHash']) {
 //			If so, write success to the response aray-->
           $response_array['status'] = 'success'; 
       } else {
