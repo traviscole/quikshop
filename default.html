@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
@@ -6,7 +7,7 @@
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-    	<meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
     
 </head>
 
@@ -14,8 +15,8 @@
 <div data-role="page" data-theme="b">
 
 	<div data-role="header" data-theme="b">
-		<h1><img src="logo.png" width="138" height="29" align="middle" /></h1>
-        <a href="help.html" data-icon="info" class="ui-btn-right">Help</a>
+		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
+        <a href="help.html" data-icon="info" class="ui-btn-right" data-transition="slide" position:absolute top:50%>Help</a>
 	</div>
     
 	<div data-role="content">  
@@ -65,8 +66,7 @@
      			data: $("#loginForm").serialize(), 
      			success: function(data){
          			if(data.status == 'success'){
-						alert("Authentication Successful!");
-//            			window.location.href = 'http://www.globalresorthomes.com'; 
+           				window.location.href = 'scanner.html'; 
 						return false;
 					}
 					else if(data.status == 'error'){
