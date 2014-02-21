@@ -25,8 +25,13 @@
 	<div data-role="content">  
     	<div id="scanner" data-landmark-id="1">
             <center><img src="scannerTempImg.png" width="300" height="250" /></center>
-            <input type="submit" value="Scan" id="scanButton"/>
-            
+            <form id="barcodeForm">
+    			<div data-role="fieldcontain" class="ui-hide-label">
+        			<input type="text" name="barcode" id="barcode" value="" placeholder="Barcode" class="required"/>
+   	 			</div>        
+    			<input type="submit" value="Scan"  id="scanButton"/>
+                <br />
+    		</form>
 		</div> 
         
         </br>
