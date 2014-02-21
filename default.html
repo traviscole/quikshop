@@ -66,7 +66,8 @@
      			data: $("#loginForm").serialize(), 
      			success: function(data){
          			if(data.status == 'success'){
-           				window.location.href = 'scanner.html'; 
+					<a href="http://www.quikshop.co/scanner.html" data-transition="slide">
+ <!--          				window.location.href = 'scanner.html'; 	-->
 						return false;
 					}
 					else if(data.status == 'error'){
