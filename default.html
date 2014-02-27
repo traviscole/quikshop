@@ -3,50 +3,62 @@
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
 
-	<title>Quikshop Mobile</title>   
+	<title>Quikshop Mobile</title>  
+	 
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<!-- Hashing Functions -->
+	<script type="text/javascript" src="http://crypto-js.googlecode.com/svn/tags/3.0.2/build/rollups/md5.js"></script>
+<!-- Fix View on Phones -->
     <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    
+	
 </head>
 
 <body>
 <div data-role="page" data-theme="b">
 
+<!-- Header -->
 	<div data-role="header" data-theme="b">
+	
+<!-- Logo Image -->
 		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
+<!-- Help Button in Header -->
         <a href="help.html" data-icon="info" class="ui-btn-right" data-transition="slide" position:absolute top:50%>Help</a>
+	
 	</div>
-    
+	
+<!-- Body -->    
 	<div data-role="content">  
      
+<!-- Form -->
     	<div id="landmark-1" data-landmark-id="1">
-        <center> Welcome to QuikShop! </center>
-    		<form id="loginForm">
-    			<div data-role="fieldcontain" class="ui-hide-label">
-<!--       			<label for="username">Enter Email Address:</label>    	-->          
-        			<input type="text" name="username" id="username" value="" placeholder="Email" class="required"/>
-                    <br />
-                    <br />
-<!--                    <label for="password">Enter Password:</label>		-->
-        			<input type="password" name="password" id="password" value="" placeholder="Password" class="required"/>
-   	 			</div>        
-    			<input type="submit" value="Login"  id="submitButton"/>
-                <br />
+<!-- Title -->
+        	<center> Welcome to QuikShop! </center>
+<!-- Beginning of Form -->
+    		<form id="loginForm">   		
+    			<div data-role="fieldcontain" class="ui-hide-label">    			
+        			<input type="text" name="username" id="username" value="" placeholder="Email" class="required" autocorrect="off" autocapitalize="off"/>
+                	<br />
+                	<br />
+        			<input type="password" name="password" id="password" value="" placeholder="Password" class="required" autocorrect="off" autocapitalize="off"/>        			
+   	 			</div>      
+<!-- Submit Button -->     	 			
+    			<input type="submit" value="Login"  id="submit"/>
+                <br />                
     		</form>            
 		</div> 
-        
+
+<!-- Create Acct Buttons (below form) -->       
         <div data-role="filedcontain"> 
         	<ul data-role="listview" data-theme="e">
-<!--				<li data-role="list-divider">No Account?</li> -->
 				<li data-icon="arrow-r"><a href="CreateCustomerAcc.php" data-transition="slide">Create An Account</a></li>
 			</ul>	
         </div>
-        
+            
     </div>
-
-
+    
+<!-- Footer -->
 	<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
 		<h1>&copy; Quikshop 2014</h1>
 	</div>
@@ -55,28 +67,54 @@
 
 
     <script>
-// This is incase someone presses "enter"
-		$('#loginForm').submit(function(e){
- 		e.preventDefault();
- 		jQuery.support.cors = true; 
- 			$.ajax({ 
-     			url: 'loginAuth.php',
-     			crossDomain: false,
-     			type: 'post',
-     			data: $("#loginForm").serialize(), 
-     			success: function(data){
-         			if(data.status == 'success'){
-					<a href="http://www.quikshop.co/scanner.html" data-transition="slide">
- <!--          				window.location.href = 'scanner.html'; 	-->
-						return false;
-					}
-					else if(data.status == 'error'){
-             			alert("Authentication Invalid. Please try again!");
-             			return false;        
-        			}
-     			}
- 			}); 
- 		}); 
+//		Allow form submissions when page is loaded
+    	$(document).ready(function() {
+            $("#submit").click(function(){
+  
+//				Clean and submit the data written in the form
+                var formData = $("#loginForm").serialize();
+
+//				Submit the form via AJAX to the loginAuth.php page  
+                $.ajax({
+                    type: "POST",
+                    url: 'loginAuth.php',
+     				crossDomain: false,
+                    cache: false,
+//					This is the serialized data
+                    data: formData,
+//					If successful call, goto the onSuccess function
+                    success: onSuccess,
+//					Else goto the onError function
+                    error: onError
+                });
+//				This will never be called
+                return false;
+            });
+        });
+        
+//		Validate the login
+    	function onSuccess(data, status)
+        {
+//			If the name / pass is a match, login.
+         	if(data.status == 'success') {
+	        	window.location.href = 'scanner.html';
+				return true;
+				}
+
+//			Bad name / pass
+			else {
+             	alert("Authentication Invalid. Please try again!");
+             	return false;        
+        	}
+        }
+        
+//		Ajax / PHP Error
+        function onError(data, status)
+        {
+            alert("Error Processing Your Request");
+			return false;    
+        } 
+               
 	</script>
 
 </body>
