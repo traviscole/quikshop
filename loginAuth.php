@@ -13,29 +13,34 @@ header("access-control-allow-credentials: true");
 header("access-control-allow-headers: Content-Type, *");
 header("Content-type: application/json");
 
-// Implementation
 // Parse the log in form if the user has filled it out and pressed "Log In"
 if (isset($_POST["username"]) && isset($_POST["password"])) {
 
-//		Assign the passed entry to variables
-      $username = $_POST['username'];
-      $password = $_POST['password'];
+//	Assign the passed entry to variables
+    $username = $_POST['username'];
+    $password = $_POST['password'];
 
-//		Find the correct table and row. Limit this to 1 result-->
-      $sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
-//		Assign this result to another veriable-->
-      $result = $mysqli->query($sql) or die( $mysqli->error );
-      $row = mysqli_fetch_assoc($result);
+//	Build the SQL call
+    $sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
+//	Call the database, save the result in the variable RESULT
+    $result = $mysqli->query($sql) or die( $mysqli->error );
+//	Extract the row data of the result. Save as ROQ
+    $row = mysqli_fetch_assoc($result);
+//	Extraxt the hashed password out of the database
+    $hashDB = $row['passHash'];
 
-//		See if the password matches-->
-      if ($password == $row['passHash']) {
-//			If so, write success to the response aray-->
-          $response_array['status'] = 'success'; 
-      } else {
-//			If not, write error to response-->
+//	See if the password matches
+	if (password_verify($password, $hashDB)) {
+//		If so, write success to the response aray
+    	$response_array['status'] = 'success'; 
+    } 
+    
+    else {
+//	If not, write error to response
           $response_array['status'] = 'error'; 
-      }
-// Encode the response in JSON, it is auto matically passed back to the caller. Also echo this to the console
+    }
+    
+// Encode the response in JSON, it is automatically passed back to the caller. Also echo this to the console
 echo json_encode($response_array);
 
 }
