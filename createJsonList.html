@@ -1,0 +1,51 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+
+	<title>Quikshop Mobile</title>  
+	 
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+<!-- Fix View on Phones -->
+    <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+	
+</head>
+
+<body>
+
+<div data-role="page" id="listviewDiv">
+    <div data-role="header" data-theme="b">
+         <h1> Listview </h1>
+
+    </div>
+    <div data-role="content" id="listviewDiv2">
+<!-- Where the listview will end up -->
+    </div>
+</div>
+
+<script>
+//	Start script when the page loads
+	$(document).on("pageinit", "#listviewDiv", function () {
+
+//		Make AJAX call to get the JSON
+		$.getJSON("phpGetTest.php", function(data){
+
+//			Declare a variable with which to build our output
+    		var output = '';
+
+//			Iterate through the data
+    		$.each(data, function(index, value){
+//				Add each value to the output buffer
+        		output += '<li>' + index + "=" + value + '</li>';
+   		 	});
+
+//			Append the buffered output to the listview and either refresh the listview or create it
+    		$('#listviewDiv2').append(output).trigger('create');
+		});
+	});
+</script>
+
+</body>
+</html>
