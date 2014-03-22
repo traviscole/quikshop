@@ -14,23 +14,43 @@
 <?php
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 	
-	$createDbSql = "CREATE TABLE IF NOT EXISTS cart(user VARCHAR(100), item VARCHAR(50))";
+	//drop cart table
+	$dropCart = "DROP TABLE cart";
 	
-	$mysqli->query($createDbSql) or die("Unable to create table");
+	$mysqli->query($dropCart) or die("Cart table not dropped");
 	
-	//delete dummy data
-	$deleteItem = "DELETE FROM cart WHERE user = 'nshiver21@yahoo.com'";
+	//create cart table
+	$createCart = "CREATE TABLE IF NOT EXISTS cart(cartID INT, itemID INT, ownerID INT, quantity INT, timeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
 	
-	$mysqli->query($deleteItem) or die("Item not deleted!");
+	$mysqli->query($createCart) or die("Unable to create table");
 	
-	//insert dummy data
+	//populate cart table
+	$insertCart0 = "INSERT INTO cart(cartID, itemID, ownerID, quantity) VALUES(1, 1, 1, 1)";
+	$insertCart1 = "INSERT INTO cart(cartID, itemID, ownerID, quantity) VALUES(1, 2, 1, 1)";
+	$insertCart2 = "INSERT INTO cart(cartID, itemID, ownerID, quantity) VALUES(1, 3, 1, 1)";
 	
-	$insertItems0 = "INSERT INTO cart(user, item) VALUES('nshiver21@yahoo.com', 'Milk')";
-	$insertItems1 = "INSERT INTO cart(user, item) VALUES('nshiver21@yahoo.com', 'Cereal')";
+	$mysqli->query($insertCart0) or die("Unable to insert data into Cart");	
+	$mysqli->query($insertCart1) or die("Unable to insert data into Cart");	
+	$mysqli->query($insertCart2) or die("Unable to insert data into Cart");	
+	
+	//drop items table
+	$dropItems = "DROP TABLE items";
+	
+	$mysqli->query($dropItems) or die("Items table not dropped");
+	
+	//create items table
+	$createItems = "CREATE TABLE IF NOT EXISTS items(itemID INT AUTO_INCREMENT PRIMARY KEY, storeID INT, itemName VARCHAR(100), price FLOAT, quantity INT, description VARCHAR(500), timeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
+	
+	$mysqli->query($createItems) or die("Unable to create items");
+	
+	//populate items table
+	$insertItems0 = "INSERT INTO items(storeID, itemName, price, quantity, description) VALUES(1, 'Milk', 3.99, 1, 'It\'s a dairy product from cows')";
+	$insertItems1 = "INSERT INTO items(storeID, itemName, price, quantity, description) VALUES(1, 'Cereal', 2.99, 1, 'You should eat it with your milk in the morning')";
+	$insertItems2 = "INSERT INTO items(storeID, itemName, price, quantity, description) VALUES(1, 'Chicken', 5.99, 1, 'It\'s not dairy. It\'s a chicken')";
 	
 	$mysqli->query($insertItems0) or die("Unable to insert Milk");
 	$mysqli->query($insertItems1) or die("Unable to insert Cereal");
-	
+	$mysqli->query($insertItems2) or die("Unable to insert Chicken");	
 	
 ?>
 <body>
@@ -51,16 +71,20 @@
         	<ul data-role="listview" data-filter="true" data-filter-placeholder="Search Cart..." data-inset="true" data-divider-theme="a" data-theme="c">
             	<li data-role="list-divider">Publix</li>
                 	<?php
-						$query = "SELECT item FROM cart WHERE user = 'nshiver21@yahoo.com'";
-						$result = $mysqli->query($query) or die("UNABLE TO GET RESULT");
+						$query = "SELECT itemName, price, cart.itemID FROM items, cart WHERE cart.itemID = items.itemID AND cartID = 1";
+						$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
+						$total = 0;
 						while($row = $result->fetch_assoc())
 						{
-							$item = $row["item"];
-							echo "<li data-transition='slide'><a href='itemDetail.html'>$item</a></li>";
+							$itemID = $row["itemID"];
+							$itemName = $row["itemName"];
+							$price = $row["price"];
+							$total += $price;
+							echo "<li data-transition='slide'><a href='itemDetail.php?ID=$itemID'>$itemName</a></li>";
 						}
 					?>
 
-                <li data-role="list-divider"><center>Total: $9.43</center></li>
+                <li data-role="list-divider"><center>Total: $<?php echo $total; ?></center></li>
 			</ul>
             
         </div>
