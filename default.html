@@ -1,3 +1,4 @@
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
@@ -94,7 +95,11 @@
         {
 //			If the name / pass is a match, login.
          	if(data.status == 'success') {
-	        	window.location.href = 'scanner.html';
+//				Save the authenticated username to the permanent variable userId         	
+         		localStorage.setItem("userId", data.userId);
+         		
+//				Return          		
+         		window.location.href = 'scanner.html';
 				return true;
 				}
 
