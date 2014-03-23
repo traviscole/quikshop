@@ -14,38 +14,33 @@
 <div data-role="page" data-theme="b">
 
 	<div data-role="header" data-theme="b">
-    
 		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
-        <a href="help.html" data-icon="info" class="ui-btn-right" position:absolute top:50% data-transition="slide">Help</a>
-        <a href="logout.html" class="ui-btn-left" data-icon="delete" data-iconpos="left" data-transition="pop">Logout</a>
-
+        	<a href="help.html" data-icon="info" class="ui-btn-right" position:absolute top:50% data-transition="slide">Help</a>
+        	<a href="logout.html" class="ui-btn-left" data-icon="delete" data-iconpos="left" data-transition="pop">Logout</a>
 	</div>
     
 	<div data-role="content">  
     	<div id="scanner" data-landmark-id="1">
-            <center><img src="scannerTempImg.png" width="300" height="250" /></center>
-            <form id="barcodeForm">
+        	<center><img src="scannerTempImg.png" width="300" height="250" /></center>
+        	<form id="barcodeForm">
     			<div data-role="fieldcontain" class="ui-hide-label">
         			<input type="text" name="barcode" id="barcode" value="" placeholder="Barcode" class="required"/>
-   	 			</div>        
+   	 		</div>        
     			<input type="submit" value="Scan"  id="scanButton"/>
-                <br />
+                		<br />
     		</form>
-		</div> 
+	</div> 
         
         </br>
         
         <div data-role="filedcontain"> 
-        
         	<ul data-role="listview" data-theme="b">
-				<li data-icon="arrow-r"><a href="cart.php" data-transition="slide">View Current Cart</a></li>
-                <li data-icon="arrow-r"><a href="checkout.html" data-transition="slide">Checkout</a></li>
-				<li data-icon="arrow-r"><a href="EditCustomerAcc.html" data-transition="slide">Edit Account</a></li>
-			</ul>	
-            
+			<li data-icon="arrow-r"><a href="cart.php" data-transition="slide">View Current Cart</a></li>
+                	<li data-icon="arrow-r"><a href="checkout.html" data-transition="slide">Checkout</a></li>
+			<li data-icon="arrow-r"><a href="EditCustomerAcc.html" data-transition="slide">Edit Account</a></li>
+		</ul>	
         </div>
-    </div>
-
+	</div>
 	<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
 		<h1>&copy; Quikshop 2014</h1>
 	</div>
