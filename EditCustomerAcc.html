@@ -33,109 +33,87 @@
     	<div id="landmark-1" data-landmark-id="1">
 <!-- Title -->
         	<center> Edit Account </center>
+	 	<form id="EditCustomerAccForm">  
+		<div data-role="fieldcontain" class="ui-hide-label">
 
-								<div data-role="fieldcontain" class="ui-hide-label">
+			<input type="text" name="fName" id="fName" value="" placeholder="First Name">
+			<br /> 
+			<br />							
 
-										<input type="text" name="fName" id="fName" value="" placeholder="First Name">
-										<br /> 
-										<br />							
+			<input type="text" name="LName" id="lName" value="" placeholder="Last Name">
+			<br />
+			<br />
 									
-										<input type="text" name="LName" id="lName" value="" placeholder="Last Name">
-										<br />
-										<br />
+			<input type="date" name="dob" pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD" placeholder="YYYY-MM-DD" />
+			<br />
+			<br />
 									
-										<input type="date" name="dob" pattern="\d{4}-\d{2}-\d{2}" title="YYYY-MM-DD" placeholder="YYYY-MM-DD" />
-										<br />
-										<br />
+			<input type="email" name="email" id="email" value="" placeholder="eMail">
+			<br />
+			<br />
 									
-										<input type="email" name="email" id="email" value="" placeholder="eMail">
-										<br />
-										<br />
+			<input type="password" name="password1" id="password1" value="" placeholder="Password">
+			<br />
+			<br />
 									
-										<input type="password" name="password1" id="password1" value="" placeholder="Password">
-										<br />
-										<br />
-									
-										<input type="password" name="password2" id="password2" value="" placeholder="Reenter Password">
-										<br />
-										<br />
+			<input type="password" name="password2" id="password2" value="" placeholder="Reenter Password">
+			<br />
+			<br />
 
-										<input type="password" name="address" id="address" value="" placeholder="Address">
+			<input type="password" name="address" id="address" value="" placeholder="Address">
 
 										
 
-								</div>
+		</div>
 
-								<div style="text-align:center">  
+		<div style="text-align:center">  
 
-									<input type="submit" data-inline="true" value="Submit" >
+			<input type="submit" data-inline="true" value="Submit" >
 
-								</div> 
+		</div> 
 
-							</form>
+		</form>
 
-						</div>
+		</div>
 
                         
-						<!-- Footer -->
-							<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
-								<h1>&copy; Quikshop 2014</h1>
-							</div>
+	<!-- Footer -->
+		<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
+			<h1>&copy; Quikshop 2014</h1>
+		</div>
 
-						</div>
+	</div>
 
 
-		    <script>
-//		Allow form submissions when page is loaded
+	<script>
+//	Allow form submissions when page is loaded
     	$(document).ready(function() {
-            $("#submit").click(function(){
+        	$("#submit").click(function(){
   
-//				Clean and submit the data written in the form
+//		Clean and submit the data written in the form
                 var formData = $("#EditCustomerAccForm").serialize();
 
-//				Submit the form via AJAX to the loginAuth.php page  
+//		Submit the form via AJAX to the loginAuth.php page  
                 $.ajax({
-                    type: "POST",
-                    url: 'EditCustomerAcc.php',
+                	type: "POST",
+                    	url: 'EditCustomerAcc.php',
      				crossDomain: false,
-                    cache: false,
-//					This is the serialized data from above
-                    data: formData,
-                    success: onSuccess,
-//					Else goto the onError function
+                    	cache: false,
+//			This is the serialized data from above
+                    	data: formData,
+                    	success: onSuccess,
+//			Else goto the onError function
 //                    error: onError
                 });
 //			Workaround for the success function not working
 			alert("Success, Please log in."); 
 			window.location.href = 'http://www.quikshop.co';
 			
-//			This will never be called
+//	This will never be called
             return false;
             });
         });   
 
-//		Validate the login
-//    	function onSuccess(data)
-//      	{
-//			If the data was inserted:
-//         	if(data.status == 'success') {
-//	        	window.location.href = 'http://www.quikshop.co';
-//				return true;
-//				}
-//
-//			If there was an error inserting the information
-//			else {
-//             	alert("Please try again!");
-//             	return false;        
-//        	}
-//        }
-        
-//		Ajax / PHP Error
-//        function onError(data)
-//        {
-//            alert("Error Processing Your Request");
-//			return false;    
-//        } 
 
 	</script>
 
