@@ -1,65 +1,24 @@
 #!/usr/local/bin/php
 <?php
  
-if(isset($_POST['email'])) {
  
-     
- 
- 
-    $email_to = "email goes here";
- 
-    $email_subject = "Your email subject line";
- 
-     
- 
-     
- 
-    function died($error) {
- 
-        // your error code can go here
- 
-        echo "We are very sorry, but there were error(s) found with the form you submitted. ";
- 
-        echo "These errors appear below.<br /><br />";
- 
-        echo $error."<br /><br />";
- 
-        echo "Please go back and fix these errors.<br /><br />";
- 
-        die();
- 
-    }
- 
-     
- 
-    // validation expected data exists
- 
-    if(!isset($_POST['first_name']) ||
- 
-        !isset($_POST['last_name']) ||
- 
-        !isset($_POST['email']) ||
- 
-        !isset($_POST['telephone']) ||
- 
-        !isset($_POST['comments'])) {
- 
-        died('We are sorry, but there appears to be a problem with the form you submitted.');       
- 
-    }
- 
+   
+ 	//do query and obtain the following infomation
      
  
     $first_name = $_POST['first_name']; // required
  
     $last_name = $_POST['last_name']; // required
  
-    $email_from = $_POST['email']; // required
+    $items = $_POST['items']; // required
  
     $telephone = $_POST['telephone']; // not required
  
     $comments = $_POST['comments']; // required
+  
+    $email_to = $_POST['email'];
  
+    $email_subject = "Items List";
 
  
     $error_message = "";
@@ -110,7 +69,9 @@ if(isset($_POST['email'])) {
  
     }
  
-     
+     // here is to prepare what the user will see
+
+	//produce query and attached the list of items purchased and price
  
     $email_message .= "First Name: ".clean_string($first_name)."\n";
  
@@ -137,6 +98,6 @@ $headers = 'From: '.$email_from."\r\n".
 @mail($email_to, $email_subject, $email_message, $headers);  
 
  
-}
+
  
 ?>
