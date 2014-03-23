@@ -17,8 +17,12 @@ header("Content-type: application/json");
 if (isset($_POST["username"]) && isset($_POST["password"])) {
 
 //	Assign the passed entry to variables
-    $username = mysqli_real_escape_string($mysqli,$_POST['username']);
-    $password = mysqli_real_escape_string($mysqli,$_POST['password']);
+    	$username = mysqli_real_escape_string($mysqli,$_POST['username']);
+    	$password = mysqli_real_escape_string($mysqli,$_POST['password']);
+    	
+//	Assign the username to the response array, for saving to local storage
+//		back in default.html
+	$response_array['userId'] = $username;
 
 //	Build the SQL call
     $sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
