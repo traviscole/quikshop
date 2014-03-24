@@ -37,87 +37,37 @@
     
 	
 //print_r($_POST);
+
 $cardNumber = $_POST['Cards'];
 $userID = $_POST['userId'];
 $cartID = $_POST['cartId'];
+$price = $_POST['price'];
 	
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+	
 	if(isset($_POST['submit']) && isset($cardNumber)) {
-		print( "sending email");
-		/**
-		
-
-<?php
- 
- 
-   
- 	//do query and obtain the following infomation
-     
- 
-    $first_name = $_POST['first_name']; // required
- 
-    $last_name = $_POST['last_name']; // required
- 
-    $items = $_POST['items']; // required
- 
-    $telephone = $_POST['telephone']; // not required
- 
-    $comments = $_POST['comments']; // required
-  
-    $email_to = $_POST['email'];
- 
-    $email_subject = "Items List";
-
- 
-    $error_message = "";
- 
+		?>
+        <font size="18">
+       <center>
+Submit Payment<p>Sending Email
+        </p>
+        </center>
+        </font>
+         <?php
+	/*	 
     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
  
-  if(!preg_match($email_exp,$email_from)) {
- 
-    $error_message .= 'The Email Address you entered does not appear to be valid.<br />';
- 
-  }
- 
-    $string_exp = "/^[A-Za-z .'-]+$/";
- 
-  if(!preg_match($string_exp,$first_name)) {
- 
-    $error_message .= 'The First Name you entered does not appear to be valid.<br />';
- 
-  }
- 
-  if(!preg_match($string_exp,$last_name)) {
- 
-    $error_message .= 'The Last Name you entered does not appear to be valid.<br />';
- 
-  }
- 
-  if(strlen($comments) < 2) {
- 
-    $error_message .= 'The Comments you entered do not appear to be valid.<br />';
- 
-  }
- 
-  if(strlen($error_message) > 0) {
- 
-    died($error_message);
- 
-  }
- 
-    $email_message = "Form details below.\n\n";
- 
-     
  
     function clean_string($string) {
  
-      $bad = array("content-type","bcc:","to:","cc:","href");
+      $bad = array("Name:","Payment Method:","Items Purchased:","Total:");
  
       return str_replace($bad,"",$string);
  
     }
+	
  
      // here is to prepare what the user will see
 
@@ -125,17 +75,27 @@ $cartID = $_POST['cartId'];
  
     $email_message .= "First Name: ".clean_string($first_name)."\n";
  
-    $email_message .= "Last Name: ".clean_string($last_name)."\n";
+    $email_message .= "Last Name: ".clean_string($cardNumber)."\n";
  
-    $email_message .= "Email: ".clean_string($email_from)."\n";
- 
-    $email_message .= "Telephone: ".clean_string($telephone)."\n";
- 
-    $email_message .= "Comments: ".clean_string($comments)."\n";
+ 	$sqlp  = "Select * from cart WHERE cartID = $cartID";
+	$resultp = $mysqli->query($sqlp) or die( $mysqli->error );
+	$email_message .= "Quantiy	Item	Description	Price\n";
+	
+	While($rowp = mysqli_fetch_row($resultp)){
+		$sqlq  = "Select quantity from cart WHERE itemsID = $rowp[0]";
+		$resultq = $mysqli->query($sqlq) or die( $mysqli->error );
+		$rowq = mysqli_fetch_row($resultq)
+		
+   
+	
+	}
+	$email_message .= "Products".clean_string($price)."\n";
+    $email_message .= "Purchased Items: ".clean_string($price)."\n";
  
      
  
-     
+     $email_to ="abelalvarez89@ufl.edu";
+	 $email_from="abelalvarez89@hotmail.com
  
 // create email headers
  
@@ -148,10 +108,7 @@ $headers = 'From: '.$email_from."\r\n".
 @mail($email_to, $email_subject, $email_message, $headers);  
 
  
-
- 
-?>
-		*/
+*/
 		
 	}
 	else if(isset($_POST['delete'])){
