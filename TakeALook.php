@@ -44,38 +44,51 @@
 			
 			//TRAVIS THIS SECTION RIGHT HERE
 			//get value using javascript into php
-			// This returns a string of length 64
-			$userEmail = "<script>document.write(localStorage.getItem('userId'));</script>";
-			$new = $userEmail.'';
-			echo($userEmail);		
-			$usersql  = "SELECT * From Users where email = 'abelalvarez89@ufl.edu'";
-			$userresult = $mysqli->query($usersql) or die( $mysqli->error );
-			$userrow = mysqli_fetch_row($userresult);
+					
 			
+			$userID = 0;
+			$cartID = 0;
+			$userEmail = "<script>document.write(localStorage.getItem('userId'));</script>";
+			
+				
+			$usersql  = "SELECT * From Users";
+			$userresult = $mysqli->query($usersql) or die( $mysqli->error );
+			$correctEmail = $userEmail;
+			while($userrow = mysqli_fetch_row($userresult)){
+			
+				var_dump($userEmail,$userrow[1],$correctEmail);		
+				if (strcmp($userEmail, $correctEmail) == 0) {
+    				echo "strings are equal-----------";
+					$userID = $userrow[0];
+					$cartID = $userrow[4];
+					echo $userEmail;
+					print "-------------------$userrow[1].userID$userID.and cartID$cartID";
+					break;
+					
+    			} else {
+    				//echo "strings are not equal";
+    			}
+			}
+
 			// This is the email we are testing against
 			// It is of length X
-			$inputEmail = "Travis@traviscole.me";
+			
 			// This takes the one we pull from storage and cuts it to length X
-			$correctEmail = $userEmail;
 			
+
 			// We can see exactly what the variables look like here
-			var_dump($userEmail,$inputEmail,$correctEmail);
 			
+
 			// Comparison to see if it is correct
-			if (strcmp($userEmail, $correctEmail) == 0) {
-    			echo "strings are equal";
-    		} else {
-    			echo "strings are not equal";
-    		}
-		
+
 			
 			// ENDING HERE
 			
 			// Various Includes --getting the userId and cartId from the current logged in user
 			
-			$userID = 34;//$userrow[0];//$_SESSION['name'];
+			//$userID = 34;//$userrow[0];//$_SESSION['name'];
 
-			$cartID = 1;//$userrow[1];// $_SESSION['cartId'];
+			//$cartID = 1;//$userrow[1];// $_SESSION['cartId'];
 			
 			$sql  = "SELECT itemid, quantity From cart where cartid = $cartID";
 
