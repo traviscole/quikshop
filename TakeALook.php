@@ -44,6 +44,7 @@
 			
 			//TRAVIS THIS SECTION RIGHT HERE
 			//get value using javascript into php
+			// This returns a string of length 64
 			$userEmail = "<script>document.write(localStorage.getItem('userId'));</script>";
 			$new = $userEmail.'';
 			echo($userEmail);		
@@ -51,9 +52,22 @@
 			$userresult = $mysqli->query($usersql) or die( $mysqli->error );
 			$userrow = mysqli_fetch_row($userresult);
 			
-			if('abelalvarez89@ufl.edu' == $userEmail){
-				print"hello world";	
-			}
+			// This is the email we are testing against
+			// It is of length X
+			$inputEmail = "Travis@traviscole.me";
+			// This takes the one we pull from storage and cuts it to length X
+			$correctEmail = $userEmail;
+			
+			// We can see exactly what the variables look like here
+			var_dump($userEmail,$inputEmail,$correctEmail);
+			
+			// Comparison to see if it is correct
+			if (strcmp($userEmail, $correctEmail) == 0) {
+    			echo "strings are equal";
+    		} else {
+    			echo "strings are not equal";
+    		}
+		
 			
 			// ENDING HERE
 			
