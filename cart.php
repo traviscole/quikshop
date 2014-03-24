@@ -1,3 +1,7 @@
+<?php 
+ session_start(); 
+?>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
@@ -10,58 +14,7 @@
     
 </head>
 
-<?php
-	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
-	
-	//drop cart table
-	$dropCart = "DROP TABLE cart";
-	
-	$mysqli->query($dropCart) or die("Cart table not dropped");
-	
-	//create cart table
-	$createCart = "CREATE TABLE IF NOT EXISTS cart(cartID INT, itemID INT, ownerID INT, quantity INT, timeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
-	
-	$mysqli->query($createCart) or die("Unable to create table");
-	
-	//populate cart table
-	$insertCart0 = "INSERT INTO cart(cartID, itemID, ownerID, quantity) VALUES(1, 1, 1, 1)";
-	$insertCart1 = "INSERT INTO cart(cartID, itemID, ownerID, quantity) VALUES(1, 2, 1, 1)";
-	$insertCart2 = "INSERT INTO cart(cartID, itemID, ownerID, quantity) VALUES(1, 3, 1, 1)";
-	
-	$mysqli->query($insertCart0) or die("Unable to insert data into Cart");	
-	$mysqli->query($insertCart1) or die("Unable to insert data into Cart");	
-	$mysqli->query($insertCart2) or die("Unable to insert data into Cart");	
-	
-	//drop items table
-	$dropItems = "DROP TABLE items";
-	
-	$mysqli->query($dropItems) or die("Items table not dropped");
-	
-	//create items table
-	$createItems = "CREATE TABLE IF NOT EXISTS items(itemID INT AUTO_INCREMENT PRIMARY KEY, storeID INT, itemName VARCHAR(100), price FLOAT, quantity INT, description VARCHAR(500), timeStamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
-	
-	$mysqli->query($createItems) or die("Unable to create items");
-	
-	//populate items table
-	$insertItems0 = "INSERT INTO items(storeID, itemName, price, quantity, description) VALUES(1, 'Milk', 3.99, 1, 'It\'s a dairy product from cows')";
-	$insertItems1 = "INSERT INTO items(storeID, itemName, price, quantity, description) VALUES(1, 'Cereal', 2.99, 1, 'You should eat it with your milk in the morning')";
-	$insertItems2 = "INSERT INTO items(storeID, itemName, price, quantity, description) VALUES(1, 'Chicken', 5.99, 1, 'It\'s not dairy. It\'s a chicken')";
-	
-	$mysqli->query($insertItems0) or die("Unable to insert Milk");
-	$mysqli->query($insertItems1) or die("Unable to insert Cereal");
-	$mysqli->query($insertItems2) or die("Unable to insert Chicken");	
-	
-?>
 <body>
-
-//validate login
-<scan>
-if (localStorage.getItem("userId") == null)
-{
-	alert("you are not logged in");
-	window.location.href = 'quikshop.co';
-}
-</scan>
 
 <div data-role="page" data-theme="b">
 
@@ -72,7 +25,13 @@ if (localStorage.getItem("userId") == null)
         <a href="scanner.html" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
 
 	</div>
-    
+    	<script>
+		if (localStorage.getItem("userId") === "signOut") {
+			alert("you are not logged in");
+			
+			window.location.assign("http://www.quikshop.co/")
+		}
+	</script>
 	<div data-role="content">  
         
         <div data-role="filedcontain"> 
@@ -80,16 +39,40 @@ if (localStorage.getItem("userId") == null)
         	<ul data-role="listview" data-filter="true" data-filter-placeholder="Search Cart..." data-inset="true" data-divider-theme="a" data-theme="c">
             	<li data-role="list-divider">Publix</li>
                 	<?php
-						$query = "SELECT itemName, price, cart.itemID FROM items, cart WHERE cart.itemID = items.itemID AND cartID = 1";
-						$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
-						$total = 0;
-						while($row = $result->fetch_assoc())
+
+					//creating connection 
+					$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+
+					$userEmail = "<script>document.write(localStorage.getItem('userId'));</script>";
+			
+			//I am updating UserId and cartId with the session variables (global variables)			
+			$userID = $_SESSION['userId'];
+
+			$cartID = $_SESSION['currCartId'];
+
+				
+					
+					$query = "SELECT * From cart where cartID = $cartID";
+					$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
+					$total = 0;
+
+						//var_dump($row);
+						//creating the list
+						while($row = mysqli_fetch_row($result))
 						{
-							$itemID = $row["itemID"];
-							$itemName = $row["itemName"];
-							$price = $row["price"];
+						
+							$sqlr  = "SELECT * From items where itemID = $row[1] ";
+							$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
+							$rowr = mysqli_fetch_row($resultr);
+							
+							$itemId = $rowr[0];
+							$itemName = $rowr[2];
+							
+							$qt = $row[3];
+							$price = $rowr[3];
 							$total += $price;
-							echo "<li data-transition='slide'><a href='itemDetail.php?ID=$itemID'>$itemName</a></li>";
+							$total *= $qt;
+							echo "<li data-transition='slide'><a href='itemDetail.php?ID=$itemId'>$itemName</a></li>";
 						}
 					?>
 
@@ -97,6 +80,9 @@ if (localStorage.getItem("userId") == null)
 			</ul>
             
         </div>
+
+		
+
         
     </div>
 
@@ -106,6 +92,10 @@ if (localStorage.getItem("userId") == null)
 	</div>
 
 </div>
+
+	<?php
+		$mysqli->close();
+	?>
 
 </body>
 </html>
