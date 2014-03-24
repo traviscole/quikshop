@@ -23,31 +23,29 @@
 		<a href="scanner.html" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
 
 	</div>
-				<script>
-                    if (localStorage.getItem("userId") === null) {
-                        alert("you are not logged in");
-                        
-                        window.location.assign("http://www.quikshop.co/")
-                    }
-                </script>
+	<script>
+		if (localStorage.getItem("userId") === "signOut") {
+			alert("you are not logged in");
+			
+			window.location.assign("http://www.quikshop.co/")
+		}
+	</script>
+    	
 		<div data-role="content">  
 
 		<div id="landmark-1" data-landmark-id="1">
 		
-			<?php
-		
+			<?php	
+			// Connect to the database NOTE: Hostgator may need another connection route than 'localhost'
+			$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 			// Allow for errors
 			error_reporting(E_ALL);
 			ini_set('display_errors', '1');
 
-			// Connect to the database NOTE: Hostgator may need another connection route than 'localhost'
-			$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+			
+			$userID = $_SESSION['userId'];
 
-			// Various Includes --getting the userId and cartId from the current logged in user
-
-			$userID = 34;//$_SESSION['name'];
-
-			$cartID = 1;// $_SESSION['cartId'];
+			$cartID = $_SESSION['currCartId'];
 			
 			$sql  = "SELECT itemid, quantity From cart where cartid = $cartID";
 
@@ -109,9 +107,10 @@
 
 				<input type="hidden" name="userId" value= <?php echo $userID;?>>
                 <input type="hidden" name="cartId" value= <?php echo $cartID;?>>
+                <input type="hidden" name="price" value= <?php echo $sum;?>>
 				<br />
                 <br />
-				
+				<br />
 				<input type="submit" name="submit" value="Pay Now">
                	<br />
 				<br />
