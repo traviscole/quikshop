@@ -1,0 +1,163 @@
+{
+    "command": {
+        "checkUser": {
+            "name": "<name>",
+            "lastName": "<lastName>",
+            "email": "<email>",
+            "password": "<password>"
+        }
+    }
+}
+
+
+{
+    "command": {
+        "LogIn": {
+            "email": "<email>",
+            "password": "<password>"
+        }
+    }
+}
+
+
+}
+     "status": "success",
+}
+
+
+
+{
+    "request": {
+        "Edit Account": {
+            "email": "<email>"
+        }
+    }
+}
+
+{
+    "command": {
+        "Edit Account": {
+            "name": "<name>",
+            "lastName": "<lastName>",
+            "email": "<email>",
+            "password": "<password>"
+        }
+    }
+}
+
+
+
+
+{
+    "request": {
+        "store Listt": {
+             "zipcode": "<zipcode>"
+        }
+    }
+}
+
+{
+    "command": {
+        "Check-In": {
+            "storeID": "<storeId>",
+            "email": "<email>"
+        }
+    }
+}
+
+{
+    "request": {
+        "scan Info": {
+            "email": "<email>",
+            "itemId": "<itemId>"
+        }
+    }
+}
+{
+    "command": {
+        "add item to cart": {
+            "email": "<email>",
+            "itemId": "<itemId>",
+	“quantity”: “<quantity>”
+        }
+    }
+}
+
+
+{
+    "request": {
+        "view cart": {
+            "email": "<email>",
+                 }
+    }
+}
+{
+    "command": {
+        "change cart": {
+            "email": "<email>",
+            "itemId": "<itemId>",
+	“quantity”: “<quantity>”
+        }
+    }
+}
+
+{
+    "command": {
+        "clear cart": {
+            "email": "<email>"
+               }
+    }
+}
+
+{
+    "request": {
+        "checkout": {
+            "email": "<email>"
+               }
+    }
+}
+{
+    "request": {
+        "pay cash": {
+            "email": "<email>"
+        }
+    }
+}
+{
+    "request": {
+        "pay card": {
+            "email": "<email>"
+        }
+    }
+}
+
+
+
+
+{
+    "command": {
+        "payment": {
+            "email": "<email>",
+            "card_Nuber": "<card_Nuber>",
+	“name”: “<name>”,
+	“expiration_date”: “<expiration_date>”,
+	“address”: “<address>”,
+“city “:”<city>”,
+“state”:”<state>”,
+“card_type”:”<card_type>”,
+“security_number”:”<security_number>”
+
+        }
+    }
+}
+
+{
+    "request": {
+        "edit_Payment": {
+            "email": "<email>",
+	"card#": "<card#>"
+        }
+    }
+}
+
+
