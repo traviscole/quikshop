@@ -22,7 +22,7 @@
     		$lName 		= mysqli_real_escape_string($mysqli,$_POST['lname']);
     		$eMail 		= mysqli_real_escape_string($mysqli,$_POST['email']);		// Required to not be NULL
     		$pw 		= mysqli_real_escape_string($mysqli,$_POST['password']);	// Required to not be NULL
-    		$passwordHashed = password_hash($pw, PASSWORD_DEFAULT);			// Hash PW before inserting
+    		$passwordHashed = password_hash($pw, PASSWORD_DEFAULT);					// Hash PW before inserting
     
 //	Build the query    
 		$sql="INSERT INTO Users(email,passHash,fname,lname) VALUES('$eMail','$passwordHashed','$fName','$lName')";
@@ -30,14 +30,39 @@
 //	Post the query, 
 		$result = $mysqli->query($sql) or die( $mysqli->error );
 		if($result){
-			echo "Data for $fname inserted successfully!";
+//			echo "Data for $fname inserted successfully!";
+			$sql2 = "SELECT currCartId FROM Users WHERE email='$eMail' LIMIT 1";
+			$result2 = $mysqli->query($sql2) or die( $mysqli->error );
+			
+			if($result2) {
+				$row2 = mysqli_fetch_assoc($result2);
+    			$cartIdResponse = $row2['cartId']; 
+    			$userId = $row2['userId']; 
+    			   	
+    			if(is_null($cartIdResponse){
+    				$response_array['status'] = 'error';
+    			}
+    			if(is_null($userId){
+    				$response_array['status'] = 'error';
+    			}	
+    			
+    			$response_array['cartId'] = $cartIdResponse;
+    			$response_array['userId'] = $userId;
+    			$response_array['status'] = 'success';
+			}
+			else {
+				$response_array['status'] = 'error';
+			}
 		}
 		else{ 
-			echo "An error occurred inserting user info";
+//			echo "An error occurred inserting user info";
+			$response_array['status'] = 'error';
 		}
 	}
 	else {
-		echo "The form was not filled out correctly";
+//		echo "The form was not filled out correctly";
+		$response_array['status'] = 'error';
+
 	}
 
 // 	Close the connection
