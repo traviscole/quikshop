@@ -22,7 +22,7 @@
     	
 //	Assign the username to the response array, for saving to local storage
 //	back in default.html
-		$response_array['email'] = $username;
+			$response_array['email'] = $username;
 
 //	Build the SQL call
     		$sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
@@ -30,8 +30,25 @@
     		$result = $mysqli->query($sql) or die( $mysqli->error );
 //	Extract the row data of the result. Save as ROQ
     		$row = mysqli_fetch_assoc($result);
-//	Extraxt the hashed password out of the database
+//	Extract the hashed password out of the database
     		$hashDB = $row['passHash'];
+
+//	Place the userId into the response    		
+    		$userIdResponse = $row['userId'];
+    		$response_array['userId'] = $userIdResponse;
+    		
+//	Search for the cartId    		
+    		$sql2 = "SELECT cartId FROM Users WHERE ownerId='$userIdResponse' LIMIT 1";
+//	Call the database, save the result in the variable RESULT2
+    		$result2 = $mysqli->query($sql) or die( $mysqli->error );
+//	Extract the row data of the result. Save as ROW2
+    		$row2 = mysqli_fetch_assoc($result2);
+//	Extract the cartId from the row, save to response    		
+    		$cartIdResponse = $row2['cartId'];    			
+    		$$response_array['cartId'] = $cartIdResponse;
+
+
+
 
 //	See if the password matches
 		if (password_verify($password, $hashDB)) {
@@ -45,6 +62,8 @@
     		}
     
 // 	Encode the response in JSON, it is automatically passed back to the caller. Also echo this to the console
+//	Was told that this header is generally not important but smart to have
+		header('Content-Type: application/json');
 		echo json_encode($response_array);
 
 	}
