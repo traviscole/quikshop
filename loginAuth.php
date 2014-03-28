@@ -22,7 +22,7 @@
     	
 //	Assign the username to the response array, for saving to local storage
 //	back in default.html
-		$response_array['userId'] = $username;
+		$response_array['email'] = $username;
 
 //	Build the SQL call
     		$sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
