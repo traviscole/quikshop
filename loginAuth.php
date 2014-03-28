@@ -63,7 +63,6 @@
     
 // 	Encode the response in JSON, it is automatically passed back to the caller. Also echo this to the console
 //	Was told that this header is generally not important but smart to have
-		header('Content-Type: application/json');
 		echo json_encode($response_array);
 
 	}
