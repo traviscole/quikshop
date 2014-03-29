@@ -21,7 +21,7 @@ if ($mysqli->connect_errno)
 }
 
 //	Find the correct table and row. Hardcode userId of 1
-    $sql = "SELECT userId, email, passHash, currStoreId, currCartId, fname, lname FROM Users WHERE userId=1";
+    $sql = "SELECT * FROM Users WHERE userId=1";
       
 //	Assign this result to another veriable-->
 	$result = $mysqli->query($sql) or die( $mysqli->error );

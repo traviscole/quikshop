@@ -14,7 +14,7 @@
 
     	$email 		= $data->email;
 
-	$sql = "SELECT userId, email, fName, lName, address FROM Users WHERE email='$email' LIMIT 1";
+	$sql = "SELECT * FROM Users WHERE email='$email' LIMIT 1";
    
     	$result = $mysqli->query($sql) or die( $mysqli->error );
 	

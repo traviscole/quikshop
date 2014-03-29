@@ -24,7 +24,7 @@
     $result = $mysqli->query($sql) or die( $mysqli->error );
     if($result)
     {
-		$sql2 = "SELECT currCartId FROM Users WHERE email='$eMail' LIMIT 1";
+		$sql2 = "SELECT * FROM Users WHERE email='$eMail' LIMIT 1";
 		$result2 = $mysqli->query($sql2) or die( $mysqli->error );
 		
 		if($result2) 
