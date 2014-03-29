@@ -1,6 +1,5 @@
 <?php 
  session_start(); 
- //this will find the cards on recond and the total sum then call checkout.html -> checkout.php ->
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -28,7 +27,7 @@
 		if (localStorage.getItem("userId") === "signOut") {
 			alert("you are not logged in");
 			
-			window.location.assign("http://www.quikshop.co/")
+			window.location.assign("http://abelalvarez.info/quikshop/www/")
 		}
 	</script>
     	
@@ -38,7 +37,8 @@
 		
 			<?php	
 			// Connect to the database NOTE: Hostgator may need another connection route than 'localhost'
-			$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+			//$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+			$mysqli = new mysqli("ec2-54-186-201-14.us-west-2.compute.amazonaws.com","quikshop","quikshop2014uf","quikshop");	
 			// Allow for errors
 			error_reporting(E_ALL);
 			ini_set('display_errors', '1');
@@ -48,7 +48,7 @@
 
 			$cartID = 1;//$_SESSION['currCartId'];
 			
-			$sql  = "SELECT itemid, quantity From cart where cartid = $cartID";
+			$sql  = "SELECT itemID, quantity From Cart where cartID = $cartID";
 
 			//	Call the database, save the result in the variable RESULT
 			$result = $mysqli->query($sql) or die( $mysqli->error );
@@ -64,17 +64,15 @@
 			$itemid = $row[0];
 			$quantity = $row[1];
 			//look for the items price using 
-			$sqlr  = "SELECT price From items where itemID = $itemid ";
+			$sqlr  = "SELECT price From Items where itemID = $itemid ";
 			$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
 			$rowr = mysqli_fetch_row($resultr);
 
 			$sum = $sum + $quantity*$rowr[0];
-			
-							
+				
 			}
-			$_SESSION["sum"] = $sum;	//forward sum to the next html page to display it there
+
 			?>
-            
 			<center>
 
 
@@ -86,33 +84,39 @@
 			</center>
 
 
- 
-				<select name="Cards">
+
+				
 					<?php
+						$cardID = 2;
 					
-						$sqlcard  = "SELECT cardName, cardNum From CreditCards where userId = $userID ";
+						//print("I am here before it does the while loop");
+						$sqlcard  = "SELECT type, cardNumber From CreditCard where cardID = $cardID ";
+						//print ("I am here after the query");
 						$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
-														
-						print($rowcard[0]);
-						$i = 0;
+													
+						
 						$x = 0;
-							$cardValue = 1;
-						$array array();
+						
 						while($rowcard = mysqli_fetch_row($resultcard)){
-						$array = $array($rowcard[i]);	
-					?>
-               		
-					<option  value=<?php echo("$rowcard[1]");?>><?php echo($rowcard[0]."   ".$rowcard[1]);?></option>
-					<?php
-						$x = $x+1;
-						$i = $i + 1;}
+							$arrayNumber[] = $rowcard[0];
+							$arrayType[] = $rowcard[1];
+		
+						}
+							print_r($arrayNumber);
+							print_r($arrayType);
 					?>
                     
-				</select>
+			
 
-
-
-		
+				<input type="hidden" name="userId" value= <?php echo $userID;?>>
+                <input type="hidden" name="cartId" value= <?php echo $cartID;?>>
+                <input type="hidden" name="price" value= <?php echo $sum;?>>
+				<input type="hidden" name="number" value=<?php echo $arrayNumber;?>>
+				<input type="hidden" name="type" value=<?php echo $arrayType;?>>
+				<?php
+				header("Location: http://abelalvarez.info/quikshop/www/checkout.html");
+				?>
+				
 	</div> 
 </div>
 
