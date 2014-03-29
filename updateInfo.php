@@ -12,19 +12,20 @@
 	$data = json_decode(file_get_contents('php://input'));
 	var_dump($data);
 
-    $fName 		= $data->fName;
+    	$fName 		= $data->fName;
 	$lName 		= $data->lName;
-    $eMail 		= $data->email;
-    $pw 		= $data->password;
-    $address 	= $data->address;
+    	$eMail 		= $data->email;
+	$pw 		= $data->password;
+	$address 	= $data->address;
     
-    $passwordHashed = password_hash($pw, PASSWORD_DEFAULT);	
+    	$passwordHashed = password_hash($pw, PASSWORD_DEFAULT);	
 	$sql="UPDATE Users SET fname='$fName', lname='$lName', address='$address' passHash='$passwordHashed' WHERE email='$email' LIMIT 1"
 	
 	$result = $mysqli->query($sql) or die( $mysqli->error );
-	if($result){
-		$response_array['status'] = 'success';
-	} else{ $response_array['status'] = 'error'; }
+	if($result)
+	{ $response_array['status'] = 'success'; } 
+	else
+	{ $response_array['status'] = 'error'; }
 	
 	echo json_encode($response_array);
 	$mysqli->close();
