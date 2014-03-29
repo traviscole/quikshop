@@ -12,15 +12,20 @@
 	$data = json_decode(file_get_contents('php://input'));
 	var_dump($data);
 
-    $email 		= $data->email;
+	$email 		= $data->email;
 	$storeId 	= $data->storeId;
     
-	$sql="INSERT INTO Users(currStoreId) VALUES('$storeId' WHERE email='$email' LIMIT 1)";
+	$sql = "INSERT INTO Users(currStoreId) VALUES('$storeId' WHERE email='$email' LIMIT 1)";
 
 	$result = $mysqli->query($sql) or die( $mysqli->error );
-	if($result){
-    	$response_array['status'] = 'success';
-	} else{ $response_array['status'] = 'error'; }
+	if($result)
+	{
+		$response_array['status'] = 'success';
+	} 
+	else
+	{ 
+		$response_array['status'] = 'error'; 
+	}
 	
 	echo json_encode($response_array);
 	$mysqli->close();
