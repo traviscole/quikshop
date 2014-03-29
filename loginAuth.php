@@ -5,6 +5,7 @@
 // General includes. Basically limit the actions this file can perform
 // to further protect your database from injections and hacks
 // Standard web stuff though aparently. It works, i'm leaving it
+// #GoForIt https://developer.mozilla.org/en-US/docs/HTTP/Access_control_CORS#Preflighted_requests
 	header("access-control-allow-origin: *");
 	header("access-control-allow-methods: GET, POST, OPTIONS");
 	header("access-control-allow-credentials: true");
