@@ -12,14 +12,16 @@
 	$data = json_decode(file_get_contents('php://input'));
 	var_dump($data);
 
-    $email 		= $data->email;
+    	$email 		= $data->email;
 
 	$sql = "SELECT userId, email, fName, lName, address FROM Users WHERE email='$email' LIMIT 1";
    
-    $result = $mysqli->query($sql) or die( $mysqli->error );
-	if($result){
+    	$result = $mysqli->query($sql) or die( $mysqli->error );
+	
+	if($result)
+	{
     	$row = mysqli_fetch_assoc($result);
-			$response_array['email'] = $username;
+		$response_array['email'] = $username;
     	$userIdResponse = $row['userId'];
     		$response_array['userId'] = $userIdResponse;
     	$fNameResponse = $row['fName'];
@@ -27,10 +29,11 @@
     	$lNameResponse = $row['lName'];
     		$response_array['lName'] = $lNameResponse;
     	$addressResponse = $row['address'];
-			$response_array['address'] = $addressResponse;
-		$userIdResponse = $row['userId'];
-			$response_array['status'] = 'success'; 
-	} else { $response_array['status'] = 'error'; }
+		$response_array['address'] = $addressResponse;
+	$userIdResponse = $row['userId'];
+		$response_array['status'] = 'success'; 
+	} 
+	else { $response_array['status'] = 'error'; }
 	
 	echo json_encode($response_array);
 	$mysqli->close();
