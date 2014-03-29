@@ -1,70 +1,45 @@
 <?php
-// 	Allow for errors
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
-
-// 	Connect to the database NOTE: Hostgator may need another connection route than 'localhost'
-	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
-
-// 	Various Includes
 	header("access-control-allow-origin: *");
 	header("access-control-allow-methods: GET, POST, OPTIONS");
 	header("access-control-allow-credentials: true");
 	header("access-control-allow-headers: Content-Type, *");
 	header("Content-type: application/json");
+	
+	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-// 	Parse the log in form if the user has filled it out and pressed "Log In"
-// 	Returns true if all these values were passed in
-	if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["email"]) && isset($_POST["password"])) {
-
-//	Assign the passed entry to variables
-    		$fName 		= mysqli_real_escape_string($mysqli,$_POST['fname']);
-    		$lName 		= mysqli_real_escape_string($mysqli,$_POST['lname']);
-    		$eMail 		= mysqli_real_escape_string($mysqli,$_POST['email']);		// Required to not be NULL
-    		$pw 		= mysqli_real_escape_string($mysqli,$_POST['password']);	// Required to not be NULL
-    		$passwordHashed = password_hash($pw, PASSWORD_DEFAULT);					// Hash PW before inserting
+	if (isset($_POST["fname"]) && isset($_POST["lname"]) && isset($_POST["email"]) && isset($_POST["password"]) && isset($_POST["address"])) {
+    	$fName 			= mysqli_real_escape_string($mysqli,$_POST['fname']);
+    	$lName 			= mysqli_real_escape_string($mysqli,$_POST['lname']);
+    	$eMail 			= mysqli_real_escape_string($mysqli,$_POST['email']);
+    	$address 		= mysqli_real_escape_string($mysqli,$_POST['address']);
+    	$pw 			= mysqli_real_escape_string($mysqli,$_POST['password']);
+    	$passwordHashed = password_hash($pw, PASSWORD_DEFAULT);	
     
-//	Build the query    
-		$sql="INSERT INTO Users(email,passHash,fname,lname) VALUES('$eMail','$passwordHashed','$fName','$lName')";
+		$sql="INSERT INTO Users(email,passHash,fname,lname,address) VALUES('$eMail','$passwordHashed','$fName','$lName','$address')";
 
-//	Post the query, 
 		$result = $mysqli->query($sql) or die( $mysqli->error );
 		if($result){
-//			echo "Data for $fname inserted successfully!";
 			$sql2 = "SELECT currCartId FROM Users WHERE email='$eMail' LIMIT 1";
 			$result2 = $mysqli->query($sql2) or die( $mysqli->error );
 			
-			if($result2) {
+			if($result2) { 
 				$row2 = mysqli_fetch_assoc($result2);
     			$cartIdResponse = $row2['cartId']; 
-    			$userId = $row2['userId']; 
-    			   	
-    			if(is_null($cartIdResponse){
+    			$userIdResponse = $row2['userId']; 	
+    			$response_array['cartId'] = $cartIdResponse;
+    			$response_array['userId'] = $userIdResponse;
+    			$response_array['status'] = 'success';
+    			if(is_null($cartIdResponse)){
+    				$response_array['status'] = 'error';
+   				}
+    			if(is_null($userId)){
     				$response_array['status'] = 'error';
     			}
-    			if(is_null($userId){
-    				$response_array['status'] = 'error';
-    			}	
-    			
-    			$response_array['cartId'] = $cartIdResponse;
-    			$response_array['userId'] = $userId;
-    			$response_array['status'] = 'success';
-			}
-			else {
-				$response_array['status'] = 'error';
-			}
-		}
-		else{ 
-//			echo "An error occurred inserting user info";
-			$response_array['status'] = 'error';
-		}
-	}
-	else {
-//		echo "The form was not filled out correctly";
-		$response_array['status'] = 'error';
-
-	}
-
-// 	Close the connection
+			} else { $response_array['status'] = 'error'; }
+		} else{ $response_array['status'] = 'error'; }
+	} else { $response_array['status'] = 'error'; }
+	echo json_encode($response_array);
 	$mysqli->close();
 ?>
