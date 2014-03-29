@@ -13,8 +13,9 @@ header("access-control-allow-credentials: true");
 header("access-control-allow-headers: Content-Type, *");
 header("Content-type: application/json");
 
-/* check connection */
-if ($mysqli->connect_errno) {
+// check connection
+if ($mysqli->connect_errno) 
+{
     printf("Connect failed: %s\n", $mysqli->connect_error);
     exit();
 }
@@ -26,13 +27,15 @@ if ($mysqli->connect_errno) {
 	$result = $mysqli->query($sql) or die( $mysqli->error );
 	$row = mysqli_fetch_assoc($result);
 
-//	echo "userId: {$row['userId']} ".
-//         "email: {$row['email']} ".
-//         "passHash: {$row['passHash']} ".
-//         "currStoreId: {$row['currStoreId']} ".
-//         "currCartId: {$row['currCartId']} ".
-//         "fname: {$row['fname']} ".
-//         "lname: {$row['lname']} ";
+/*
+	echo "userId: {$row['userId']} ".
+        "email: {$row['email']} ".
+        "passHash: {$row['passHash']} ".
+        "currStoreId: {$row['currStoreId']} ".
+        "currCartId: {$row['currCartId']} ".
+        "fname: {$row['fname']} ".
+        "lname: {$row['lname']} ";
+*/
 
 //	This builds the response array         
 	$response_array['userId'] = $row['userId']; 
