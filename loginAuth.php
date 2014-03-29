@@ -16,6 +16,7 @@
 	$password 		= $data->password;
 	
 	$sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
+	
     $result = $mysqli->query($sql) or die( $mysqli->error );
     if($result){
     	$row = mysqli_fetch_assoc($result);
@@ -31,9 +32,11 @@
     		$response_array['email'] = $username;	
     		$response_array['cartId'] = $cartIdResponse;
 	} else { $response_array['status'] = 'error'; }
+	
 	if (password_verify($password, $hashedPW)) {
     	$response_array['status'] = 'success'; 
     } else { $response_array['status'] = 'error'; }
+    
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>

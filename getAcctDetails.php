@@ -15,6 +15,7 @@
     $email 		= $data->email;
 
 	$sql = "SELECT userId, email, fName, lName, address FROM Users WHERE email='$email' LIMIT 1";
+   
     $result = $mysqli->query($sql) or die( $mysqli->error );
 	if($result){
     	$row = mysqli_fetch_assoc($result);
@@ -30,6 +31,7 @@
 		$userIdResponse = $row['userId'];
 			$response_array['status'] = 'success'; 
 	} else { $response_array['status'] = 'error'; }
+	
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>

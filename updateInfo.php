@@ -20,10 +20,12 @@
     
     $passwordHashed = password_hash($pw, PASSWORD_DEFAULT);	
 	$sql="UPDATE Users SET fname='$fName', lname='$lName', address='$address' passHash='$passwordHashed' WHERE email='$email' LIMIT 1"
+	
 	$result = $mysqli->query($sql) or die( $mysqli->error );
 	if($result){
 		$response_array['status'] = 'success';
 	} else{ $response_array['status'] = 'error'; }
+	
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>

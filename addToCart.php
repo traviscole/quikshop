@@ -19,10 +19,12 @@
     $storeId 		= $data->storeId;
     	
 	$sql="INSERT INTO Carts(barcode,cartId,userId,quantity,storeId) VALUES('$barcode','$cartId','$userId','$quantity','$storeId')";
+	
 	$result = $mysqli->query($sql) or die( $mysqli->error );
 	if($result){
 		$response_array['status'] = 'success';
 	} else{ $response_array['status'] = 'error'; }
+	
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>

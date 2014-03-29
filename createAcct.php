@@ -41,6 +41,7 @@
     		}
 		} else { $response_array['status'] = 'error'; }
 	} else{ $response_array['status'] = 'error'; }
+	
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>
