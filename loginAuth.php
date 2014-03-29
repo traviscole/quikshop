@@ -8,30 +8,32 @@
 	header("Content-type: application/json");
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+	
+	$data = json_decode(file_get_contents('php://input'));
+	var_dump($data);
 
-	if (isset($_POST["username"]) && isset($_POST["password"])) {
-    	$username = mysqli_real_escape_string($mysqli,$_POST['username']);
-    	$password = mysqli_real_escape_string($mysqli,$_POST['password']);
-		$sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
-    	$result = $mysqli->query($sql) or die( $mysqli->error );
-    	if($result){
-    		$row = mysqli_fetch_assoc($result);
-    		$hashedPW = $row['passHash'];
-    		$userIdResponse = $row['userId'];
-    		$sql2 = "SELECT cartId FROM Users WHERE ownerId='$userIdResponse' LIMIT 1";
-    		$result2 = $mysqli->query($sql) or die( $mysqli->error );
-    			if($result2){
-    				$row2 = mysqli_fetch_assoc($result2);
-    				$cartIdResponse = $row2['cartId'];   				
-    			} else { $response_array['status'] = 'error'; }
-    			$response_array['userId'] = $userIdResponse;
-    			$response_array['email'] = $username;	
-    			$response_array['cartId'] = $cartIdResponse;
-		} else { $response_array['status'] = 'error'; }
-		if (password_verify($password, $hashedPW)) {
-    		$response_array['status'] = 'success'; 
-    	} else { $response_array['status'] = 'error'; }
+    $username 		= $data->username;
+	$password 		= $data->password;
+	
+	$sql = "SELECT userId, email, passHash FROM Users WHERE email='$username' LIMIT 1";
+    $result = $mysqli->query($sql) or die( $mysqli->error );
+    if($result){
+    	$row = mysqli_fetch_assoc($result);
+    	$hashedPW = $row['passHash'];
+    	$userIdResponse = $row['userId'];
+    	$sql2 = "SELECT cartId FROM Users WHERE ownerId='$userIdResponse' LIMIT 1";
+    	$result2 = $mysqli->query($sql) or die( $mysqli->error );
+    		if($result2){
+    			$row2 = mysqli_fetch_assoc($result2);
+    			$cartIdResponse = $row2['cartId'];   				
+    		} else { $response_array['status'] = 'error'; }
+    		$response_array['userId'] = $userIdResponse;
+    		$response_array['email'] = $username;	
+    		$response_array['cartId'] = $cartIdResponse;
 	} else { $response_array['status'] = 'error'; }
+	if (password_verify($password, $hashedPW)) {
+    	$response_array['status'] = 'success'; 
+    } else { $response_array['status'] = 'error'; }
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>

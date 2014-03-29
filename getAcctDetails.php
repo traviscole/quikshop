@@ -9,24 +9,26 @@
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-	if (isset($_POST["email"])) {
-    	$email = mysqli_real_escape_string($mysqli,$_POST['email']);
-	    $sql = "SELECT userId, email, fName, lName, address FROM Users WHERE email='$email' LIMIT 1";
-    	$result = $mysqli->query($sql) or die( $mysqli->error );
-		if($result){
-    		$row = mysqli_fetch_assoc($result);
+	$data = json_decode(file_get_contents('php://input'));
+	var_dump($data);
+
+    $email 		= $data->email;
+
+	$sql = "SELECT userId, email, fName, lName, address FROM Users WHERE email='$email' LIMIT 1";
+    $result = $mysqli->query($sql) or die( $mysqli->error );
+	if($result){
+    	$row = mysqli_fetch_assoc($result);
 			$response_array['email'] = $username;
-    		$userIdResponse = $row['userId'];
+    	$userIdResponse = $row['userId'];
     		$response_array['userId'] = $userIdResponse;
-    		$fNameResponse = $row['fName'];
+    	$fNameResponse = $row['fName'];
     		$response_array['fName'] = $fNameResponse;
-    		$lNameResponse = $row['lName'];
+    	$lNameResponse = $row['lName'];
     		$response_array['lName'] = $lNameResponse;
-    		$addressResponse = $row['address'];
+    	$addressResponse = $row['address'];
 			$response_array['address'] = $addressResponse;
-			$userIdResponse = $row['userId'];
+		$userIdResponse = $row['userId'];
 			$response_array['status'] = 'success'; 
-		} else { $response_array['status'] = 'error'; }
 	} else { $response_array['status'] = 'error'; }
 	echo json_encode($response_array);
 	$mysqli->close();

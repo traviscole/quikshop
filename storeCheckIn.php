@@ -8,18 +8,19 @@
 	header("Content-type: application/json");
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+	
+	$data = json_decode(file_get_contents('php://input'));
+	var_dump($data);
 
-	if (isset($_POST["email"]) && isset($_POST["storeId"])) {
-    	$email 			= mysqli_real_escape_string($mysqli,$_POST['email']);
-    	$storeId 		= mysqli_real_escape_string($mysqli,$_POST['storeId']);
+    $email 		= $data->email;
+	$storeId 	= $data->storeId;
     
-		$sql="INSERT INTO Users(currStoreId) VALUES('$storeId' WHERE email='$email' LIMIT 1)";
+	$sql="INSERT INTO Users(currStoreId) VALUES('$storeId' WHERE email='$email' LIMIT 1)";
 
-		$result = $mysqli->query($sql) or die( $mysqli->error );
-		if($result){
-    		$response_array['status'] = 'success';
-		} else{ $response_array['status'] = 'error'; }
-	} else { $response_array['status'] = 'error'; }
+	$result = $mysqli->query($sql) or die( $mysqli->error );
+	if($result){
+    	$response_array['status'] = 'success';
+	} else{ $response_array['status'] = 'error'; }
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>
