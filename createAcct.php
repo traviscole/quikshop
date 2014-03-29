@@ -13,34 +13,48 @@
 	var_dump($data);
 
     $fName 		= $data->fName;
-	$lName 		= $data->lName;
+    $lName 		= $data->lName;
     $eMail 		= $data->eMail;
-    $address 	= $data->address;
+    $address 		= $data->address;
     $pw 		= $data->pw;
-    $passwordHashed = password_hash($pw, PASSWORD_DEFAULT);	
+    $passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	
     
-	$sql="INSERT INTO Users(email,passHash,fname,lname,address) VALUES('$eMail','$passwordHashed','$fName','$lName','$address')";
-
-	$result = $mysqli->query($sql) or die( $mysqli->error );
-	if($result){
+    $sql="INSERT INTO Users(email,passHash,fname,lname,address) VALUES('$eMail','$passwordHashed','$fName','$lName','$address')";
+    
+    $result = $mysqli->query($sql) or die( $mysqli->error );
+    if($result)
+    {
 		$sql2 = "SELECT currCartId FROM Users WHERE email='$eMail' LIMIT 1";
 		$result2 = $mysqli->query($sql2) or die( $mysqli->error );
 		
-		if($result2) { 
+		if($result2) 
+		{ 
 			$row2 = mysqli_fetch_assoc($result2);
-    		$cartIdResponse = $row2['cartId']; 
-    		$uerIdResponse = $row2['userId']; 	
-    		$response_array['cartId'] = $cartIdResponse;
-    		$response_array['userId'] = $userIdResponse;
-    		$response_array['status'] = 'success';
-    		if(is_null($cartIdResponse)){
-    			$response_array['status'] = 'error';
+    			$cartIdResponse = $row2['cartId']; 
+    			$uerIdResponse = $row2['userId']; 	
+    			$response_array['cartId'] = $cartIdResponse;
+    			$response_array['userId'] = $userIdResponse;
+    			$response_array['status'] = 'success';
+    			
+    			if(is_null($cartIdResponse))
+    			{
+    				$response_array['status'] = 'error';
    			}
-    		if(is_null($userId)){
-    			$response_array['status'] = 'error';
-    		}
-		} else { $response_array['status'] = 'error'; }
-	} else{ $response_array['status'] = 'error'; }
+   			
+    			if(is_null($userId))
+    			{
+    				$response_array['status'] = 'error';
+    			}
+		} 
+		else 
+		{ 
+			$response_array['status'] = 'error';
+		}
+	}
+	else
+	{ 
+		$response_array['status'] = 'error'; 
+	}
 	
 	echo json_encode($response_array);
 	$mysqli->close();
