@@ -31,7 +31,7 @@ Standard web stuff though aparently. It works, i'm leaving it
     if($result)
     {
     	$row = mysqli_fetch_assoc($result);	// Gather the data (row in DB) that was found when the DB was queried
-    	$hashedPW = $row['passHash'];	// Get the value listed in the passHash field, save to a local PHP variable: hashedPW
+    	$hashedPW = $row['passHash'];		// Get the value listed in the passHash field, save to a local PHP variable: hashedPW
     	$userIdResponse = $row['userId'];	// Get the value listed in the userId field, save to local PHP variable: userIdResponse
     	$cartIdResponse = $row['cartId'];  	// Get the value listed in the cartId field, save to local PHP variable: cartId 
     
