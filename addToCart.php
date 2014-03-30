@@ -17,6 +17,13 @@
     $quantity 		= $data->quantity;
     	
 	$sql="SELECT * FROM AppItems WHERE storeID='$storeId', barcode='$barcode' LIMIT 1";
+	if($result)
+    {	
+    
+    }
+    else{
+    
+    }	
 	
 	$result = $mysqli->query($sql) or die( $mysqli->error );
 	if($result)
