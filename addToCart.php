@@ -16,7 +16,7 @@
     $storeId 		= $data->undefined;		// can't figure out how to title this field so defaults all around
     $quantity 		= $data->quantity;
     	
-//	$sql="INSERT INTO AppCarts(barcode,cartId,userId,quantity,storeId) VALUES('$barcode','$cartId','$userId','$quantity','$storeId')";
+	$sql="SELECT * FROM AppItems WHERE storeID='$storeId', barcode='$barcode' LIMIT 1";
 	
 	$result = $mysqli->query($sql) or die( $mysqli->error );
 	if($result)

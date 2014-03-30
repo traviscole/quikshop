@@ -123,7 +123,7 @@ var addField = function(field, fieldRefs) {
 				values[i] = fieldRefs[i].value;	
 			}
 //			values.push({cartId: Ti.App.Properties.getString('cartId')});
-			values[values.length] = Ti.App.Properties.getString('cartId');
+			values[values.length] = Ti.App.Properties.getString('storeId');
 //			values[values.length] = (cartId:' Ti.App.Properties.getString('cartId'));
 			Ti.API.info(values);
 			values = JSON.stringify(values);
