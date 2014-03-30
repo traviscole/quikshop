@@ -1,40 +1,39 @@
 var win = Titanium.UI.currentWindow;
+
 var picker = Ti.UI.createPicker();
+
 picker.selectionIndicator = true;
 
 var data = [];
+var tableData = [];
 var pos;
+var tableView = Titanium.UI.createTableView();
 
-var tableView = Ti.UI.createTableView({  
-    backgroundColor: 'transparent',
-    separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
-    style: Ti.UI.iPhone.TableViewStyle.UNGROUPED
-});
 
 var xhr = Ti.Network.createHTTPClient({
     onload: function() {	// handle the response
 		var response = JSON.parse(this.responseText);
 		Ti.API.info("Response: " + response);
-            for (var i=0; i<response.rows; i++){
-                var row = Ti.UI.createTableViewRow({
-                    height:30,
-                    title:response[i].name
-                });
- 
-            // apply rows to data array
-            data.push(row);
- 
-            };
- 
-    // set data into tableView
-    tableView.setData(data);
+		Ti.API.info("Response: " + response.length);
+    	for (teller = 0; teller < response.length; teller++)
+        {
+        	object = response[teller];
+            var tR = Ti.UI.createTableViewRow({
+        		text: object.name,
+        		height: 'auto'
+    		});
+    		tableData.push(tR);
+            
+        }
+		tableView.setData(tableData);
+		win.add(tableView);
     }
 });
 
+var values = {cartId:Ti.App.Properties.getString('cartId')};
+values = JSON.stringify(values);
+Ti.API.info("Values: " + values);
 xhr.open("POST", 'http://quikshop.co/App/getCart.php');
 
-var values = {};
-values['cartId'] = Ti.App.Properties.getString('cartId');
-values = JSON.stringify(values);
-
 xhr.send(values);
+
