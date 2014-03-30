@@ -9,8 +9,8 @@
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-	$data = json_decode(file_get_contents('php://input'));
-//	$data = json_decode(file_get_contents('http://www.quikshop.co/App/createAccTest.json'));
+//	$data = json_decode(file_get_contents('php://input'));
+	$data = json_decode(file_get_contents('http://www.quikshop.co/App/createAccTest.json'));
 //	var_dump($data);
 	if($data) {
     	$eMail 		= $data->email;
@@ -23,17 +23,24 @@
     	$pw 		= $data->pw;
     	$passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	
     
-    	$sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
+		$check = $mysqli->query("SELECT email FROM AppUsers WHERE  email = '$eMail';");
+		if (mysqli_num_rows($check) == 0) {
+			$sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
     
-    	$result = $mysqli->query($sql) or die( $mysqli->error );
-    	if($result)
-    	{
-    	    $response_array['status'] 	= 'success';
+    		$result = $mysqli->query($sql) or die( $mysqli->error );
+    		if($result)
+    		{
+    		    $response_array['status'] 	= 'success';
+			}
+			else
+			{ 
+				$response_array['status'] = 'error'; 
+				$response_array['reason'] = 'query was not successfully processed'; 
+			}
 		}
-		else
-		{ 
+		else {
 			$response_array['status'] = 'error'; 
-			$response_array['reason'] = 'query was not successfully processed'; 
+			$response_array['reason'] = 'User Exists'; 
 		}
 	}
 	else {
