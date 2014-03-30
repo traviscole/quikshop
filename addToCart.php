@@ -19,20 +19,20 @@
     	$quantity 		= $data->quantity;
     	$storeId 		= $data->storeId;
     	
-		$sql="SELECT * FROM AppItems WHERE storeID='$storeId', barcode='$barcode' LIMIT 1";
+		$sql="SELECT * FROM AppItems WHERE storeID='$storeId' AND barcode='$barcode' LIMIT 1";
 		$result = $mysqli->query($sql) or die( $mysqli->error );
 		if($result)
     	{	
     		$row = mysqli_fetch_assoc($result);
     		$itemId 	= $row['itemID'];
     		$itemName 	= $row['name'];
-    		$sql2="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
+    		$sql2="INSERT INTO AppCarts(cartID,itemID,quantity) VALUES('$cartId','$itemId','$quantity')";
     
     		$result2 = $mysqli->query($sql2) or die( $mysqli->error );
     		if($result2)
     		{
     		    $response_array['status'] 	= 'success';
-    		    $response_array['itemName']	= '$itemName';
+    		    $response_array['itemName']	= $itemName;
 			}
 			else
 			{ 
