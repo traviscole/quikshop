@@ -51,6 +51,9 @@
     				$row2 = mysqli_fetch_assoc($result2);
     				$quantityFetched = $row3['quantity'];
     				$quantityReturn = $quantityFetched + $quantity;
+    				var_dump($quantityFetched);
+    				var_dump($quantity);
+    				var_dump($quantityReturn);
     				$sql3="UPDATE AppCarts SET quantity='$quantityReturn' WHERE cartID='$cartId' AND itemID='$itemId' LIMIT 1";
 	
 					$result3 = $mysqli->query($sql3) or die( $mysqli->error );
