@@ -24,8 +24,21 @@
 		if($result)
     	{	
     		$row = mysqli_fetch_assoc($result);
-    		$itemId = $row['itemID'];
-    		
+    		$itemId 	= $row['itemID'];
+    		$itemName 	= $row['name'];
+    		$sql2="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
+    
+    		$result2 = $mysqli->query($sql2) or die( $mysqli->error );
+    		if($result2)
+    		{
+    		    $response_array['status'] 	= 'success';
+    		    $response_array['itemName']	= '$itemName';
+			}
+			else
+			{ 
+				$response_array['status'] = 'error'; 
+				$response_array['reason'] = 'ERROR: Query Was Not Successfully Processed'; 
+			}
     	}
     	else{
     		$response_array['status'] = 'error'; 
