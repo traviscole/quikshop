@@ -45,6 +45,7 @@ Standard web stuff though aparently. It works, i'm leaving it
     	else 
     	{ 
     		$response_array['status'] = 'error'; 
+    		$response_array['reason'] = 'query was not successful'; 
     	}
     
    		/* PHP function to see if "password" (from the calling program) matches the value
@@ -60,10 +61,12 @@ Standard web stuff though aparently. It works, i'm leaving it
     	else 
     	{ 
     		$response_array['status'] = 'error'; 
+    		$response_array['reson'] = 'passwords did not match'; 
     	}
     }
     else {
    	 	$response_array['status'] = 'error'; 
+   	 	$response_array['reason'] = 'no data passed'; 
     }
     /* This takes the response array, converts it to a JSON type and returns it to the caller
     	May need some work within the app, can't tell just yet. I know that HTML gets it no

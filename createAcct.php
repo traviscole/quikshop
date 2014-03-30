@@ -32,11 +32,13 @@
 		}
 		else
 		{ 
-		$response_array['status'] = 'error'; 
+			$response_array['status'] = 'error'; 
+			$response_array['reason'] = 'query was not successfully processed'; 
 		}
 	}
 	else {
 		$response_array['status'] = 'error'; 
+		$response_array['reason'] = 'no data was passed'; 
 	}
 	echo json_encode($response_array);
 	$mysqli->close();
