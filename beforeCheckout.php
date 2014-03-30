@@ -104,18 +104,28 @@
 						}
 							print_r($arrayNumber);
 							print_r($arrayType);
+							$_SESSION['userID'] = $userID;
+							$_SESSION['cartID'] = $cartID;
+							$_SESSION['total'] = $sum;
+							$_SESSION['number'] = $arrayNumber;
+							$_SESSION['type'] = $arrayType;
+								
 					?>
-                    
-			
+                    <div data-role="content">  
+                    	<div id="landmark-1" data-landmark-id="1">
+                    		<form id ="Continue" method="post" action="checkout_html.php">
+                            	    <input type="submit" name="submit" value="Continue">
+                            </form>
+                            <br />
+                        
+                            <form id ="Cancel" method="post" action="scanner.html">
+                            	    <input type="submit" name="cancel" value="Cancel">
+                            </form>
+                    	<div data-role="fieldcontain" class="ui-hide-label">  
+                    <div style="text-align:center">  
 
-				<input type="hidden" name="userId" value= <?php echo $userID;?>>
-                <input type="hidden" name="cartId" value= <?php echo $cartID;?>>
-                <input type="hidden" name="price" value= <?php echo $sum;?>>
-				<input type="hidden" name="number" value=<?php echo $arrayNumber;?>>
-				<input type="hidden" name="type" value=<?php echo $arrayType;?>>
-				<?php
-				header("Location: http://abelalvarez.info/quikshop/www/checkout.html");
-				?>
+
+			
 				
 	</div> 
 </div>
@@ -127,7 +137,8 @@
 
 </div>
 		<?php
-		$mysqli->close();
+		$mysqli->close();	
+
 		?>
 
 </body>
