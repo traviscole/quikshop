@@ -2,7 +2,7 @@ var win = Titanium.UI.currentWindow;
 
 var checkoutBtn = Ti.UI.createButton({
     title: 'View Cart',
-    top: 250,
+    top: 240,
 });
 
 var scanForms = require('scanForms');
@@ -23,7 +23,13 @@ scanForm.addEventListener('scan', function(e) {
 win.add(scanForm);
  
 checkoutBtn.addEventListener('click',function(){
-
+	var w = Titanium.UI.createWindow({
+        			backgroundColor:'#336699',
+        			title:'Current Cart',
+       	 			barColor:'black',
+        			url:'cart.js'
+    			});
+    			w.open({modal:true});
 });
 
 win.add(checkoutBtn);
