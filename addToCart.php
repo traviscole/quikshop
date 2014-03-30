@@ -26,18 +26,26 @@
     		$row = mysqli_fetch_assoc($result);
     		$itemId 	= $row['itemID'];
     		$itemName 	= $row['name'];
-    		$sql2="INSERT INTO AppCarts(cartID,itemID,quantity) VALUES('$cartId','$itemId','$quantity')";
-    
-    		$result2 = $mysqli->query($sql2) or die( $mysqli->error );
-    		if($result2)
-    		{
-    		    $response_array['status'] 	= 'success';
-    		    $response_array['itemName']	= $itemName;
+    		
+    		$check = $mysqli->query("SELECT email FROM AppUsers WHERE  email = '$eMail';");
+			if (mysqli_num_rows($check) == 0) {
+				$sql2="INSERT INTO AppCarts(cartID,itemID,quantity) VALUES('$cartId','$itemId','$quantity')";
+    	
+    			$result2 = $mysqli->query($sql2) or die( $mysqli->error );
+    			if($result2)
+    			{
+    			    $response_array['status'] 	= 'success';
+    			    $response_array['itemName']	= $itemName;
+				}
+				else
+				{ 
+					$response_array['status'] = 'error'; 
+					$response_array['reason'] = 'ERROR: Query Was Not Successfully Processed'; 
+				}
 			}
-			else
-			{ 
+			else {
 				$response_array['status'] = 'error'; 
-				$response_array['reason'] = 'ERROR: Query Was Not Successfully Processed'; 
+				$response_array['reason'] = 'ERROR: Already in Cart'; 
 			}
     	}
     	else{
