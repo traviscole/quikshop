@@ -1,7 +1,7 @@
 <?php
 // Actually show errors to the console
 	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
+//	ini_set('display_errors', '1');
 
 /* General includes. Basically limit the actions this file can perform
 to further protect your database from injections and hacks
@@ -15,8 +15,8 @@ Standard web stuff though aparently. It works, i'm leaving it
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
 
-//	$data = json_decode(file_get_contents('php://input'));	// Accept JSON file input, decode it to a variable. Save this as data
-	$data = json_decode(file_get_contents('http://www.quikshop.co/App/loginAuthTest.json'));
+	$data = json_decode(file_get_contents('php://input'));	// Accept JSON file input, decode it to a variable. Save this as data
+//	$data = json_decode(file_get_contents('http://www.quikshop.co/App/loginAuthTest.json'));
 
 //	var_dump($data);	// var_dump is for debugging, prints all PHP variables to the console
 	if($data) {
@@ -48,9 +48,18 @@ Standard web stuff though aparently. It works, i'm leaving it
 			if (mysqli_num_rows($check) == 0) {
 				$sql="INSERT INTO AppLogins(userID) VALUES('$userIdResponse')";
     			$result = $mysqli->query($sql) or die( $mysqli->error );
-    			$cartIdResponse = $mysqli->insert_id;
-    			$response_array['cartId'] = $cartIdResponse;
+    			if($result)
+    			{
+    				$result3 = $mysqli->query("SELECT cartID FROM AppLogins WHERE userId='$userIdResponse';");
+    				$row3 = mysqli_fetch_assoc($result3);
+    				$response_array['cartId'] = $row3['cartID'];
+    			}
 			}
+			else {
+    			$result2 = $mysqli->query("SELECT cartID FROM AppLogins WHERE userId='$userIdResponse';");
+    			$row2 = mysqli_fetch_assoc($result2);
+    			$response_array['cartId'] = $row2['cartID'];
+    		}
     	} 
     	else 
     	{ 
@@ -84,11 +93,3 @@ Standard web stuff though aparently. It works, i'm leaving it
 	echo json_encode($response_array);
 	$mysqli->close();	// Close the connection
 ?>
-
-
-
-    		}
-    		else {
-    			$cartIdResponse = $mysqli->query("SELECT cartID FROM AppLogins WHERE userId='$userIdResponse';");
-    			$response_array['cartId'] = $cartIdResponse;
-    		}
