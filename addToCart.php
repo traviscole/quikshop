@@ -9,7 +9,8 @@
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-	$data = json_decode(file_get_contents('php://input'));
+//	$data = json_decode(file_get_contents('php://input'));
+	$data = json_decode(file_get_contents('http://www.quikshop.co/App/addToCartTest.json'));
 //	var_dump($data);
 
 	if($data) {
@@ -24,22 +25,35 @@
     		$row = mysqli_fetch_assoc($result);
     		$itemId = $row['itemID'];
     		$itemName = $row['name'];
-    		$sql2="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
+    		$sql2="SELECT * FROM AppLogins WHERE userID='$userId' LIMIT 1";
     	
     		$result2 = $mysqli->query($sql2) or die( $mysqli->error );
     		if($result2)
 			{
-				$response_array['itemName'] = '$itemName';
-				$response_array['success'] = 'error'; 
+				$row2 = mysqli_fetch_assoc($result);
+    			$cartId = $row2['cartID'];
+    			$sql="INSERT INTO AppCarts(cartID,itemID,quantity) VALUES('$cartId','$itemId','$quantity')";
+    
+    			$result3 = $mysqli->query($sql) or die( $mysqli->error );
+    			if($result3)
+    			{
+    		    	$response_array['status'] 	= 'success';
+    		    	$response_array['status'] 	= '$itemName';
+				}
+				else
+				{ 
+					$response_array['status'] = 'error'; 
+					$response_array['reason'] = 'ERROR: Query Was Not Successfully Processed'; 
+				}
 			}
 			else{
 				$response_array['status'] = 'error'; 
-				$response_array['reason'] = 'ERROR: Query failed'; 
+				$response_array['reason'] = 'ERROR: User Does Not Have a Cart'; 
 			}
     	}
     	else{
     		$response_array['status'] = 'error'; 
-			$response_array['reason'] = 'ERROR: Item Does Not Exist'; 
+			$response_array['reason'] = 'ERROR: Query failed'; 
 		}
    	}	
 	else {
