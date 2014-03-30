@@ -13,8 +13,8 @@ Standard web stuff though aparently. It works, i'm leaving it
 	header("access-control-allow-headers: Content-Type, *");
 	header("Content-type: application/json");	// This gets put in the response for file handling
 	
-//	$data = json_decode(file_get_contents('php://input'));
-	$data = json_decode(file_get_contents('http://www.quikshop.co/App/getCartTest.json'));
+	$data = json_decode(file_get_contents('php://input'));
+//	$data = json_decode(file_get_contents('http://www.quikshop.co/App/getCartTest.json'));
 
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
 	
