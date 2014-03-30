@@ -64,7 +64,7 @@ Standard web stuff though aparently. It works, i'm leaving it
     	else 
     	{ 
     		$response_array['status'] = 'error'; 
-    		$response_array['reson'] = 'ERROR: Password was Incorrect'; 
+    		$response_array['reason'] = 'ERROR: Password was Incorrect'; 
     	}
     }
     else {

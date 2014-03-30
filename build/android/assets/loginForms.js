@@ -131,7 +131,7 @@ var addField = function(field, fieldRefs) {
     				Ti.API.info("Response: " + response.status);
     				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
-    					alert('Data was inserted successfully!');
+    					alert('Authentication Successful');
     				}
     				else {
     					alert(response.reason);
@@ -139,7 +139,7 @@ var addField = function(field, fieldRefs) {
     			}
 			});
  			Ti.API.info("Values: " + values);
-			xhr.open('POST','http://www.quikshop.co/App/createAcct.php');
+			xhr.open('POST','http://www.quikshop.co/App/loginAuth.php');
 			xhr.send(values);
 			
 			form.fireEvent(id, {values:values});	

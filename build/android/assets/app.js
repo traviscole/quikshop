@@ -1,26 +1,42 @@
-Ti.UI.backgroundColor = '#ddd';
-
-var forms = require('forms');
+var main = Titanium.UI.createWindow({
+    backgroundColor:'#336699',
+    title:'QuikShop'
+});
+var loginForms = require('loginForms');
 var fields = [
-	{ title:'First Name', type:'text', id:'fName' },
-	{ title:'Last Name', type:'text', id:'lName' },
-	{ title:'Email', type:'email', id:'email' },
-	{ title:'Address', type:'text', id:'address' },
-	{ title:'City', type:'text', id:'city' },
-	{ title:'State', type:'text', id:'state' },
-	{ title:'Zip Code', type:'number', id:'zip' },
-	{ title:'Password', type:'password', id:'pw' },
-	{ title:'Submit', type:'submit', id:'registerUser' }
+	{ title:'Username', type:'text', id:'username' },
+	{ title:'Password', type:'password', id:'password' },
+	{ title:'Login', type:'submit', id:'login' }
 ];
 
-var win = Ti.UI.createWindow();
-var form = forms.createForm({
-	style: forms.STYLE_LABEL,
+var loginForm = loginForms.createForm({
+	style: loginForms.STYLE_LABEL,
 	fields: fields
 });
-form.addEventListener('registerUser', function(e) {
+
+loginForm.addEventListener('login', function(e) {
 	Ti.API.debug(e);
 });
-win.add(form);
+main.add(loginForm);
 
-win.open();
+var b3 = Titanium.UI.createButton({
+    title:'Create an Account',
+    width:230,
+    height:40,
+    top:200
+});
+main.add(b3);
+ 
+b3.addEventListener('click', function()
+{
+    var w = Titanium.UI.createWindow({
+        backgroundColor:'#000',
+        title:'Create an Account',
+        barColor:'black',
+        url:'createAcct.js'
+    });
+ 
+    w.open({modal:true});
+});
+ 
+main.open();
