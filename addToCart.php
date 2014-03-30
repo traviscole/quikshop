@@ -13,10 +13,10 @@
 //	var_dump($data);
 
     $barcode 		= $data->barcode;
-    $cartId 		= $data->undefined;		// can't figure out how to title this field so defaults all around
+    $storeId 		= $data->undefined;		// can't figure out how to title this field so defaults all around
     $quantity 		= $data->quantity;
     	
-	$sql="INSERT INTO AppCarts(barcode,cartId,userId,quantity,storeId) VALUES('$barcode','$cartId','$userId','$quantity','$storeId')";
+//	$sql="INSERT INTO AppCarts(barcode,cartId,userId,quantity,storeId) VALUES('$barcode','$cartId','$userId','$quantity','$storeId')";
 	
 	$result = $mysqli->query($sql) or die( $mysqli->error );
 	if($result)
