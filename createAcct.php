@@ -13,7 +13,7 @@
 //	$data = json_decode(file_get_contents('http://www.quikshop.co/App/createAccTest.json'));
 	var_dump($data);
 	if($data) {
-    	$eMail 		= $data->eMail;
+    	$eMail 		= $data->email;
     	$fName 		= $data->fName;
     	$lName 		= $data->lName;
     	$address 	= $data->address;
