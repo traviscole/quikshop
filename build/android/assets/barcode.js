@@ -24,12 +24,12 @@ win.add(scanForm);
  
 checkoutBtn.addEventListener('click',function(){
 	var w = Titanium.UI.createWindow({
-        			backgroundColor:'#336699',
-        			title:'Current Cart',
-       	 			barColor:'black',
-        			url:'cart.js'
-    			});
-    			w.open({modal:true});
+        backgroundColor:'#336699',
+        title:'Current Cart',
+       	barColor:'black',
+        url:'cart.js'
+    });
+    w.open({modal:true});
 });
 
 win.add(checkoutBtn);

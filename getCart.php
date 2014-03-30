@@ -16,7 +16,10 @@ Standard web stuff though aparently. It works, i'm leaving it
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
 
 // This is the actual SQL query, read it left to right. Only return 1 row. Save as "sql"
-	$sql = "SELECT name, address FROM AppStores";
+//	$sql = "SELECT itemID, quantity FROM AppCarts INNER JOIN `AppItems` on `AppItems`.`itemID`=`AppCarts`.`itemID`";
+	$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description
+			FROM AppCarts, AppItems
+			WHERE AppItems.itemID = AppCarts.itemID";
 
 // Run the query "SQL" against the database. Save as result, some error handling
 	$result = $mysqli->query($sql) or die( $mysqli->error );

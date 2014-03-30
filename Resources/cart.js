@@ -1,103 +1,40 @@
-// Create variable "win" to refer to current window
 var win = Titanium.UI.currentWindow;
-var MyID = win.MyID;
-//Ti.API.info(MyID);
-win.title = 'Select Unit';
+var picker = Ti.UI.createPicker();
+picker.selectionIndicator = true;
 
-// Function loadUnits()
-function loadUnits()
-{
-	// Empty array "rowData" for our tableview
-	var rowData = [];
-	// Create our HTTP Client and name it "loader"
-	var loader = Titanium.Network.createHTTPClient();
-	// Sets the HTTP request method, and the URL to get data from
-	loader.open("GET","https://s3.amazonaws.com/travistestjson/homes.json");
+var data = [];
+var pos;
 
-	//Create an array to hold the communities name
-	var units = [];
+var tableView = Ti.UI.createTableView({  
+    backgroundColor: 'transparent',
+    separatorStyle: Ti.UI.iPhone.TableViewSeparatorStyle.NONE,
+    style: Ti.UI.iPhone.TableViewStyle.UNGROUPED
+});
 
-	// Runs the function when the data is ready for us to process	
-	
-	loader.onload = function() 
-	{
-	var rowNumber = 0;
-		var props = eval('('+this.responseText+')');
-		for (var i = 0; i < props.length; i++)
-		{
-			if(props[i].community == MyID) {
-				units[rowNumber] = props[i].address; // The community name	
-				rowNumber++
-			}
-		}	
-		
-		units.sort();
-		
-		for (var w = 0; w < units.length; w++)
-		{		
-			// Create a row and set its height to auto
-			var row = Titanium.UI.createTableViewRow({
-//				height:'auto',
-				hasChild:true,
-				test:'../Resources/homeInfo.js',
-				text:units[w],
-			});				
+var xhr = Ti.Network.createHTTPClient({
+    onload: function() {	// handle the response
+		var response = JSON.parse(this.responseText);
+		Ti.API.info("Response: " + response);
+            for (var i=0; i<response.rows; i++){
+                var row = Ti.UI.createTableViewRow({
+                    height:30,
+                    title:response[i].name
+                });
+ 
+            // apply rows to data array
+            data.push(row);
+ 
+            };
+ 
+    // set data into tableView
+    tableView.setData(data);
+    }
+});
 
-			// Create the view that will contain the data
-			var post_view = Titanium.UI.createView({
-				height:'auto', 
-				layout:'vertical',
-				top:5,
-				right:5,
-				bottom:5,
-				left:5
-			});
-			var unitLbl = Titanium.UI.createLabel({
-				text:units[w],
-				left:5,
-				top:0,
-				bottom:0,
-				height:'auto',
-				width:236,
-			});
+xhr.open("POST", 'http://quikshop.co/App/getCart.php');
 
-			post_view.add(unitLbl);
-			
-			// Add the post view to the row
-			row.add(post_view);
+var values = {};
+values['cartId'] = Ti.App.Properties.getString('cartId');
+values = JSON.stringify(values);
 
-			// Give each row a class name
-			row.className = "item"+i;
-			// Add row to the rowData array
-			rowData[w] = row;
-		}
-
-		// Create the table view and set its data source to "rowData" array
-		var tableView = Titanium.UI.createTableView({
-			data:rowData,
-			style:Titanium.UI.iPhone.TableViewStyle.GROUPED,
-		});
-		//Add the table view to the window
-		win.add(tableView);
-		
-		//Event Listener for each tab
-		tableView.addEventListener('click', function(e)
-		{
-			if (e.rowData.test)
-			{
-				var win2 = Titanium.UI.createWindow({
-				url:e.rowData.test,
-				title:e.rowData.title,
-			    MyID: e.rowData.text,
-			});
-			win2.backButtonTitle='Back';
-			Titanium.UI.currentTab.open(win2,{animated:true});
-		}
-		});
-	};
-	
-	
-	// Send the HTTP request
-	loader.send();
-}
-loadUnits();
+xhr.send(values);
