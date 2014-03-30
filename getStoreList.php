@@ -27,8 +27,8 @@ Standard web stuff though aparently. It works, i'm leaving it
     	while($row = mysql_fetch_array($result))
 		{
    			$response_array['status'] = 'success'; 
-   			$storeIdResponse = $row['storeID'] 
-   			$storeIdResponse = $row['name'] 
+   			$storeIdResponse = $row['storeID'];
+   			$storeIdResponse = $row['name'];
    			$response_array['storeId'] = 'error'; 
 		}
     } 
@@ -38,11 +38,6 @@ Standard web stuff though aparently. It works, i'm leaving it
     	$response_array['reason'] = 'ERROR: Query Was Unsuccessful'; 
     }
 
- }
- else {
-	$response_array['status'] = 'error'; 
- 	$response_array['reason'] = 'ERROR: No Data Was Passed'; 
- }
 /* This takes the response array, converts it to a JSON type and returns it to the caller
 	May need some work within the app, can't tell just yet. I know that HTML gets it no
 	problem, automatically */
