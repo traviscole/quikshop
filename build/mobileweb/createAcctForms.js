@@ -16,7 +16,7 @@ var textFieldDefaults = {
 	height: '40dp',
 	width: '250dp',
 	top: '10dp',
-	color: '#FFF',
+	color: '#000',
 	borderStyle:Titanium.UI.INPUT_BORDERSTYLE_ROUNDED
 };
 var keyboardMap = {};
@@ -126,19 +126,21 @@ var addField = function(field, fieldRefs) {
 			
 			var xhr = Ti.Network.createHTTPClient({
     			onload: function() {	// handle the response
-    				var response = JSON.parse(this.responseText);
+//    				var response = JSON.parse(this.responseText);
+					var response = JSON.parse(this.responseText);
+    				Ti.API.info("Response: " + response.status);
+    				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
-    					
+    					alert('Data was inserted successfully!');
     				}
     				else {
-    					
+    					alert(response.reason);
     				}
     			}
 			});
- 
+ 			Ti.API.info("Values: " + values);
 			xhr.open('POST','http://www.quikshop.co/App/createAcct.php');
 			xhr.send(values);
-			
 			
 			form.fireEvent(id, {values:values});	
 		});	
