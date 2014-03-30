@@ -39,35 +39,35 @@
 				}
 				else
 				{ 
-					$sql2="SELECT * FROM AppCarts WHERE cartID='$cartId' AND itemID='$itemId' LIMIT 1";
-					$result2 = $mysqli->query($sql2) or die( $mysqli->error );
-					if($result)
-    				{	
-    					$row2 = mysqli_fetch_assoc($result2);
-    					$quantityFetched = $row3['quantity'];
-    					$quantityReturn = $quantityFetched + $quantity;
-    					$sql3="UPDATE AppCarts SET quantity='$quantityReturn' WHERE cartID='$cartId' AND itemID='$itemId' LIMIT 1"
-	
-						$result3 = $mysqli->query($sql3) or die( $mysqli->error );
-						if($result3)
-						{
-							$response_array['status'] = 'success';
-							$response_array['quantityReturned'] = $quantityReturn;
-						} 
-						else
-						{
-							$response_array['status'] = 'error';
-						}
-    				}
-    				else{
-    					$response_array['status'] = 'error'; 
-						$response_array['reason'] = 'ERROR: Did not successfully update quantity';
-					} 
+					$response_array['status'] = 'error'; 
+					$response_array['reason'] = 'ERROR: Inserting item failed';
 				}
 			}
 			else {
-				$response_array['status'] = 'error'; 
-				$response_array['reason'] = 'ERROR: Already in Cart'; 
+				$sql2="SELECT * FROM AppCarts WHERE cartID='$cartId' AND itemID='$itemId' LIMIT 1";
+				$result2 = $mysqli->query($sql2) or die( $mysqli->error );
+				if($result)
+    			{	
+    				$row2 = mysqli_fetch_assoc($result2);
+    				$quantityFetched = $row3['quantity'];
+    				$quantityReturn = $quantityFetched + $quantity;
+    				$sql3="UPDATE AppCarts SET quantity='$quantityReturn' WHERE cartID='$cartId' AND itemID='$itemId' LIMIT 1";
+	
+					$result3 = $mysqli->query($sql3) or die( $mysqli->error );
+					if($result3)
+					{
+						$response_array['status'] = 'success';
+						$response_array['quantityReturned'] = $quantityReturn;
+					} 
+					else
+					{
+						$response_array['status'] = 'error';
+					}
+    			}
+    			else{
+    				$response_array['status'] = 'error'; 
+					$response_array['reason'] = 'ERROR: Did not successfully update quantity';
+				} 
 			}
     	}
     	else{
