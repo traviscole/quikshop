@@ -132,9 +132,13 @@ var addField = function(field, fieldRefs) {
     				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
     					alert('Authentication Successful');
+    					Ti.App.Properties.setString('userId', response.userId);
+						Ti.API.info('The value of the userId property is: ' + Ti.App.Properties.getString('userId'));
+						Ti.App.Properties.setString('email', response.email);
+						Ti.API.info('The value of the email property is: ' + Ti.App.Properties.getString('email'));
     					var w = Titanium.UI.createWindow({
         					backgroundColor:'#000',
-        					title:'Add Items To Cart',
+        					title:'Check-In to a Store',
        	 					barColor:'black',
         					url:'barcode.js'
     					});
