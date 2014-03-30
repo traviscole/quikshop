@@ -132,6 +132,14 @@ var addField = function(field, fieldRefs) {
     				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
     					alert('Authentication Successful');
+    					var w = Titanium.UI.createWindow({
+        					backgroundColor:'#000',
+        					title:'Add Items To Cart',
+       	 					barColor:'black',
+        					url:'barcode.js'
+    					});
+    					w.open({modal:true});
+ 
     				}
     				else {
     					alert(response.reason);
