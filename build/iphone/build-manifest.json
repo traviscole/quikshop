@@ -1,0 +1,23 @@
+{
+	"target": "simulator",
+	"deployType": "development",
+	"deviceFamily": "universal",
+	"iosSdkPath": "/Users/traviscole/Library/Application Support/Titanium/mobilesdk/osx/3.2.2.GA/iphone",
+	"tiCoreHash": "77157e1ffaec640cf559356a147b6a4c",
+	"modulesHash": "d41d8cd98f00b204e9800998ecf8427e",
+	"modulesNativeHash": "d41d8cd98f00b204e9800998ecf8427e",
+	"gitHash": "96e9a07",
+	"name": "QuikShop",
+	"id": "co.quikshop",
+	"analytics": true,
+	"publisher": "traviscole",
+	"url": "http://www.quikshop.co",
+	"version": "1.0",
+	"description": "not specified",
+	"copyright": "2014 by traviscole",
+	"guid": "c9816cb5-0f20-492b-a918-95e632c8884f",
+	"skipJSMinification": true,
+	"forceCopy": false,
+	"forceCopyAll": false,
+	"encryptJS": false
+}
