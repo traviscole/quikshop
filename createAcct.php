@@ -11,29 +11,32 @@
 
 	$data = json_decode(file_get_contents('php://input'));
 	var_dump($data);
-
-    $eMail 		= $data->eMail;
-    $fName 		= $data->fName;
-    $lName 		= $data->lName;
-    $address 	= $data->address;
-    $city 		= $data->city;
-	$state 		= $data->state;
-    $zip 		= $data->zip;
-    $pw 		= $data->pw;
-    $passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	
+	if($data) {
+    	$eMail 		= $data->eMail;
+    	$fName 		= $data->fName;
+    	$lName 		= $data->lName;
+    	$address 	= $data->address;
+    	$city 		= $data->city;
+		$state 		= $data->state;
+    	$zip 		= $data->zip;
+    	$pw 		= $data->pw;
+    	$passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	
     
-    $sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
+    	$sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
     
-    $result = $mysqli->query($sql) or die( $mysqli->error );
-    if($result)
-    {
-        $response_array['status'] 	= 'success';
+    	$result = $mysqli->query($sql) or die( $mysqli->error );
+    	if($result)
+    	{
+    	    $response_array['status'] 	= 'success';
+		}
+		else
+		{ 
+		$response_array['status'] = 'error'; 
+		}
 	}
-	else
-	{ 
+	else {
 		$response_array['status'] = 'error'; 
 	}
-	
 	echo json_encode($response_array);
 	$mysqli->close();
 ?>
