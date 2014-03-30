@@ -9,9 +9,8 @@
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-//	$data = json_decode(file_get_contents('php://input'));
-	$data = json_decode(file_get_contents('http://www.quikshop.co/App/addToCartTest.json'));
-//	var_dump($data);
+	$data = json_decode(file_get_contents('php://input'));
+//	$data = json_decode(file_get_contents('http://www.quikshop.co/App/addToCartTest.json'));
 
 	if($data) {
    	 	$barcode 		= $data->barcode;
@@ -36,6 +35,7 @@
     			{
     			    $response_array['status'] 	= 'success';
     			    $response_array['itemName']	= $itemName;
+    			    $response_array['quantityReturned'] = $quantity;
 				}
 				else
 				{ 
@@ -48,12 +48,9 @@
 				$result2 = $mysqli->query($sql2) or die( $mysqli->error );
 				if($result)
     			{	
-    				$row2 = mysqli_fetch_assoc($result2);
+    				$row3 = mysqli_fetch_assoc($result2);
     				$quantityFetched = $row3['quantity'];
     				$quantityReturn = $quantityFetched + $quantity;
-    				var_dump($quantityFetched);
-    				var_dump($quantity);
-    				var_dump($quantityReturn);
     				$sql3="UPDATE AppCarts SET quantity='$quantityReturn' WHERE cartID='$cartId' AND itemID='$itemId' LIMIT 1";
 	
 					$result3 = $mysqli->query($sql3) or die( $mysqli->error );

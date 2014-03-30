@@ -122,8 +122,8 @@ var addField = function(field, fieldRefs) {
 			for (var i in fieldRefs) {
 				values[i] = fieldRefs[i].value;	
 			}
-			var cartId = Ti.App.Properties.getString('cartId');
-			values['cartId'] = cartId;
+			values['cartId'] = Ti.App.Properties.getString('cartId');
+			values['storeId'] = Ti.App.Properties.getString('storeId');
 			Ti.API.info(values);
 			values = JSON.stringify(values);
 //			Ti.API.info(values);
@@ -135,7 +135,7 @@ var addField = function(field, fieldRefs) {
     				Ti.API.info("Response: " + response.status);
     				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
-    					alert('Successfully Added' + response.itemName);
+    					alert('Successfully Added' + response.itemName + 'Quantity Now' + response.quantityReturned);
  
     				}
     				else {
