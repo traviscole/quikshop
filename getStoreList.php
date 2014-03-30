@@ -24,11 +24,13 @@ Standard web stuff though aparently. It works, i'm leaving it
 // If there was a response, perform more actions, else return "error"
     if($result)
     {
-    	$jsonData = array();
-		while ($array = mysqli_fetch_row($result)) {
-    		$jsonData[] = $array;
+		$rows = array();
+
+		//retrieve and print every record
+		while($r = mysqli_fetch_assoc($result)){
+    		$rows[] = $r;
 		}
-		echo json_encode($jsonData);
+		echo json_encode($rows);
     } 
 
 /* This takes the response array, converts it to a JSON type and returns it to the caller

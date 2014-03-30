@@ -20,10 +20,29 @@ var pos;
 var xhr = Ti.Network.createHTTPClient({
     onload: function() {	// handle the response
 		var response = JSON.parse(this.responseText);
-    	for (pos=0; pos < response.length; pos++) {
-    		data.push (Ti.UI.createPickerRow({title:''+ response[pos] + '',custom_item:'b'}));
-		}
+		Ti.API.info("Response: " + response);
+		Ti.API.info("Response: " + response.length);
+    	for (teller = 0; teller < response.length; teller++)
+        {
+            object = response[teller];
+            data[teller] = Titanium.UI.createPickerRow({title: object.name});
+        }
 		picker.add(data);
 		win.add(picker);
     }
 });
+
+var doneBtn = Ti.UI.createButton({
+    title: 'Sumbit',
+    top: 350,
+});
+	
+	win.add(doneBtn);
+ 
+doneBtn.addEventListener('click',function(){
+	alert(picker.getSelectedRow(0).title);
+});
+
+xhr.open("GET", 'http://www.quikshop.co/App/getStoreList.php');
+ // Send the request.
+xhr.send();
