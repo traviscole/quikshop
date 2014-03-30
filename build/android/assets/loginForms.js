@@ -136,7 +136,7 @@ var addField = function(field, fieldRefs) {
 						Ti.App.Properties.setString('email', response.email);
 						Ti.API.info('The value of the email property is: ' + Ti.App.Properties.getString('email'));
     					var w = Titanium.UI.createWindow({
-        					backgroundColor:'#000',
+        					backgroundColor:'#336699',
         					title:'Check-In to a Store',
        	 					barColor:'black',
         					url:'checkIn.js'

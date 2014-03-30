@@ -30,7 +30,7 @@ main.add(b3);
 b3.addEventListener('click', function()
 {
     var w = Titanium.UI.createWindow({
-        backgroundColor:'#000',
+        backgroundColor:'#336699',
         title:'Create an Account',
         barColor:'black',
         url:'checkIn.js'

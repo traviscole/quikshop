@@ -1,4 +1,4 @@
-Ti.UI.backgroundColor = '#ddd';
+Ti.UI.backgroundColor = '#336699';
 
 var forms = require('createAcctForms');
 var fields = [

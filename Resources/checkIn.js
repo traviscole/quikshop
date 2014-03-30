@@ -35,9 +35,9 @@ var xhr = Ti.Network.createHTTPClient({
 var xhrPost = Ti.Network.createHTTPClient({
     onload: function() {	// handle the response
 		var response = JSON.parse(this.responseText);
-    	Ti.API.info("Response: " + response.status);
+    	Ti.API.info("Response2: " + response.status);
     	if(response.status == 'success'){
-    		alert(respnse.storeId);
+    		Ti.App.Properties.setString('storeId', response.userId);
     	}
     	else {
     		alert(response.reason);
@@ -54,8 +54,8 @@ submitBtn.addEventListener('click',function(){
 	var values = {name:picker.getSelectedRow(0).title};
 	values = JSON.stringify(values);
 	Ti.API.info("Values: " + values);
-	xhr.open('POST','http://www.quikshop.co/App/getStoreId.php');
-	xhr.send(values);
+	xhrPost.open('POST','http://www.quikshop.co/App/getStoreId.php');
+	xhrPost.send(values);
 });
 
 win.add(submitBtn);
