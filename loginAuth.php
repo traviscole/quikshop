@@ -34,30 +34,22 @@ Standard web stuff though aparently. It works, i'm leaving it
 // If there was a response, perform more actions, else return "error"
     	if($result)
     	{
-    		$row = mysqli_fetch_assoc($result);	// Gather the data (row in DB) that was found when the DB was queried
+    		$row = mysqli_fetch_assoc($result);		// Gather the data (row in DB) that was found when the DB was queried
     		$hashedPW 		= $row['passHash'];		// Get the value listed in the passHash field, save to a local PHP variable: hashedPW
-    		$userIdResponse = $row['userID'];	// Get the value listed in the userId field, save to local PHP variable: userIdResponse
+    		$userIdResponse = $row['userID'];		// Get the value listed in the userId field, save to local PHP variable: userIdResponse
     
     		/*Response Array is what is returned. It is built dynamically and does not need to 
     			be initialized to an inital size. These simply add a slot and assign a value */
     		$response_array['userId'] = $userIdResponse;
     		$response_array['email'] = $username;
+    		$response_array['status'] 	= 'success';
     		
     		$check = $mysqli->query("SELECT * FROM AppLogins WHERE userId='$userIdResponse';");
 			if (mysqli_num_rows($check) == 0) {
-				$sql="INSERT INTO AppUsers(userID) VALUES('$userIdResponse')";
+				$sql="INSERT INTO AppLogins(userID) VALUES('$userIdResponse')";
     			$result = $mysqli->query($sql) or die( $mysqli->error );
     			$cartIdResponse = $mysqli->insert_id;
     			$response_array['cartId'] = $cartIdResponse;
-    		if($result)
-    		{
-    		    $response_array['status'] 	= 'success';
-			}
-			else
-			{ 
-				$response_array['status'] = 'error'; 
-				$response_array['reason'] = 'ERROR: Query Was Not Successfully Processed'; 
-			}
 			}
     	} 
     	else 
@@ -92,3 +84,11 @@ Standard web stuff though aparently. It works, i'm leaving it
 	echo json_encode($response_array);
 	$mysqli->close();	// Close the connection
 ?>
+
+
+
+    		}
+    		else {
+    			$cartIdResponse = $mysqli->query("SELECT cartID FROM AppLogins WHERE userId='$userIdResponse';");
+    			$response_array['cartId'] = $cartIdResponse;
+    		}
