@@ -22,8 +22,8 @@ Standard web stuff though aparently. It works, i'm leaving it
 		$cartID = $data->cartId;
 
 		$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description
-			FROM AppCarts, AppItems
-			WHERE AppItems.itemID = AppCarts.itemID AND AppCarts.cartID  = $cartId";
+				FROM AppCarts, AppItems
+				WHERE AppItems.itemID = AppCarts.itemID AND AppCarts.cartID  = $cartID";
 
 // Run the query "SQL" against the database. Save as result, some error handling
 		$result = $mysqli->query($sql) or die( $mysqli->error );
@@ -39,6 +39,11 @@ Standard web stuff though aparently. It works, i'm leaving it
 			}
 			echo json_encode($rows);
     	} 
+    	else {
+   	 		$response_array['status'] = 'error'; 
+			$response_array['reason'] = 'ERROR: No Items'; 
+			echo json_encode($response_array);
+    	}
     }
     else {
    	 	$response_array['status'] = 'error'; 
