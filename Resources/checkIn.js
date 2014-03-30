@@ -52,8 +52,8 @@ var submitBtn = Ti.UI.createButton({
 });
  
 submitBtn.addEventListener('click',function(){
-	var values = {};
-	values[0] = picker.getSelectedRow(0).title;
+	var values = {name:picker.getSelectedRow(0).title};
+	values = JSON.stringify(values);
 	xhr.open('POST','http://www.quikshop.co/App/getStoreId.php');
 	xhr.send(values);
 });
