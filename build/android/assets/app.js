@@ -33,7 +33,7 @@ b3.addEventListener('click', function()
         backgroundColor:'#336699',
         title:'Create an Account',
         barColor:'black',
-        url:'checkIn.js'
+        url:'createAcct.js'
     });
  
     w.open({modal:true});

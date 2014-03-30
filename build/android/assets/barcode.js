@@ -2,7 +2,7 @@ var win = Titanium.UI.currentWindow;
 
 var checkoutBtn = Ti.UI.createButton({
     title: 'View Cart',
-    top: 300,
+    top: 250,
 });
 
 var scanForms = require('scanForms');

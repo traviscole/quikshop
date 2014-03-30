@@ -135,7 +135,7 @@ var addField = function(field, fieldRefs) {
     				Ti.API.info("Response: " + response.status);
     				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
-    					alert('Successfully Added' + response.itemName + 'Quantity Now' + response.quantityReturned);
+    					alert('Successfully Added: ' + response.itemName + ' Quantity Now: ' + response.quantityReturned);
  
     				}
     				else {
