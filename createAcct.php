@@ -11,7 +11,7 @@
 
 	$data = json_decode(file_get_contents('php://input'));
 //	$data = json_decode(file_get_contents('http://www.quikshop.co/App/createAccTest.json'));
-	var_dump($data);
+//	var_dump($data);
 	if($data) {
     	$eMail 		= $data->email;
     	$fName 		= $data->fName;

@@ -1,7 +1,8 @@
 <?php
 // Actually show errors to the console
 	error_reporting(E_ALL);
-	ini_set('display_errors', '1');
+//	ini_set('display_errors', '1');
+
 /* General includes. Basically limit the actions this file can perform
 to further protect your database from injections and hacks
 Standard web stuff though aparently. It works, i'm leaving it
@@ -14,10 +15,10 @@ Standard web stuff though aparently. It works, i'm leaving it
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
 
-//	$data = json_decode(file_get_contents('php://input'));	// Accept JSON file input, decode it to a variable. Save this as data
-	$data = json_decode(file_get_contents('http://www.quikshop.co/App/loginAuthTest.json'));
+	$data = json_decode(file_get_contents('php://input'));	// Accept JSON file input, decode it to a variable. Save this as data
+//	$data = json_decode(file_get_contents('http://www.quikshop.co/App/loginAuthTest.json'));
 
-	var_dump($data);	// var_dump is for debugging, prints all PHP variables to the console
+//	var_dump($data);	// var_dump is for debugging, prints all PHP variables to the console
 	if($data) {
 
 // Remove info passed in to PHP and save as local PHP variables username and password

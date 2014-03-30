@@ -126,7 +126,8 @@ var addField = function(field, fieldRefs) {
 			
 			var xhr = Ti.Network.createHTTPClient({
     			onload: function() {	// handle the response
-    				var response = JSON.parse(this.responseText);
+//    				var response = JSON.parse(this.responseText);
+					var response = JSON.parse(this.responseText);
     				Ti.API.info("Response: " + response);
     				if(response.status == 'success'){
     					alert('Success!');
