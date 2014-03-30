@@ -134,7 +134,7 @@ var addField = function(field, fieldRefs) {
     					alert('Data was inserted successfully!');
     				}
     				else {
-    					alert('Unsuccessful');
+    					alert(response.reason);
     				}
     			}
 			});

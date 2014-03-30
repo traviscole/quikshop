@@ -35,17 +35,17 @@
 			else
 			{ 
 				$response_array['status'] = 'error'; 
-				$response_array['reason'] = 'query was not successfully processed'; 
+				$response_array['reason'] = 'ERROR: Query Was Not Successfully Processed'; 
 			}
 		}
 		else {
 			$response_array['status'] = 'error'; 
-			$response_array['reason'] = 'User Exists'; 
+			$response_array['reason'] = 'ERROR: User Exists'; 
 		}
 	}
 	else {
 		$response_array['status'] = 'error'; 
-		$response_array['reason'] = 'no data was passed'; 
+		$response_array['reason'] = 'ERROR: No Data Was Passed'; 
 	}
 	echo json_encode($response_array);
 	$mysqli->close();

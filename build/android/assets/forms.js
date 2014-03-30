@@ -128,12 +128,13 @@ var addField = function(field, fieldRefs) {
     			onload: function() {	// handle the response
 //    				var response = JSON.parse(this.responseText);
 					var response = JSON.parse(this.responseText);
-    				Ti.API.info("Response: " + response);
+    				Ti.API.info("Response: " + response.status);
+    				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
-    					alert('Success!');
+    					alert('Data was inserted successfully!');
     				}
     				else {
-    					alert('Unsuccessful');
+    					alert(response.reason);
     				}
     			}
 			});
