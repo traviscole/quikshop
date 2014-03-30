@@ -27,32 +27,7 @@
     $result = $mysqli->query($sql) or die( $mysqli->error );
     if($result)
     {
-		$sql2 = "SELECT * FROM Users WHERE email='$eMail' LIMIT 1";
-		$result2 = $mysqli->query($sql2) or die( $mysqli->error );
-		
-		if($result2) 
-		{ 
-			$row2 = mysqli_fetch_assoc($result2);
-    			$cartIdResponse = $row2['cartId']; 
-    			$uerIdResponse = $row2['userId']; 	
-    			$response_array['cartId'] = $cartIdResponse;
-    			$response_array['userId'] = $userIdResponse;
-    			$response_array['status'] = 'success';
-    			
-    			if(is_null($cartIdResponse))
-    			{
-    				$response_array['status'] = 'error';
-   			}
-   			
-    			if(is_null($userId))
-    			{
-    				$response_array['status'] = 'error';
-    			}
-		} 
-		else 
-		{ 
-			$response_array['status'] = 'error';
-		}
+        $response_array['status'] 	= 'success';
 	}
 	else
 	{ 
