@@ -17,7 +17,7 @@
     $lName 		= $data->lName;
     $address 	= $data->address;
     $city 		= $data->city;
-	$state 		= $data->state
+	$state 		= $data->state;
     $zip 		= $data->zip;
     $pw 		= $data->pw;
     $passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	

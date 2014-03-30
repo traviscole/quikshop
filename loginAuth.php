@@ -22,7 +22,7 @@ Standard web stuff though aparently. It works, i'm leaving it
 	$password 		= $data->password;
 
 // This is the actual SQL query, read it left to right. Only return 1 row. Save as "sql"
-	$sql = "SELECT * FROM Users WHERE email='$username' LIMIT 1";
+	$sql = "SELECT * FROM AppUsers WHERE email='$username' LIMIT 1";
 
 // Run the query "SQL" against the database. Save as result, some error handling
     $result = $mysqli->query($sql) or die( $mysqli->error );
