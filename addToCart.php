@@ -14,7 +14,7 @@
 
 	if($data) {
    	 	$barcode 		= $data->barcode;
-    	$storeId 		= $data->undefined;		// can't figure out how to title this field so defaults all around
+    	$userId 		= $data->undefined;		// can't figure out how to title this field so defaults all around
     	$quantity 		= $data->quantity;
     	
 		$sql="SELECT * FROM AppItems WHERE storeID='$storeId', barcode='$barcode' LIMIT 1";
