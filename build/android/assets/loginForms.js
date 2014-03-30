@@ -135,6 +135,8 @@ var addField = function(field, fieldRefs) {
 						Ti.API.info('The value of the userId property is: ' + Ti.App.Properties.getString('userId'));
 						Ti.App.Properties.setString('email', response.email);
 						Ti.API.info('The value of the email property is: ' + Ti.App.Properties.getString('email'));
+						Ti.App.Properties.setString('cartId', response.cartId);
+						Ti.API.info('The value of the cartId property is: ' + Ti.App.Properties.getString('cartId'));
     					var w = Titanium.UI.createWindow({
         					backgroundColor:'#336699',
         					title:'Check-In to a Store',
