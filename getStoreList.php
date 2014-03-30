@@ -19,17 +19,18 @@ Standard web stuff though aparently. It works, i'm leaving it
 	$sql = "SELECT * FROM AppStores";
 
 // Run the query "SQL" against the database. Save as result, some error handling
-   	 $result = $mysqli->query($sql) or die( $mysqli->error );
+	$result = $mysqli->query($sql) or die( $mysqli->error );
     
 // If there was a response, perform more actions, else return "error"
     if($result)
     {
-    	while($row = mysql_fetch_array($result))
+    	while($row = mysql_fetch_assoc($result))
 		{
    			$response_array['status'] = 'success'; 
    			$storeIdResponse = $row['storeID'];
-   			$storeIdResponse = $row['name'];
-   			$response_array['storeId'] = 'error'; 
+   				$response_array['storeId'] = $storeIdResponse; 
+   			$storeNameResponse = $row['name'];
+   				$response_array['name'] = $storeNameResponse; 
 		}
     } 
     else 
