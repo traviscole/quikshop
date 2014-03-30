@@ -14,7 +14,9 @@ Standard web stuff though aparently. It works, i'm leaving it
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
 
-	$data = json_decode(file_get_contents('php://input'));	// Accept JSON file input, decode it to a variable. Save this as data
+//	$data = json_decode(file_get_contents('php://input'));	// Accept JSON file input, decode it to a variable. Save this as data
+	$data = json_decode(file_get_contents('http://www.quikshop.co/App/loginAuthTest.json'));
+
 	var_dump($data);	// var_dump is for debugging, prints all PHP variables to the console
 	if($data) {
 
