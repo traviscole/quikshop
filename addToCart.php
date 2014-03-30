@@ -27,7 +27,7 @@
     		$itemId 	= $row['itemID'];
     		$itemName 	= $row['name'];
     		
-    		$check = $mysqli->query("SELECT email FROM AppUsers WHERE  email = '$eMail';");
+    		$check = $mysqli->query("SELECT itemID, cartID FROM AppCarts WHERE itemID = '$itemId' AND cartID = '$cartId';");
 			if (mysqli_num_rows($check) == 0) {
 				$sql2="INSERT INTO AppCarts(cartID,itemID,quantity) VALUES('$cartId','$itemId','$quantity')";
     	
@@ -39,8 +39,15 @@
 				}
 				else
 				{ 
-					$response_array['status'] = 'error'; 
-					$response_array['reason'] = 'ERROR: Query Was Not Successfully Processed'; 
+					$sql2="SELECT * FROM AppItems WHERE storeID='$storeId' AND barcode='$barcode' LIMIT 1";
+					$result2 = $mysqli->query($sql2) or die( $mysqli->error );
+					if($result)
+    				{	
+    				}
+    				else{
+    					$response_array['status'] = 'error'; 
+						$response_array['reason'] = 'ERROR: Already in Cart';
+					} 
 				}
 			}
 			else {
