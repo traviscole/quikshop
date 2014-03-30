@@ -1,8 +1,15 @@
-
+<?php 
+ session_start(); 
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
-
+   <script>
+   {
+		//alert("Hello world");
+		alert(document.getElementById('userID').value);
+		}
+	</script>
 	<title>Quikshop Mobile</title>   
 	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
@@ -20,11 +27,31 @@
         <a href="scanner.html" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
 
 	</div>
-    
+    <script>
+	{
+			
+	}
+	</script>
+    <?php
+			$userID = $_SESSION['userID'];
+			$cartID = $_SESSION['cartID'];
+			$sum = $_SESSION['total'];
+			$arrayNumber = $_SESSION['number'];
+			$arrayType = $_SESSION['type'];
+			print("User: ".$userID);
+			print("\nCart: ".$cartID);
+			print("\nSum: ".$sum);
+			print("\nNumber: ".$arrayNumber[0]);
+			print("\nType: ".$arrayType[0]); 
+     ?>
 	<div data-role="content">  
      
     	<div id="landmark-1" data-landmark-id="1">
-        	
+        	<center>
+
+
+			<font size="18">Amount Due $8
+            </font></center>
 		<form id ="payNow" method="post" action="pay.php">
       	  <div data-role="fieldcontain" class="ui-hide-label">  
         		<div style="text-align:center">  
