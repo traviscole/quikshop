@@ -12,9 +12,9 @@
 	$data = json_decode(file_get_contents('php://input'));
 	var_dump($data);
 
-    	$fName 		= $data->fName;
+    $fName 		= $data->fName;
 	$lName 		= $data->lName;
-    	$eMail 		= $data->email;
+    $eMail 		= $data->email;
 	$pw 		= $data->password;
 	$address 	= $data->address;
     

@@ -13,28 +13,38 @@ Standard web stuff though aparently. It works, i'm leaving it
 	header("access-control-allow-headers: Content-Type, *");
 	header("Content-type: application/json");	// This gets put in the response for file handling
 	
-	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
+//	$data = json_decode(file_get_contents('php://input'));
+	$data = json_decode(file_get_contents('http://www.quikshop.co/App/getCartTest.json'));
 
-// This is the actual SQL query, read it left to right. Only return 1 row. Save as "sql"
-//	$sql = "SELECT itemID, quantity FROM AppCarts INNER JOIN `AppItems` on `AppItems`.`itemID`=`AppCarts`.`itemID`";
-	$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description
+	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
+	
+	if($data) {
+		$cartID = $data->cartId;
+
+		$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description
 			FROM AppCarts, AppItems
-			WHERE AppItems.itemID = AppCarts.itemID";
+			WHERE AppItems.itemID = AppCarts.itemID AND AppCarts.cartID  = $cartId";
 
 // Run the query "SQL" against the database. Save as result, some error handling
-	$result = $mysqli->query($sql) or die( $mysqli->error );
+		$result = $mysqli->query($sql) or die( $mysqli->error );
     
 // If there was a response, perform more actions, else return "error"
-    if($result)
-    {
-		$rows = array();
-
-		//retrieve and print every record
-		while($r = mysqli_fetch_assoc($result)){
-    		$rows[] = $r;
-		}
-		echo json_encode($rows);
-    } 
+    	if($result)
+    	{
+			$rows = array();
+	
+			//retrieve and print every record
+			while($r = mysqli_fetch_assoc($result)){
+    			$rows[] = $r;
+			}
+			echo json_encode($rows);
+    	} 
+    }
+    else {
+   	 	$response_array['status'] = 'error'; 
+		$response_array['reason'] = 'ERROR: No Data Was Passed'; 
+		echo json_encode($response_array);
+    }
 
 /* This takes the response array, converts it to a JSON type and returns it to the caller
 	May need some work within the app, can't tell just yet. I know that HTML gets it no
