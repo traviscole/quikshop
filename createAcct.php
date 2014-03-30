@@ -12,14 +12,17 @@
 	$data = json_decode(file_get_contents('php://input'));
 	var_dump($data);
 
+    $eMail 		= $data->eMail;
     $fName 		= $data->fName;
     $lName 		= $data->lName;
-    $eMail 		= $data->eMail;
-    $address 		= $data->address;
+    $address 	= $data->address;
+    $city 		= $data->city;
+	$state 		= $data->state
+    $zip 		= $data->zip;
     $pw 		= $data->pw;
     $passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	
     
-    $sql="INSERT INTO Users(email,passHash,fname,lname,address) VALUES('$eMail','$passwordHashed','$fName','$lName','$address')";
+    $sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
     
     $result = $mysqli->query($sql) or die( $mysqli->error );
     if($result)
