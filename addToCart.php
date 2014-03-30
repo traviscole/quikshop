@@ -17,19 +17,22 @@
     $quantity 		= $data->quantity;
     	
 	$sql="SELECT * FROM AppItems WHERE storeID='$storeId', barcode='$barcode' LIMIT 1";
-	if($result)
-    {	
-    
-    }
-    else{
-    
-    }	
-	
 	$result = $mysqli->query($sql) or die( $mysqli->error );
 	if($result)
-	{ $response_array['status'] = 'success'; } 
-	else
-	{ $response_array['status'] = 'error'; }
+    {	
+    	$row = mysqli_fetch_assoc($result);
+    	$itemId = $row['itemID'];
+    	$sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
+    	
+    	$result = $mysqli->query($sql) or die( $mysqli->error );
+    	if($result)
+		{
+		}
+    }
+    else{
+    	$response_array['status'] = 'error'; 
+		$response_array['reason'] = 'ERROR: Item Does Not Exist'; 
+    }	
 	
 	echo json_encode($response_array);
 	$mysqli->close();
