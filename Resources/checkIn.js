@@ -8,12 +8,22 @@ var label1 = Ti.UI.createLabel({
 });
 
 var win = Titanium.UI.currentWindow;
-
 win.add(label1);
+
+var picker = Ti.UI.createPicker();
+picker.selectionIndicator = true;
+
+var data = [];
+var pos;
+
 
 var xhr = Ti.Network.createHTTPClient({
     onload: function() {	// handle the response
 		var response = JSON.parse(this.responseText);
-    	
+    	for (pos=0; pos < response.length; pos++) {
+    		data.push (Ti.UI.createPickerRow({title:''+ response[pos] + '',custom_item:'b'}));
+		}
+		picker.add(data);
+		win.add(picker);
     }
 });

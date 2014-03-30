@@ -131,7 +131,6 @@ var addField = function(field, fieldRefs) {
     				Ti.API.info("Response: " + response.status);
     				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
-    					alert('Authentication Successful');
     					Ti.App.Properties.setString('userId', response.userId);
 						Ti.API.info('The value of the userId property is: ' + Ti.App.Properties.getString('userId'));
 						Ti.App.Properties.setString('email', response.email);
