@@ -20,7 +20,6 @@ var pos;
 var xhr = Ti.Network.createHTTPClient({
     onload: function() {	// handle the response
 		var response = JSON.parse(this.responseText);
-		response.sort();
 		Ti.API.info("Response: " + response);
 		Ti.API.info("Response: " + response.length);
     	for (teller = 0; teller < response.length; teller++)

@@ -10,12 +10,11 @@
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
 	$data = json_decode(file_get_contents('php://input'));
-	var_dump($data);
+//	var_dump($data);
 
     $barcode 		= $data->barcode;
-    $cartId 		= $data->cartId;
+    $cartId 		= $data->undefined;		// can't figure out how to title this field so defaults all around
     $quantity 		= $data->quantity;
-    $storeId 		= $data->storeId;
     	
 	$sql="INSERT INTO AppCarts(barcode,cartId,userId,quantity,storeId) VALUES('$barcode','$cartId','$userId','$quantity','$storeId')";
 	
