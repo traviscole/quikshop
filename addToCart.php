@@ -58,6 +58,7 @@
 					{
 						$response_array['status'] = 'success';
 						$response_array['quantityReturned'] = $quantityReturn;
+						$response_array['itemName']	= $itemName;
 					} 
 					else
 					{
