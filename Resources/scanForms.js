@@ -122,8 +122,10 @@ var addField = function(field, fieldRefs) {
 			for (var i in fieldRefs) {
 				values[i] = fieldRefs[i].value;	
 			}
+			Ti.API.info('The value of the storeId property is: ' + Ti.App.Properties.getString('storeId'));
 			var storeId = Ti.App.Properties.getString('storeId');
 			values[values.length] = storeId;
+			Ti.API.info('The value of the cartId property is: ' + Ti.App.Properties.getString('cartId'));
 			var cartId = Ti.App.Properties.getString('cartId');
 			values[values.length] = cartId;
 			Ti.API.info(values);
