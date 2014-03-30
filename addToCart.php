@@ -1,6 +1,6 @@
 <?php
 	error_reporting(E_ALL);
-//	ini_set('display_errors', '1');
+	ini_set('display_errors', '1');
 	header("access-control-allow-origin: *");
 	header("access-control-allow-methods: GET, POST, OPTIONS");
 	header("access-control-allow-credentials: true");

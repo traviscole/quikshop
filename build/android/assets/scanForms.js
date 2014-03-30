@@ -118,18 +118,12 @@ var addField = function(field, fieldRefs) {
 			top:'10dp'
 		});
 		button.addEventListener('click', function(e) {
-			var values = [];
+			var values = {};
 			for (var i in fieldRefs) {
 				values[i] = fieldRefs[i].value;	
 			}
-			values.push({ storeId: Ti.App.Properties.getString('storeId')});
-			Ti.API.info('The value of the storeId property is: ' + Ti.App.Properties.getString('storeId'));
-//			var storeId = Ti.App.Properties.getString('storeId');
-//			values[values.length] = storeId;
-			Ti.API.info(values);
-			Ti.API.info('The value of the cartId property is: ' + Ti.App.Properties.getString('cartId'));
 			var cartId = Ti.App.Properties.getString('cartId');
-			values[values.length + 1] = cartId;
+			values['cartId'] = cartId;
 			Ti.API.info(values);
 			values = JSON.stringify(values);
 //			Ti.API.info(values);

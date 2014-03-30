@@ -9,7 +9,7 @@ var scanForms = require('scanForms');
 var fields = [
 	{ title:'Barcode', type:'text', id:'barcode' },
 	{ title:'Quantity', type:'text', id:'quantity' },
-	{ title:'Add to Cart', type:'submit', id:'scan' }
+	{ title:'Add to Cart', type:'submit', id:'scan' },
 ];
 
 var scanForm = scanForms.createForm({
