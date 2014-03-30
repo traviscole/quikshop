@@ -37,7 +37,13 @@ var xhrPost = Ti.Network.createHTTPClient({
 		var response = JSON.parse(this.responseText);
     	Ti.API.info("Response2: " + response.status);
     	if(response.status == 'success'){
-    		alert(response.storeId);
+    		Ti.App.Properties.setString('storeId', response.userId);
+    		var w = Titanium.UI.createWindow({
+        		backgroundColor:'#336699',
+        		title:'Add Items to Cart',
+        		url:'barcode.js'
+    		});
+    					w.open({modal:true});
     	}
     	else {
     		alert(response.reason);
