@@ -9,7 +9,8 @@
 	
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-	$data = json_decode(file_get_contents('php://input'));
+//	$data = json_decode(file_get_contents('php://input'));
+	$data = json_decode(file_get_contents('http://www.quikshop.co/App/createAccTest.json'));
 	var_dump($data);
 	if($data) {
     	$eMail 		= $data->eMail;
