@@ -23,7 +23,7 @@ var b3 = Titanium.UI.createButton({
     title:'Create an Account',
     width:230,
     height:40,
-    top:200
+    top:210
 });
 main.add(b3);
  

@@ -140,7 +140,7 @@ var addField = function(field, fieldRefs) {
         					backgroundColor:'#000',
         					title:'Check-In to a Store',
        	 					barColor:'black',
-        					url:'barcode.js'
+        					url:'checkIn.js'
     					});
     					w.open({modal:true});
  
