@@ -32,17 +32,34 @@ var xhr = Ti.Network.createHTTPClient({
     }
 });
 
-var doneBtn = Ti.UI.createButton({
-    title: 'Sumbit',
-    top: 350,
-});
-	
-	win.add(doneBtn);
- 
-doneBtn.addEventListener('click',function(){
-	alert(picker.getSelectedRow(0).title);
+var xhrPost = Ti.Network.createHTTPClient({
+    onload: function() {	// handle the response
+		var response = JSON.parse(this.responseText);
+    	Ti.API.info("Response: " + response.status);
+    	if(response.status == 'success'){
+    		alert(respnse.storeId);
+    	}
+    	else {
+    		alert(response.reason);
+    	}
+    }
 });
 
+var submitBtn = Ti.UI.createButton({
+    title: 'Check In',
+    top: 350,
+});
+ 
+submitBtn.addEventListener('click',function(){
+	var values = {name:picker.getSelectedRow(0).title};
+	values = JSON.stringify(values);
+	Ti.API.info("Values: " + values);
+	xhr.open('POST','http://www.quikshop.co/App/getStoreId.php');
+	xhr.send(values);
+});
+
+win.add(submitBtn);
+
 xhr.open("GET", 'http://www.quikshop.co/App/getStoreList.php');
- // Send the request.
+
 xhr.send();

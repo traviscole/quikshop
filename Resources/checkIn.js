@@ -36,9 +36,8 @@ var xhrPost = Ti.Network.createHTTPClient({
     onload: function() {	// handle the response
 		var response = JSON.parse(this.responseText);
     	Ti.API.info("Response: " + response.status);
-    	Ti.API.info("Response Reason: " + response.reason);
     	if(response.status == 'success'){
-    		alert('Data was inserted successfully!');
+    		alert(respnse.storeId);
     	}
     	else {
     		alert(response.reason);
@@ -54,11 +53,12 @@ var submitBtn = Ti.UI.createButton({
 submitBtn.addEventListener('click',function(){
 	var values = {name:picker.getSelectedRow(0).title};
 	values = JSON.stringify(values);
+	Ti.API.info("Values: " + values);
 	xhr.open('POST','http://www.quikshop.co/App/getStoreId.php');
 	xhr.send(values);
 });
 
-win.add(doneBtn);
+win.add(submitBtn);
 
 xhr.open("GET", 'http://www.quikshop.co/App/getStoreList.php');
 
