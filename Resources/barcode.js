@@ -95,14 +95,6 @@ var openScanner = function() {
 		xhr.open('POST','http://www.quikshop.co/App/addToCart.php');
 		xhr.send(values);
 
-
-
-
-
-
-
-
-
     });
     picker.setCancelCallback(function(e) {
         closeScanner();
