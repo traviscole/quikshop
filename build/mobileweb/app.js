@@ -38,5 +38,25 @@ b3.addEventListener('click', function()
  
     w.open({modal:true});
 });
+
+var b4 = Titanium.UI.createButton({
+    title:'Create an Account',
+    width:230,
+    height:40,
+    top:250
+});
+main.add(b4);
+ 
+b4.addEventListener('click', function()
+{
+    var w = Titanium.UI.createWindow({
+        backgroundColor:'#336699',
+        title:'Create an Account',
+        barColor:'black',
+        url:'scanner.js'
+    });
+ 
+    w.open({modal:true});
+});
  
 main.open();

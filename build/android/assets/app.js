@@ -38,5 +38,25 @@ b3.addEventListener('click', function()
  
     w.open({modal:true});
 });
+
+var b4 = Titanium.UI.createButton({
+    title:'Use Scanner',
+    width:230,
+    height:40,
+    top:250
+});
+main.add(b4);
+ 
+b4.addEventListener('click', function()
+{
+   var w2 = Titanium.UI.createWindow({
+        backgroundColor:'#336699',
+        title:'Barcode Scanner',
+        barColor:'black',
+        url:'scanner.js'
+    });
+    w2.open({modal:true});
+    
+});
  
 main.open();
