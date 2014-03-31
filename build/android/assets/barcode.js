@@ -66,7 +66,43 @@ var openScanner = function() {
     // Set callback functions for when scanning succeedes and for when the 
     // scanning is canceled.
     picker.setSuccessCallback(function(e) {
-        alert("success (" + e.symbology + "): " + e.barcode);
+//        alert("success (" + e.symbology + "): " + e.barcode);
+		var values = {};
+		values['cartId'] = Ti.App.Properties.getString('cartId');
+		values['storeId'] = Ti.App.Properties.getString('storeId');
+		values['barcode'] = e.barcode;
+		values['quantity'] = "1";
+										Ti.API.info(values);
+		values = JSON.stringify(values);
+										Ti.API.info(values);
+			
+		var xhr = Ti.Network.createHTTPClient({
+    		onload: function() {	// handle the response
+//    				var response = JSON.parse(this.responseText);
+				var response = JSON.parse(this.responseText);
+    									Ti.API.info("Response: " + response.status);
+    									Ti.API.info("Response Reason: " + response.reason);
+    			if(response.status == 'success'){
+    				alert('Successfully Added: ' + response.itemName + ' Quantity Now: ' + response.quantityReturned);
+ 
+    			}
+    			else {
+    				alert(response.reason);
+    			}
+    		}
+		});
+		Ti.API.info("Values: " + values);
+		xhr.open('POST','http://www.quikshop.co/App/addToCart.php');
+		xhr.send(values);
+
+
+
+
+
+
+
+
+
     });
     picker.setCancelCallback(function(e) {
         closeScanner();
