@@ -21,7 +21,7 @@ Standard web stuff though aparently. It works, i'm leaving it
 	if($data) {
 		$cartID = $data->cartId;
 
-		$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description
+		$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description, AppCarts.quantity
 				FROM AppCarts, AppItems
 				WHERE AppItems.itemID = AppCarts.itemID AND AppCarts.cartID  = $cartID";
 

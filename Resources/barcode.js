@@ -82,9 +82,9 @@ var openScanner = function() {
 				var response = JSON.parse(this.responseText);
     									Ti.API.info("Response: " + response.status);
     									Ti.API.info("Response Reason: " + response.reason);
+    									Ti.API.info("Item Name: " + response.itemName);
     			if(response.status == 'success'){
     				alert('Successfully Added: ' + response.itemName + ' Quantity Now: ' + response.quantityReturned);
- 
     			}
     			else {
     				alert(response.reason);

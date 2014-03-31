@@ -19,7 +19,7 @@ var xhr = Ti.Network.createHTTPClient({
         {
         	object = response[teller];
             var tR = Ti.UI.createTableViewRow({
-        		text: object.name,
+        		text: ("Name: " + object.name + " Qty: " + object.quantity),
         		height: 'auto'
     		});
     		tableData.push(tR);
