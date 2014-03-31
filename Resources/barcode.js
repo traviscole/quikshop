@@ -91,7 +91,7 @@ var openScanner = function() {
     			}
     		}
 		});
-		Ti.API.info("Values: " + values);
+										Ti.API.info("Values: " + values);
 		xhr.open('POST','http://www.quikshop.co/App/addToCart.php');
 		xhr.send(values);
 
