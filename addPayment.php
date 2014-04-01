@@ -1,8 +1,13 @@
 <?php 
  session_start(); 
 ?>
-!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+	<html xmlns="https://www.w3.org/1999/xhtml"> 
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+
 <head>
 
 <title>Quikshop Mobile</title>   
@@ -37,23 +42,24 @@
     
 	
 //print_r($_POST);
-$userId = $_SESSION['userId'];
-$fname = $_POST['fname'];
-$lname = $_POST['lname'];
-$expDate = $_POST['expDate'];
+$userID = $_SESSION['userId'];
+//$fname = $_POST['fname'];
+//$lname = $_POST['lname'];
+//$expDate = $_POST['expDate'];
 $cardNumber = $_POST['cardNumber'];
-$streetAddress = $_POST['streetAddress'];
-$city = $_POST['city'];
-$state = $_POST['state'];
-$zipCode = $_POST['zipCode'];
+//$streetAddress = $_POST['streetAddress'];
+//$city = $_POST['city'];
+//$state = $_POST['state'];
+//$zipCode = $_POST['zipCode'];
 $cardType = $_POST['cardType'];
-$pcId = "0";
-	
+//$pcId = "0";
+	$card = "$cardType - 1234";
+	echo "------------$card-------------";
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-		
+	/*	
 		$sqlcredit = "Select procId from CreditCards";
 		$resultcredit = $mysqli->query($sqlcredit) or die( $mysqli->error );
 		while($rowcredit = mysqli_fetch_row($resultcredit)){
@@ -64,11 +70,13 @@ $pcId = "0";
 			}
 		}
 		$pcId = $pcId.'2';
-	
+	*/
 
 		//$sqlp  = "Insert INTO CreditCards VALUES ($pcId, 34, 'visa', 23456, 09/09/3432, 'sfghjk', "city", "state", 789, 0000-00-00)";
-		$sqlp  = "Insert INTO CreditCards VALUES ('$pcId',$userId, '$cardType', $cardNumber, $expDate, '$streetAddress', '$city', '$state', $zipCode, 0000-00-00)";
-		$resultp = $mysqli->query($sqlp) or die( $mysqli->error );
+		$sqlcard  = "insert into CreditCards values('', $userID, '$cardType')";
+		
+  		//$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
+		
 		//$rowp = mysqli_fetch_row($resultp);
 		
 		
