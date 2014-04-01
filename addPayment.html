@@ -2,7 +2,10 @@
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"> 
+	<html xmlns="https://www.w3.org/1999/xhtml"> 
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 
 <head>
 
@@ -78,7 +81,7 @@
 
 <!-- Beginning of Form -->
 
-    		<form id="rob" action="addPayment.php" method ="post">  
+    		<form id="rob" action="AddPayment.php" method ="post">  
              		
 
     	         
@@ -90,13 +93,8 @@
                 	
                 	<br />
 
-				
-					<input type="date" name="expDate" id="expDate" value="" placeholder="Expiration Date MM/YYYY" class="required" autocorrect="off" autocapitalize="off" required/> 
-              
-
-                	<br />
  					<input type="text" name="cardNumber" id="cardNumber" value="" placeholder="Card Number" class="required" autocorrect="off" autocapitalize="off" required/>
-        			
+        				<br />
 
                     <select name="cardType">
                     
@@ -111,7 +109,7 @@
                     </select>
                    
                 	<br />
-                       
+                <!--       
 					Billing Address
 
 					
