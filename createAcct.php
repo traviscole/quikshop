@@ -22,10 +22,11 @@
     		$lName 		= mysqli_real_escape_string($mysqli,$_POST['lname']);
     		$eMail 		= mysqli_real_escape_string($mysqli,$_POST['email']);		// Required to not be NULL
     		$pw 		= mysqli_real_escape_string($mysqli,$_POST['password']);	// Required to not be NULL
-    		$passwordHashed = password_hash($pw, PASSWORD_DEFAULT);			// Hash PW before inserting
+    		var_dump($pw);
+    		$passwordHashed = password_hash($pw, PASSWORD_DEFAULT);					// Hash PW before inserting
     
 //	Build the query    
-		$sql="INSERT INTO Users(email,passHash,fname,lname) VALUES('$eMail','$passwordHashed','$fName','$lName')";
+		$sql="INSERT INTO Users(email,password,firstname,lastname) VALUES('$eMail','$passwordHashed','$fName','$lName')";
 
 //	Post the query, 
 		$result = $mysqli->query($sql) or die( $mysqli->error );
