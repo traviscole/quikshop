@@ -122,8 +122,8 @@ var addField = function(field, fieldRefs) {
 			for (var i in fieldRefs) {
 				values[i] = fieldRefs[i].value;	
 			}
-			values['cartId'] = Ti.App.Properties.getString('cartID');
-			values['storeId'] = Ti.App.Properties.getString('storeID');
+			values['cartID'] = Ti.App.Properties.getString('cartID');
+			values['storeID'] = Ti.App.Properties.getString('storeID');
 			Ti.API.info(values);
 			values = JSON.stringify(values);
 //			Ti.API.info(values);
