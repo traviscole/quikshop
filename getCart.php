@@ -21,9 +21,9 @@ Standard web stuff though aparently. It works, i'm leaving it
 	if($data) {
 		$cartID = $data->cartID;
 
-		$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description, AppCarts.quantity
-				FROM AppCarts, AppItems
-				WHERE AppItems.itemID = AppCarts.itemID AND AppCarts.cartID  = $cartID";
+		$sql = "SELECT Carts.itemID, Items.name, Items.price, Items.description, Carts.quantity
+				FROM Carts, Items
+				WHERE Items.itemID = Carts.itemID AND Carts.cartID  = $cartID";
 
 // Run the query "SQL" against the database. Save as result, some error handling
 		$result = $mysqli->query($sql) or die( $mysqli->error );
