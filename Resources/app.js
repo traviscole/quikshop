@@ -31,7 +31,7 @@ var b4 = Titanium.UI.createButton({
     title:'Add to Database',
     width:2800,
     height:40,
-    top:210
+    top:260
 });
 main.add(b4);
 

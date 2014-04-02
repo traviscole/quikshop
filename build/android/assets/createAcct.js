@@ -9,7 +9,7 @@ var fields = [
 	{ title:'City', type:'text', id:'city' },
 	{ title:'State', type:'text', id:'state' },
 	{ title:'Zip Code', type:'number', id:'zip' },
-	{ title:'Password', type:'password', id:'pw' },
+	{ title:'Password', type:'password', id:'password' },
 	{ title:'Submit', type:'submit', id:'registerUser' }
 ];
 
