@@ -131,12 +131,12 @@ var addField = function(field, fieldRefs) {
     				Ti.API.info("Response: " + response.status);
     				Ti.API.info("Response Reason: " + response.reason);
     				if(response.status == 'success'){
-    					Ti.App.Properties.setString('userId', response.userId);
-						Ti.API.info('The value of the userId property is: ' + Ti.App.Properties.getString('userId'));
+    					Ti.App.Properties.setString('userID', response.userID);
+						Ti.API.info('The value of the userID property is: ' + Ti.App.Properties.getString('userID'));
 						Ti.App.Properties.setString('email', response.email);
 						Ti.API.info('The value of the email property is: ' + Ti.App.Properties.getString('email'));
-						Ti.App.Properties.setString('cartId', response.cartId);
-						Ti.API.info('The value of the cartId property is: ' + Ti.App.Properties.getString('cartId'));
+						Ti.App.Properties.setString('cartID', response.cartId);
+						Ti.API.info('The value of the cartID property is: ' + Ti.App.Properties.getString('cartID'));
     					var w = Titanium.UI.createWindow({
         					backgroundColor:'#336699',
         					title:'Check-In to a Store',

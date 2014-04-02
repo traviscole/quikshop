@@ -37,8 +37,8 @@ var xhrPost = Ti.Network.createHTTPClient({
 		var response = JSON.parse(this.responseText);
     	Ti.API.info("Response2: " + response.status);
     	if(response.status == 'success'){
-    		Ti.App.Properties.setString('storeId', response.storeId);
-    		Ti.API.info('The value of the storeId property is: ' + Ti.App.Properties.getString('storeId'));
+    		Ti.App.Properties.setString('storeID', response.storeId);
+    		Ti.API.info('The value of the storeId property is: ' + Ti.App.Properties.getString('storeID'));
     		var w = Titanium.UI.createWindow({
         		backgroundColor:'#336699',
         		title:'Add Items to Cart',
