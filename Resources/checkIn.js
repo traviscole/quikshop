@@ -61,12 +61,12 @@ submitBtn.addEventListener('click',function(){
 	var values = {name:picker.getSelectedRow(0).title};
 	values = JSON.stringify(values);
 	Ti.API.info("Values: " + values);
-	xhrPost.open('POST','http://www.quikshop.co/App/getStoreId.php');
+	xhrPost.open('POST','https://www.quikshop.co/App/getStoreId.php');
 	xhrPost.send(values);
 });
 
 win.add(submitBtn);
 
-xhr.open("GET", 'http://www.quikshop.co/App/getStoreList.php');
+xhr.open("GET", 'https://www.quikshop.co/App/getStoreList.php');
 
 xhr.send();

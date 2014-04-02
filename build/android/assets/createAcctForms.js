@@ -139,7 +139,7 @@ var addField = function(field, fieldRefs) {
     			}
 			});
  			Ti.API.info("Values: " + values);
-			xhr.open('POST','http://www.quikshop.co/App/createAcct.php');
+			xhr.open('POST','https://www.quikshop.co/App/createAcct.php');
 			xhr.send(values);
 			
 			form.fireEvent(id, {values:values});	

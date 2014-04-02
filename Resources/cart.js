@@ -33,7 +33,7 @@ var xhr = Ti.Network.createHTTPClient({
 var values = {cartId:Ti.App.Properties.getString('cartId')};
 values = JSON.stringify(values);
 Ti.API.info("Values: " + values);
-xhr.open("POST", 'http://quikshop.co/App/getCart.php');
+xhr.open("POST", 'https://quikshop.co/App/getCart.php');
 
 xhr.send(values);
 
