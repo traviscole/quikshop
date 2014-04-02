@@ -22,6 +22,7 @@
    	 		$decimal = mt_rand(1,99)/100;
    	 		$tens = mt_rand(0,15); 
    	 		$price = $tens + $decimal;
+   	 		
    	 		$storeID = $i;
    	 		$mysqli->query("INSERT INTO Items(storeID,name,description,price,barcode,brand) VALUES('$storeID','$name','$description','$price','$barcode','$brand')");
 		}
