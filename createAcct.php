@@ -20,7 +20,7 @@
     	$city 		= $data->city;
 		$state 		= $data->state;
     	$zip 		= $data->zip;
-    	$pw 		= $data->pw;
+    	$pw 		= $data->password;
     	$passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	
     
 		$check = $mysqli->query("SELECT email FROM AppUsers WHERE  email = '$eMail';");

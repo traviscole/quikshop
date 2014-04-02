@@ -14,9 +14,9 @@
 
 	if($data) {
    	 	$barcode 		= $data->barcode;
-    	$cartId 		= $data->cartId;
+    	$cartId 		= $data->cartID;
     	$quantity 		= $data->quantity;
-    	$storeId 		= $data->storeId;
+    	$storeId 		= $data->storeID;
     	
 		$sql="SELECT * FROM AppItems WHERE storeID='$storeId' AND barcode='$barcode' LIMIT 1";
 		$result = $mysqli->query($sql) or die( $mysqli->error );

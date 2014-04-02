@@ -26,7 +26,7 @@ Standard web stuff though aparently. It works, i'm leaving it
 		$password 		= $data->password;
 
 // This is the actual SQL query, read it left to right. Only return 1 row. Save as "sql"
-		$sql = "SELECT * FROM AppUsers WHERE email='$username' LIMIT 1";
+		$sql = "SELECT * FROM Users WHERE email='$email' LIMIT 1";
 
 // Run the query "SQL" against the database. Save as result, some error handling
    	 	$result = $mysqli->query($sql) or die( $mysqli->error );
@@ -35,30 +35,29 @@ Standard web stuff though aparently. It works, i'm leaving it
     	if($result)
     	{
     		$row = mysqli_fetch_assoc($result);		// Gather the data (row in DB) that was found when the DB was queried
-    		$hashedPW 		= $row['passHash'];		// Get the value listed in the passHash field, save to a local PHP variable: hashedPW
+    		$hashedPW 		= $row['password'];		// Get the value listed in the passHash field, save to a local PHP variable: hashedPW
     		$userIdResponse = $row['userID'];		// Get the value listed in the userId field, save to local PHP variable: userIdResponse
     
     		/*Response Array is what is returned. It is built dynamically and does not need to 
     			be initialized to an inital size. These simply add a slot and assign a value */
-    		$response_array['userId'] = $userIdResponse;
+    		$response_array['userID'] = $userIdResponse;
     		$response_array['email'] = $username;
-    		$response_array['status'] 	= 'success';
     		
-    		$check = $mysqli->query("SELECT * FROM AppLogins WHERE userId='$userIdResponse';");
+    		$check = $mysqli->query("SELECT * FROM Logins WHERE userId='$userIdResponse';");
 			if (mysqli_num_rows($check) == 0) {
 				$sql="INSERT INTO AppLogins(userID) VALUES('$userIdResponse')";
     			$result = $mysqli->query($sql) or die( $mysqli->error );
     			if($result)
     			{
-    				$result3 = $mysqli->query("SELECT cartID FROM AppLogins WHERE userId='$userIdResponse';");
+    				$result3 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
     				$row3 = mysqli_fetch_assoc($result3);
-    				$response_array['cartId'] = $row3['cartID'];
+    				$response_array['cartID'] = $row3['cartID'];
     			}
 			}
 			else {
-    			$result2 = $mysqli->query("SELECT cartID FROM AppLogins WHERE userId='$userIdResponse';");
+    			$result2 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
     			$row2 = mysqli_fetch_assoc($result2);
-    			$response_array['cartId'] = $row2['cartID'];
+    			$response_array['cartID'] = $row2['cartID'];
     		}
     	} 
     	else 

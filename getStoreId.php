@@ -11,11 +11,11 @@
 
 	$data = json_decode(file_get_contents('php://input'));
 //	$data = json_decode(file_get_contents('http://www.quikshop.co/App/getStoreIdTest.json'));
-//	var_dump($data);
+
 	if($data) {
     	$name 		= $data->name;
     	
-    	$sql = "SELECT * FROM AppStores WHERE name = '$name'";
+    	$sql = "SELECT * FROM Stores WHERE name = '$name'";
     	$result = $mysqli->query($sql) or die( $mysqli->error );
     
 // If there was a response, perform more actions, else return "error"
@@ -23,8 +23,8 @@
     	{		
     		$row = mysqli_fetch_assoc($result);	
     		$response_array['status'] 	= 'success';
-    		$userIdResponse = $row['storeID'];
-    		$response_array['storeId'] 	= $userIdResponse;
+    		$storeIdResponse = $row['storeID'];
+    		$response_array['storeID'] 	= $storeIdResponse;
 		}
 		else {
 			$response_array['status'] = 'error'; 

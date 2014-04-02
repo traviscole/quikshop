@@ -19,7 +19,7 @@ Standard web stuff though aparently. It works, i'm leaving it
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop"); // Credentials to connnect to the DB
 	
 	if($data) {
-		$cartID = $data->cartId;
+		$cartID = $data->cartID;
 
 		$sql = "SELECT AppCarts.itemID,AppItems.name, AppItems.price, AppItems.description, AppCarts.quantity
 				FROM AppCarts, AppItems
