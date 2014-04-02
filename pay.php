@@ -6,10 +6,10 @@
 <head>
 
 <title>Quikshop Mobile</title>   
-<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
-<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-<meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" refresh="true" />
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+  <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 
 </head>
 
