@@ -25,7 +25,7 @@
     
 		$check = $mysqli->query("SELECT email FROM Users WHERE email = '$eMail';");
 		if (mysqli_num_rows($check) == 0) {
-			$sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
+			$sql="INSERT INTO Users(email,firstname,lastname,address,city,state,zip,password) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
     
     		$result = $mysqli->query($sql) or die( $mysqli->error );
     		if($result)
