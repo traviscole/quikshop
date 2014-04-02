@@ -68,8 +68,8 @@ var openScanner = function() {
     picker.setSuccessCallback(function(e) {
 //        alert("success (" + e.symbology + "): " + e.barcode);
 		var values = {};
-		values['cartId'] = Ti.App.Properties.getString('cartId');
-		values['storeId'] = Ti.App.Properties.getString('storeId');
+		values['cartID'] = Ti.App.Properties.getString('cartId');
+		values['storeID'] = Ti.App.Properties.getString('storeId');
 		values['barcode'] = e.barcode;
 		values['quantity'] = "1";
 										Ti.API.info(values);
