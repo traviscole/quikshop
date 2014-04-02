@@ -43,7 +43,7 @@ Standard web stuff though aparently. It works, i'm leaving it
     		$response_array['userID'] = $userIdResponse;
     		$response_array['email'] = $username;
     		
-    		$check = $mysqli->query("SELECT * FROM Logins WHERE userId='$userIdResponse';");
+    		$check = $mysqli->query("SELECT * FROM Logins WHERE userID='$userIdResponse';");
 			if (mysqli_num_rows($check) == 0) {
 				$sql="INSERT INTO Logins(userID) VALUES('$userIdResponse')";
     			$result = $mysqli->query($sql) or die( $mysqli->error );
