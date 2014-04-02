@@ -13,8 +13,6 @@
 */
 	$storeID = 1;
 	$userID = 7;
-	$cartID = 3;
-	$total = 13.45;
 	error_reporting(E_ALL);
 
 	ini_set('display_errors', '1');
@@ -59,21 +57,16 @@
 	$price = 1.29;
      $i = 0;
 	
-	$sqlinit  = "Select itemID, quantity from Carts WHERE cartID = $cartID";
-	$resultinit = $mysqli->query($sqlinit) or die( $mysqli->error );
-	
- 	while($rowinit = mysqli_fetch_row($resultinit)){
-	$sql  = "Select name, price from Items WHERE itemID = $rowinit[0]";
+	$sql  = "Select name, storeID, price from Items WHERE storeID = 1";
 	$result = $mysqli->query($sql) or die( $mysqli->error );
-	$row = mysqli_fetch_row($result);
-	print("$row[0]\t\t\t$rowinit[1]\t\t$row[1]\n");
-		
-    $email_message .= "$row[0]\t\t\t$rowinit[1]\t\t$$row[1]\n";
+
+ 	while($row = mysqli_fetch_row($result)){
+    $email_message .= "$row[0]\t\t\t$row[1]\t\t$row[2]\n";
 	 
 	$i = $i+1;
 	}
 
-	$email_message .= "\n\t\t\t\t\tTotal: $$total\n\n\nWe appreciate your business please come back soon\nhttp://www.quikshop.co/";
+	$email_message .= "\n\n\nWe appreciate your business please come back soon\nhttp://www.quikshop.co/";
  
 $headers = 'From: '.$email_from."\r\n".
  
