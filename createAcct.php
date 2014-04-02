@@ -23,7 +23,7 @@
     	$pw 		= $data->password;
     	$passwordHashed 	= password_hash($pw, PASSWORD_DEFAULT);	
     
-		$check = $mysqli->query("SELECT email FROM AppUsers WHERE  email = '$eMail';");
+		$check = $mysqli->query("SELECT email FROM Users WHERE email = '$eMail';");
 		if (mysqli_num_rows($check) == 0) {
 			$sql="INSERT INTO AppUsers(email,fname,lname,address,city,state,zip,passHash) VALUES('$eMail','$fName','$lName','$address','$city','$state','$zip','$passwordHashed')";
     
