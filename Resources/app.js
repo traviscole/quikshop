@@ -27,6 +27,14 @@ var b3 = Titanium.UI.createButton({
 });
 main.add(b3);
  
+var b4 = Titanium.UI.createButton({
+    title:'Add to Database',
+    width:2800,
+    height:40,
+    top:210
+});
+main.add(b4);
+
 b3.addEventListener('click', function()
 {
     var w = Titanium.UI.createWindow({
@@ -34,6 +42,18 @@ b3.addEventListener('click', function()
         title:'Create an Account',
         barColor:'black',
         url:'createAcct.js'
+    });
+ 
+    w.open({modal:true});
+});
+
+b4.addEventListener('click', function()
+{
+    var w = Titanium.UI.createWindow({
+        backgroundColor:'#336699',
+        title:'Add to Database',
+        barColor:'black',
+        url:'addToDB.js'
     });
  
     w.open({modal:true});
