@@ -4,15 +4,13 @@
   
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="https://www.w3.org/1999/xhtml"> 
+
+  <head>
+  
+  <title>Quikshop Checkout</title>   
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-  <head>
-  
-  <title>Quikshop Mobile</title>   
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
   
   </head>
@@ -27,10 +25,10 @@
   
   	</div>
   				<script>
-                      if (localStorage.getItem("userId") != null) {
+                      if (localStorage.getItem("userId") == signOut) {
                           alert("you are not logged in");
                           
-                          window.location.assign("http://www.quikshop.co/")
+                        //  window.location.assign("http://www.quikshop.co/")
                       }
                   </script>
   		<div data-role="content">  
