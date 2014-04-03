@@ -28,7 +28,7 @@
     		$sql = "SELECT userId, email, password FROM Users WHERE email='$username' LIMIT 1";
 //	Call the database, save the result in the variable RESULT
     		$result = $mysqli->query($sql) or die( $mysqli->error );
-//	Extract the row data of the result. Save as ROQ
+//	Extract the row data of the result. Save as ROW
     		$row = mysqli_fetch_assoc($result);
 //	Extraxt the hashed password out of the database
     		$hashDB = $row['password'];
