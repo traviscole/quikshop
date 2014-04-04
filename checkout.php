@@ -89,7 +89,7 @@
   			</center>
  
  			<?php
-   				$sqlcard  = "SELECT Type From CreditCards where userID = $userID ";
+   				$sqlcard  = "SELECT Type,ID From CreditCards where userID = $userID ";
   				$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
 						
   					
@@ -108,7 +108,7 @@
   							
   					?>
                  
-  					<option  value=<?php echo("$rowcard[0]");?>><?php echo($rowcard[0]);?></option>
+  					<option  value=<?php echo("$rowcard[1]");?>><?php echo($rowcard[0]);?></option>
   					<?php
   						$x = $x+1;
 						}
@@ -147,6 +147,19 @@
   
   </div>
   		<?php
+	/*	//AUTOMATIC LOG OUT
+     session_start(); 
+     $_SESSION['session_time'] = time(); //got the login time for user in second 
+     $session_logout = 900; //it means 15 minutes. 
+     //and then cek the time session 
+    if($session_logout >= $_SESSION('session_time']){ 
+        //user session time is up 
+       //destroy the session 
+      session_destroy(); 
+     //redirect to login page 
+     header("Location:the-path-your-login-page.php"); 
+    } 
+*/
   		$mysqli->close();
   		?>
   
