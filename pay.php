@@ -42,10 +42,14 @@ $cardNumber = $_POST['Cards'];
 $userID = $_POST['userId'];
 $cartID = $_POST['cartId'];
 $price = $_POST['price'];
-*/	
+*/
+
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+	
+	
+
 	
 	if(isset($_POST['submit'])){// && isset($Cards)) {
 		?>
@@ -65,7 +69,7 @@ Submit Payment<p>Sending Email
 	$total = $_SESSION('total')
 		
 */
-		$storeID = 1;
+		
 		$userID = $_POST['userId'];
 		$cartID = $_POST['cartId'];
 		$total = $_POST['total'];
@@ -134,11 +138,9 @@ Submit Payment<p>Sending Email
 	}
 	else if(isset($_POST['delete'])){
 		
-		$sqlp  = "Select procId, cardName from CreditCards WHERE cardNum = $cardNumber and userId = $userID";
-		$resultp = $mysqli->query($sqlp) or die( $mysqli->error );
-		$rowp = mysqli_fetch_row($resultp);
-		
-		$sql  = "DELETE from CreditCards WHERE cardNum = $cardNumber and userId = $userID and procId = $rowp[0]";
+	
+		$cardID = $_POST['Cards'];
+		$sql  = "DELETE from CreditCards WHERE ID = $cardID";
 		$result = $mysqli->query($sql) or die( $mysqli->error );
 		?>
         <font size="18">
