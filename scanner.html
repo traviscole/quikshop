@@ -7,7 +7,14 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
     <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-    
+    	<script>
+            
+          if (localStorage.getItem("userId") == "signOut") {
+              alert("you are not logged in");
+              
+           window.location.assign("http://www.quikshop.co/")
+          }
+      </script>
 </head>
 
 <body>
@@ -18,7 +25,7 @@
         	<a href="help.html" data-icon="info" class="ui-btn-right" position:absolute top:50% data-transition="slide">Help</a>
         	<a href="logout.html" class="ui-btn-left" data-icon="delete" data-iconpos="left" data-transition="pop">Logout</a>
 	</div>
-    
+
 	<div data-role="content">  
     	<div id="scanner" data-landmark-id="1">
         	<center><img src="scannerTempImg.png" width="300" height="250" /></center>
@@ -36,7 +43,7 @@
         <div data-role="filedcontain"> 
         	<ul data-role="listview" data-theme="b">
 			<li data-icon="arrow-r"><a href="cart.php" data-transition="slide">View Current Cart</a></li>
-                	<li data-icon="arrow-r"><a href="checkout.html" data-transition="slide">Checkout</a></li>
+                	<li data-icon="arrow-r"><a href="checkout.php" data-transition="slide">Checkout</a></li>
 			<li data-icon="arrow-r"><a href="EditCustomerAcc.html" data-transition="slide">Edit Account</a></li>
 		</ul>	
         </div>
