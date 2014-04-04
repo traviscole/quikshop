@@ -47,9 +47,9 @@
   
   			// Various Includes --getting the userId and cartId from the current logged in user
   
-  			$userID = 6;//$_SESSION['name'];
+  			$userID = 7;//$_SESSION['name'];
   
-  			$cartID = 1;// $_SESSION['cartId'];
+  			$cartID = 3;// $_SESSION['cartId'];
   			
   			$sql  = "SELECT itemID, quantity From Carts where cartID = $cartID";
   
@@ -67,7 +67,7 @@
   			//save the quantity of the current item
   			$itemID = $row[0];
   			$quantity = $row[1];
-  			//look for the items price using 
+			//look for the items price using 
   			$sqlr  = "SELECT price From Items where itemID = $itemID ";
   			$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
   			$rowr = mysqli_fetch_row($resultr);
