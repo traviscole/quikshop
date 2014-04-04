@@ -63,10 +63,7 @@ Submit Payment<p>Sending Email
 	$storeID = $SESSION('storeID');
 	
 	$total = $_SESSION('total')
-	
-	
-	
-	
+		
 */
 		$storeID = 1;
 		$userID = $_POST['userId'];
@@ -86,9 +83,7 @@ Submit Payment<p>Sending Email
 		$lastName = $row[1];
 		
 		$email_to = $row[2];
-		
-		print ("Hello $firstName $lastName\n");
-		
+
 		$email_from = "quikshopproject@yahoo.com";
 		
 		$email_subject = "Thank you for your purchase";
@@ -100,8 +95,8 @@ Submit Payment<p>Sending Email
 		
 		$email_message = "Thank you for your purchase $firstName $lastName";
 		
-		$email_message .= "\n\n\nCart\n\nItems\t\t\tQuantity\t\tPrice\n\n";
-		
+		$email_message .= "\n\n\nCart\n\nItems\t\t\t\t\tQuantity\tPrice\n\n";
+
 		
 		
 		function clean_string($string) {
@@ -111,10 +106,6 @@ Submit Payment<p>Sending Email
 			return str_replace($bad,"",$string);
 		
 		}
-		$item = "Coca-Cola";
-		$quantity = 24;
-		$price = 1.29;
-		$i = 0;
 		
 		$sqlinit  = "Select itemID, quantity from Carts WHERE cartID = $cartID";
 		$resultinit = $mysqli->query($sqlinit) or die( $mysqli->error );
@@ -123,14 +114,12 @@ Submit Payment<p>Sending Email
 			$sql  = "Select name, price from Items WHERE itemID = $rowinit[0]";
 			$result = $mysqli->query($sql) or die( $mysqli->error );
 			$row = mysqli_fetch_row($result);
-			print("$row[0]\t\t\t$rowinit[1]\t\t$row[1]\n");
-			
-			$email_message .= "$row[0]\t\t\t$rowinit[1]\t\t$$row[1]\n";
-			
-			$i = $i+1;
+						
+			$email_message .= "$row[0]\t\t\t\t\t$rowinit[1]\t$$row[1]\n";
+
 		}
 		
-		$email_message .= "\n\t\t\t\t\tTotal: $$total\n\n\nWe appreciate your business please come back soon\nhttp://www.quikshop.co/";
+		$email_message .= "\n\t\t\t\t\t\tTotal: $$total\n\n\nWe appreciate your business please come back soon\nhttp://www.quikshop.co/";
 		
 		$headers = 'From: '.$email_from."\r\n".
 		
