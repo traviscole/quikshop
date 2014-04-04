@@ -25,10 +25,11 @@
   
   	</div>
   				<script>
-                      if (localStorage.getItem("userId") == signOut) {
+						
+                      if (localStorage.getItem("userId") == "signOut") {
                           alert("you are not logged in");
                           
-                        //  window.location.assign("http://www.quikshop.co/")
+                       window.location.assign("http://www.quikshop.co/")
                       }
                   </script>
   		<div data-role="content">  
@@ -113,9 +114,9 @@
   					?>
                       
   				</select>
-
-  				<input type="hidden" name="userId" value= <?php echo $userID;?>>
-                  <input type="hidden" name="cartId" value= <?php echo $cartID;?>>
+					<input type="hidden" name="total" value= <?php echo $sum;?>>
+  					<input type="hidden" name="userId" value= <?php echo $userID;?>>
+                	<input type="hidden" name="cartId" value= <?php echo $cartID;?>>
   				<br />
                   <br />
   				
