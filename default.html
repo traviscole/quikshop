@@ -92,7 +92,8 @@
         {
 //	If the name / pass is a match, login.
          	if(data.status == 'success') {
-//	Save the authenticated username to the permanent variable userId         	
+//	Save the authenticated username to the permanent variable userId   
+				alert("Authentication Successful");      	
          		localStorage.setItem("userId", data.userId);
          		
 //	Return          		

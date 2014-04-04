@@ -4,15 +4,13 @@
   
   <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<html xmlns="https://www.w3.org/1999/xhtml"> 
+
+  <head>
+  
+  <title>Quikshop Checkout</title>   
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-  <head>
-  
-  <title>Quikshop Mobile</title>   
-  <link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
-  <script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
-  <script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
   
   </head>
@@ -27,10 +25,11 @@
   
   	</div>
   				<script>
-                      if (localStorage.getItem("userId") != null) {
+						
+                      if (localStorage.getItem("userId") == "signOut") {
                           alert("you are not logged in");
                           
-                          window.location.assign("http://www.quikshop.co/")
+                       window.location.assign("http://www.quikshop.co/")
                       }
                   </script>
   		<div data-role="content">  
@@ -48,9 +47,9 @@
   
   			// Various Includes --getting the userId and cartId from the current logged in user
   
-  			$userID = 6;//$_SESSION['name'];
+  			$userID = 7;//$_SESSION['name'];
   
-  			$cartID = 1;// $_SESSION['cartId'];
+  			$cartID = 3;// $_SESSION['cartId'];
   			
   			$sql  = "SELECT itemID, quantity From Carts where cartID = $cartID";
   
@@ -68,6 +67,7 @@
   			//save the quantity of the current item
   			$itemID = $row[0];
   			$quantity = $row[1];
+			
   			//look for the items price using 
   			$sqlr  = "SELECT price From Items where itemID = $itemID ";
   			$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
@@ -81,7 +81,7 @@
   			<center>
   
   
-  			<font size="18">Amound Due 
+  			<font size="18">Amount Due 
   				<?php
   					print("$$sum");
   				?>
@@ -89,7 +89,7 @@
   			</center>
  
  			<?php
-   				$sqlcard  = "SELECT Type From CreditCards where userID = $userID ";
+   				$sqlcard  = "SELECT Type,ID From CreditCards where userID = $userID ";
   				$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
 						
   					
@@ -108,16 +108,16 @@
   							
   					?>
                  
-  					<option  value=<?php echo("$rowcard[0]");?>><?php echo($rowcard[0]);?></option>
+  					<option  value=<?php echo("$rowcard[1]");?>><?php echo($rowcard[0]);?></option>
   					<?php
   						$x = $x+1;
 						}
   					?>
                       
   				</select>
-
-  				<input type="hidden" name="userId" value= <?php echo $userID;?>>
-                  <input type="hidden" name="cartId" value= <?php echo $cartID;?>>
+					<input type="hidden" name="total" value= <?php echo $sum;?>>
+  					<input type="hidden" name="userId" value= <?php echo $userID;?>>
+                	<input type="hidden" name="cartId" value= <?php echo $cartID;?>>
   				<br />
                   <br />
   				
@@ -147,6 +147,19 @@
   
   </div>
   		<?php
+	/*	//AUTOMATIC LOG OUT
+     session_start(); 
+     $_SESSION['session_time'] = time(); //got the login time for user in second 
+     $session_logout = 900; //it means 15 minutes. 
+     //and then cek the time session 
+    if($session_logout >= $_SESSION('session_time']){ 
+        //user session time is up 
+       //destroy the session 
+      session_destroy(); 
+     //redirect to login page 
+     header("Location:the-path-your-login-page.php"); 
+    } 
+*/
   		$mysqli->close();
   		?>
   
