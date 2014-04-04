@@ -47,7 +47,7 @@ $price = $_POST['price'];
 	ini_set('display_errors', '1');
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 	
-	if(isset($_POST['submit'])){// && isset($cardNumber)) {
+	if(isset($_POST['submit'])){// && isset($Cards)) {
 		?>
         <font size="18">
        <center>
@@ -69,8 +69,8 @@ Submit Payment<p>Sending Email
 	
 */
 		$storeID = 1;
-		$userID = 7;
-		$cartID = 3;
+		$userID = $_POST['userId'];
+		$cartID = $_POST['cartId'];
 		$total = $_POST['total'];
 		error_reporting(E_ALL);
 		
