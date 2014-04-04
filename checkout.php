@@ -81,7 +81,7 @@
   			<center>
   
   
-  			<font size="18">Amound Due 
+  			<font size="18">Amount Due 
   				<?php
   					print("$$sum");
   				?>
