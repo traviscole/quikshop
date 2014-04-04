@@ -9,7 +9,8 @@
 	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
 <!-- Fix View on Phones -->
     <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-	
+		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+		<META HTTP-EQUIV="Expires" CONTENT="-1">
 </head>
 
 <body>
@@ -34,7 +35,8 @@
 <!-- Title -->
         	<center> Create an Account </center>
 <!-- Beginning of Form -->
-    		<form id="createAcctForm">   		
+		<form action="" onsubmit="return validateForm(this);" onreset="return confirm('Are you sure that you want to reset this form?');">
+   		
     			<div data-role="fieldcontain" class="ui-hide-label">    			
         			<input type="text" name="fname" id="fname" value="" placeholder="First Name" class="required" autocorrect="off" autocapitalize="on"/>
                 	<br />
@@ -45,8 +47,8 @@
         			<input type="text" name="email" id="email" value="" placeholder="eMail" class="required" autocorrect="off" autocapitalize="off"/>
                 	<br />
                 	<br />
-        			<input type="password" name="password" id="password" value="" placeholder="Password" class="required" autocorrect="off" autocapitalize="off"/> 
-                	<br />
+				<input name="password" type="password" placeholder="Password" onblur="if (this.value.length < 5) { alert('Please enter a value that is at least 5 characters long.'); this.focus(); }"/>
+                   	<br />
                 	<br />
         			<input type="password" name="password2" id="password2" value="" placeholder="Reenter Password" class="required" autocorrect="off" autocapitalize="off"/>      			
    	 			</div>      
@@ -65,60 +67,35 @@
 
 </div>
 
+<!-- Script for validating the form data -->
+ <script defer="defer" type="text/javascript"><!--
+  	/*Start of form validation:*/
+  	function validateForm(formElement) {
+  	  //Check user name is at least 2 characters long
+    	if (formElement.fname.value.length == 0)
+      return focusElement(formElement.fname, 'Please enter a name that is at least 2 characters long.');
+    
+    //If all is OK, return true and let the form submit
+    return true;
+  }
+  /*End of form validation.*/
 
-    <script>
-//		Allow form submissions when page is loaded
-    	$(document).ready(function() {
-            $("#submit").click(function(){
+  /*Below are various functions that can be
+   re-used in your own validation scripts:*/
+  function focusElement(element, errorMessage) {
+    //Tell the user an error has been made
+    alert((errorMessage.length > 0) ? errorMessage :
+      'You did not enter valid data; Please try again');
+    //Select the text in the input box, and focus it (if possible)
+    if (element.select) element.select();
+    if (element.focus) element.focus();
   
-//				Clean and submit the data written in the form
-                var formData = $("#createAcctForm").serialize();
+    return false;
+  }
 
-//				Submit the form via AJAX to the loginAuth.php page  
-                $.ajax({
-                    type: "POST",
-                    url: 'createAcct.php',
-     				crossDomain: false,
-                    cache: false,
-//					This is the serialized data from above
-                    data: formData,
-//                    success: onSuccess,
-//					Else goto the onError function
-//                    error: onError
-                });
-//			Workaround for the success function not working
-			alert("Success, Please log in."); 
-			window.location.href = 'https://www.quikshop.co';
-			
-//			This will never be called
-            return false;
-            });
-        });   
-
-//		Validate the login
-//    	function onSuccess(data)
-//      	{
-//			If the data was inserted:
-//         	if(data.status == 'success') {
-//	        	window.location.href = 'https://www.quikshop.co';
-//				return true;
-//				}
-//
-//			If there was an error inserting the information
-//			else {
-//             	alert("Please try again!");
-//             	return false;        
-//        	}
-//        }
-        
-//		Ajax / PHP Error
-//        function onError(data)
-//        {
-//            alert("Error Processing Your Request");
-//			return false;    
-//        } 
-
-	</script>
-
+	
+ 
+  	/*End of functions.*/
+//--></script>
 </body>
 </html>
