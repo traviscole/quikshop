@@ -7,10 +7,7 @@
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
-<!-- Fix View on Phones -->
-    <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
-		<META HTTP-EQUIV="Pragma" CONTENT="no-cache">
-		<META HTTP-EQUIV="Expires" CONTENT="-1">
+
 </head>
 
 <body>
@@ -35,7 +32,7 @@
 <!-- Title -->
         	<center> Create an Account </center>
 <!-- Beginning of Form -->
-		<form action="" onsubmit="return validateForm(this);" onreset="return confirm('Are you sure that you want to reset this form?');">
+		<form action="createAcct.php" onsubmit="return validateForm(this);"  method ="post"	>
    		
     			<div data-role="fieldcontain" class="ui-hide-label">    			
         			<input type="text" name="fname" id="fname" value="" placeholder="First Name" class="required" autocorrect="off" autocapitalize="on"/>
@@ -53,7 +50,7 @@
         			<input type="password" name="password2" id="password2" value="" placeholder="Reenter Password" class="required" autocorrect="off" autocapitalize="off"/>      			
    	 			</div>      
 <!-- Submit Button -->     	 			
-    			<input type="submit" value="Create Account"  id="submit"/>
+    			<input type="submit" value="Create Account" />
                 <br />                
     		</form>            
 		</div> 
@@ -72,30 +69,38 @@
   	/*Start of form validation:*/
   	function validateForm(formElement) {
   	  //Check user name is at least 2 characters long
-    	if (formElement.fname.value.length == 0)
-      return focusElement(formElement.fname, 'Please enter a name that is at least 2 characters long.');
-    
-    //If all is OK, return true and let the form submit
-    return true;
-  }
-  /*End of form validation.*/
+    		if (formElement.fname.value.length == 0)
+     		   return focusElement(formElement.fname, 'Please enter a name.');
+		if (!validEmail(formElement.email.value))
+    		    return focusElement(formElement.email, 'Please enter a real email.');
 
-  /*Below are various functions that can be
-   re-used in your own validation scripts:*/
-  function focusElement(element, errorMessage) {
-    //Tell the user an error has been made
-    alert((errorMessage.length > 0) ? errorMessage :
-      'You did not enter valid data; Please try again');
-    //Select the text in the input box, and focus it (if possible)
-    if (element.select) element.select();
-    if (element.focus) element.focus();
+  	  //If all is OK, return true and let the form submit
+
+		
+   	 	return true;
+  	}
   
-    return false;
-  }
+
+  	/*to display the error:*/
+  	function focusElement(element, errorMessage) {
+  	  //Tell the user an error has been made
+  	  alert((errorMessage.length > 0) ? errorMessage : 'You did not enter valid data; Please try again');
+    	//Select the text in the input box, and focus it (if possible)
+   	  if (element.select) element.select();
+   	  if (element.focus) element.focus();
+  
+    	       return false;
+ 	}
+
+	//checking for email format using RegExp
+  	function validEmail(email) {
+    		var emailRE = new RegExp(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/);
+    		return emailRE.test(email);
+  	}
 
 	
- 
-  	/*End of functions.*/
-//--></script>
+ /*End of form validation.*/
+
+</script>
 </body>
 </html>
