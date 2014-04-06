@@ -1,4 +1,7 @@
 <?php
+	//starting the session
+	session_start();
+
 // 	Allow for errors
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
@@ -35,6 +38,11 @@
 
 //	See if the password matches
 		if (password_verify($password, $hashDB)) {
+
+		//storing the global attributes
+		$_SESSION["userID"] = $row['userId'];
+
+
 //		If so, write success to the response aray
     			$response_array['status'] = 'success'; 
     		} 
