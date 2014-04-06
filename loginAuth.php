@@ -40,7 +40,7 @@
 		if (password_verify($password, $hashDB)) {
 
 		//storing the global attributes
-		$_SESSION["userID"] = $row['userId'];
+		$_SESSION['userID'] = $row['userId'];
 
 
 //		If so, write success to the response aray
