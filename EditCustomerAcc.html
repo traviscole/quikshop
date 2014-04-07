@@ -27,6 +27,8 @@
 	<div data-role="content">  
 
 		<div id="landmark-1" data-landmark-id="1">
+		</div>
+	</div>
 
 <html lang= 'en'>
 
@@ -39,28 +41,35 @@
        	 </p>
         	</center>
         	</font>
-	<pre>
+
+	</body>
+	</head>
+	
+</html>
+</div>
 
 <?php
-    
-	
-	//creating connection 
+    //creating connection 
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
 
 	//I am updating UserId and cartId with the session variables (global variables)			
 	$userID = $_SESSION['userID'];
 	//$cartID = $_SESSION['currCartId'];
-	$fname = $_POST['firstName'];
-	$lname = $_POST['lastName'];
-	$email = $_POST['email'];
-	$password = $_POST['password'];
+	$fname = mysqli_real_escape_string($mysqli,$_POST['fname']);
+	$lname = mysqli_real_escape_string($mysqli,$_POST['lname']);
+	$email = mysqli_real_escape_string($mysqli,$_POST['email']);
+	$password = mysqli_real_escape_string($mysqli,$_POST['password']);
 	$passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
 				
 	//here we are querying the db				
-	$query = "UPDATE Users SET fname= '$firstName' , lname= '$lastName', email = '$email', passHash = '$passwordHashed'  WHERE userId = $userID";
+	$query = "UPDATE Users SET firstName= '$fname' , lastName= '$lname', email = '$email', passHash = '$passwordHashed'  WHERE userID = '$userID'";
 	//here we are making the call
-	$result = $mysqli->query($query) or die($mysqli->error);
-
+	$result = $mysqli->query($query) or die( $mysqli->error );
+	$mysqli->close();
 ?>
+
+
+</body>
+</html>
