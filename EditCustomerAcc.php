@@ -43,12 +43,11 @@
 
 	//I am updating UserId and cartId with the session variables (global variables)			
 	$userID = $_SESSION['userID'];
-	print("UserID: $userID");
 	//$cartID = $_SESSION['currCartId'];
 
 				
 	//here we are querying the db				
-	$query = "SELECT firstName, lastName, email From Users where userID = $userID";
+	$query = "SELECT firstName, lastName, email From Users where userID = '$userID'";
 	//here we are making the call
 	$result = $mysqli->query($query) or die($mysqli->error);
 	//here we are going to use something like a hashmap to store the variables
@@ -80,7 +79,7 @@
 
 
 
-	<form action="Account.php" method = "post">
+	<form id="editAccount" method = "post">
                
 	    	 First Name <input type="text" name="fname" id="fname" class="required"  value="<?php echo $fName; ?>"/>
            	 <br />
@@ -96,7 +95,7 @@
               <br />
         	Re-Enter Password<input type="password" name="password2" id="password"  value=""/>  
                  		
-           	<input type = "submit" value="Edit Account" ></td></tr>
+           	<input type = "submit" value="Edit Account" id="submit"></td></tr>
 							
 	</form>
 
@@ -106,6 +105,8 @@
 </div>
 
 
+
+
 <!-- Footer -->
 
 <div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
@@ -113,6 +114,63 @@
 	<h1>&copy; Quikshop 2014</h1>
 
 </div>
+
+   <script>
+//	Allow form submissions when page is loaded
+    	$(document).ready(function() {
+            $("#submit").click(function(){
+  
+//	Clean and submit the data written in the form
+                var formData = $("#editAccount").serialize();
+//	Submit the form via AJAX to the loginAuth.php page  
+                $.ajax({
+                 	type: "POST",
+                    	url: 'EditCustomerAcc.html',
+     			crossDomain: false,
+                    	cache: false,
+//	This is the serialized data
+                    	data: formData,
+//	If successful call, goto the onSuccess function
+                    	success: onSuccess,
+//	Else goto the onError function
+                    	error: onError
+                });
+//	his will never be called
+                return false;
+            });
+        });
+        
+//	Validate the login
+    	function onSuccess()
+        {
+//	If the name / pass is a match, login.
+         	//if(data.status == 'success') {
+//	Save the authenticated username to the permanent variable userId   
+				//alert("Authentication Successful");      	
+         		//localStorage.setItem("userId", data.userId);
+         		
+//	Return          		
+         		window.location.href = 'EditCustomerAcc.html';
+			return true;
+		}
+
+//	Bad name / pass
+		//else {
+             		//alert("Authentication Invalid. Please try again!");
+             		//return false;        
+        	//}
+        //}
+        
+//	Ajax / PHP Error
+        function onError()
+        {
+            	alert("Error Processing Your Request");
+		return false;    
+        } 
+               
+	</script>
+	
+
 
 </body>
 </html>
