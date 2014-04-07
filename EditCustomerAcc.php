@@ -42,20 +42,21 @@
 
 
 	//I am updating UserId and cartId with the session variables (global variables)			
-	$userID = $_SESSION['userId'];
-	$cartID = $_SESSION['currCartId'];
+	$userID = $_SESSION['userID'];
+	print("UserID: $userID");
+	//$cartID = $_SESSION['currCartId'];
 
 				
 	//here we are querying the db				
-	$query = "SELECT fname, lname, email From Users where userID = $userID";
+	$query = "SELECT firstName, lastName, email From Users where userID = $userID";
 	//here we are making the call
-	$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
+	$result = $mysqli->query($query) or die($mysqli->error);
 	//here we are going to use something like a hashmap to store the variables
 	$row = mysqli_fetch_assoc($result);
 
 	//creating variables
-	$fName = $row['fname'];
-	$lName = $row['lname'];
+	$fName = $row['firstName'];
+	$lName = $row['lastName'];
 	$email = $row['email'];
 
 
