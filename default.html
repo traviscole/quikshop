@@ -9,6 +9,8 @@
 	<!-- Fix View on Phones -->
     	<meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	
+	
+	
 </head>
 
 <body>
@@ -47,8 +49,8 @@
 
 <!-- Create Acct Buttons (below form) -->       
         <div data-role="filedcontain"> 
-        	<ul data-role="listview" data-theme="e">
-			<li data-icon="arrow-r"><a href="create.html" data-transition="slide">Create An Account</a></li>
+        	<ul data-role="listview" data-theme="e">   <!-- data-ajax="false") to prevent the $(document).ready() from running when we go to the oper page-->   
+			<li data-icon="arrow-r"><a href="createA.html" data-ajax="false" data-transition="slide">Create An Account</a></li>
 		</ul>	
         </div>
             
@@ -94,7 +96,7 @@
          	if(data.status == 'success') {
 //	Save the authenticated username to the permanent variable userId   
 				//alert("Authentication Successful");      	
-         		//localStorage.setItem("userId", data.userId);
+         		localStorage.setItem("userId", data.userId);
          		
 //	Return          		
          		window.location.href = 'scanner.html';
