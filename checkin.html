@@ -9,7 +9,8 @@
 
 <head>
 
-
+	<script type="text/javascript" src="checkin.js"></script>
+	<link href="checkin.css" rel="stylesheet" type="text/css" />
 
 	<title>Quikshop Mobile</title>  
 
@@ -67,7 +68,8 @@
 
 
 
-            <form id="checkin" action="php" method ="post">  
+            <form id="checkin" action="checkout.php" method ="post" enctype="multipart/form-data">  
+			<div id="response"><!--This will hold our error messages and the response from the server. --></div> 
             	<div style="text-align:center">  
                  <br />
           		 <br />
@@ -77,9 +79,19 @@
            		 <br />
             	<div data-role="fieldcontain" class="ui-hide-label"> 
             
-           			<input type="submit" name"submit"  value="Search" />
+           			<input type="submit" id = "submit" name = "submit"  value="Search" />
             
            		</div>	
+
+
+		 <div class="inputs"> <!-- to check for spams -->
+
+                    <input type="hidden" name="honeypot" id="honeypot" value="http://" />            
+
+                    <input type="hidden" name="humancheck" id="humancheck" class="clear" value="" />
+
+                </div>
+
              </form>          
 
     	            
