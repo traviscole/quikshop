@@ -1,0 +1,111 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+	<html xmlns="https://www.w3.org/1999/xhtml"> 
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
+	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+<head>
+
+
+
+	<title>Quikshop Mobile</title>  
+
+	 
+
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
+
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.min.js"></script>
+
+	<script type="text/javascript" src="http://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+
+<!-- Fix View on Phones -->
+
+    <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+	
+
+</head>
+
+
+
+<body>
+
+<div data-role="page" data-theme="b">
+
+
+	<div data-role="header" data-theme="b">
+
+
+		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
+
+
+        <a href="help.html" data-icon="info" class="ui-btn-right" data-transition="slide" position:absolute top:50%>Help</a>
+
+	    <a href="scanner.html" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
+
+
+
+	</div>
+
+	<script>
+		if (localStorage.getItem("userId") === "signOut") {
+			alert("you are not logged in");
+			
+			window.location.assign("http://www.quikshop.co/")
+		}
+	</script>
+
+
+	<div data-role="content">  
+
+
+    	<div id="landmark-1" data-landmark-id="1">
+        	<center>Search for stores near you </center>
+
+
+
+            <form id="checkin" action="php" method ="post">  
+            	<div style="text-align:center">  
+                 <br />
+          		 <br />
+           		 <br />
+          		<input type="int" name="zipdode" id="zipcode" value="" placeholder="Enter Zipcode" class="required" autocorrect="off" autocapitalize="on" required autofocus/> 
+             	 <br />
+           		 <br />
+            	<div data-role="fieldcontain" class="ui-hide-label"> 
+            
+           			<input type="submit" name"submit"  value="Search" />
+            
+           		</div>	
+             </form>          
+
+    	            
+
+		</div> 
+
+            
+
+    </div>
+
+    
+
+<!-- Footer -->
+
+	<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
+
+		<h1>&copy; Quikshop 2014</h1>
+
+	</div>
+
+
+
+</div>
+
+
+</body>
+
+</html>
+
