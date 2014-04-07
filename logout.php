@@ -7,9 +7,7 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
 	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
   
-    <script>
-		localStorage.setItem("userId", "signOut");
-	</script>
+
 </head>
 
 <body>
@@ -24,11 +22,15 @@
 	<div data-role="content">  
     	<div id="landmark-1" data-landmark-id="1">
             	<center> You have been logged out. </center>
-            	<center><a href="https://quikshop.co/default.html" data-role="button">Return To Login</a></center>
+            	<center><a href="https://quikshop.co/" data-role="button">Return To Login</a></center>
 	</div> 
         </div>
 
-<?php
+			    <script>
+		localStorage.setItem("userId", "signOut");
+	</script>
+		<?php
+
 			error_reporting(E_ALL);
   			ini_set('display_errors', '1');
   
@@ -38,15 +40,18 @@
   			// Various Includes --getting the userId and cartId from the current logged in user
   
   			//$userID = 7;//$_SESSION['name'];
+			
   
   			$cartID = 3;// $_SESSION['cartId'];
-
+		
   			$sql  = "DELETE from Logins where cartID = $cartID";
   
   			//	Call the database, save the result in the variable RESULT
   			$result = $mysqli->query($sql) or die( $mysqli->error );
  			 
+			$userID = $_SESSION['userID'];
 			
+  			print ("UserID:	$userID");
 			
 ?>
 	<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
@@ -55,7 +60,8 @@
 
 </div>
 
-
+ 
+ 
 </body>
 <?php 
 $mysqli->close();
