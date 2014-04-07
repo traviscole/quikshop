@@ -14,6 +14,7 @@
 </head>
 
 <body>
+
 	<div data-role="page" data-theme="b">
 
 	<div data-role="header" data-theme="b">
@@ -48,18 +49,18 @@
 
 
 	//I am updating UserId and cartId with the session variables (global variables)			
-	$userID = $_SESSION['userId'];
-	$cartID = $_SESSION['currCartId'];
-	$fname = $_POST['fname'];
-	$lname = $_POST['lname'];
+	$userID = $_SESSION['userID'];
+	//$cartID = $_SESSION['currCartId'];
+	$fname = $_POST['firstName'];
+	$lname = $_POST['lastName'];
 	$email = $_POST['email'];
 	$password = $_POST['password'];
 	$passwordHashed = password_hash($password, PASSWORD_DEFAULT);
 
 				
 	//here we are querying the db				
-	$query = "UPDATE Users SET fname= '$fname' , lname= '$lname', email = '$email', passHash = '$passwordHashed'  WHERE userId = $userID";
+	$query = "UPDATE Users SET fname= '$firstName' , lname= '$lastName', email = '$email', passHash = '$passwordHashed'  WHERE userId = $userID";
 	//here we are making the call
-	$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
+	$result = $mysqli->query($query) or die($mysqli->error);
 
 ?>
