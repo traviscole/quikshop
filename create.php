@@ -1,4 +1,6 @@
 <?php 
+//Jose Prado
+
 sleep(2);
 //Sanitize incoming data and store in variable
 $name = trim(stripslashes(htmlspecialchars($_POST['fname'])));	
