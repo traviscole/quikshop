@@ -29,8 +29,9 @@
                       if (localStorage.getItem("userId") == "signOut") {
                           alert("you are not logged in");
                           
-                       window.location.assign("http://www.quikshop.co/")
+                      // window.location.assign("http://www.quikshop.co/")
                       }
+					  
                   </script>
   		<div data-role="content">  
   
@@ -47,10 +48,12 @@
   
   			// Various Includes --getting the userId and cartId from the current logged in user
   
-  			$userID = 7;//$_SESSION['name'];
+  			$userID = $_SESSION['userID'];
   
+  			print ("UserID:	$userID");
   			$cartID = 3;// $_SESSION['cartId'];
   			
+			
   			$sql  = "SELECT itemID, quantity From Carts where cartID = $cartID";
   
   			//	Call the database, save the result in the variable RESULT
