@@ -48,9 +48,10 @@
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 	
 	
-    $total = $_POST['total'];
+   
 	
-	if(isset($_POST['submit'])) {
+	if(isset($_POST['submit'])) { 
+	$total = $_POST['total'];
 		if($total > 0){
 		if( isset($_POST['Cards']))	{
 		?>
@@ -133,7 +134,7 @@ Submit Payment<p>Sending Email
                         $result = $mysqli->query($sql) or die( $mysqli->error );
                         $row = mysqli_fetch_row($result);
                                     
-                    	$message .= "<tr><td><strong>$row[0]</strong> </td><td><center><strong>$rowinit[1]</strong></center> </td><td><strong>$row[1]</strong> </td></tr>";
+                    	$message .= "<tr><td>$row[0] </td><td><center>$rowinit[1]</center> </td><td><center>$row[1] </center></td></tr>";
 
                      }
 					 
