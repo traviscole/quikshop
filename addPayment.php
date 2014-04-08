@@ -24,7 +24,7 @@
 	<div data-role="header" data-theme="b">
 		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
 		<a href="help.html" data-icon="info" class="ui-btn-right" position:absolute top:50% data-transition="slide">Help</a>
-		<a href="checkout.php" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
+		<a href="https://quikshop.co/checkout.php" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
 
 	</div>
 
@@ -40,9 +40,11 @@
 	<pre>
 	<?php
     
-	
-//print_r($_POST);
-$userID = $_SESSION['userId'];
+  			$userID = $_SESSION['userID'];
+  			$_SESSION['userID'] = $userID;
+			
+  			print ("UserID:	$userID");
+
 //$fname = $_POST['fname'];
 //$lname = $_POST['lname'];
 //$expDate = $_POST['expDate'];
@@ -53,6 +55,7 @@ $cardNumber = $_POST['cardNumber'];
 //$zipCode = $_POST['zipCode'];
 $cardType = $_POST['cardType'];
 //$pcId = "0";
+	
 	$card = "$cardType - 1234";
 	echo "------------$card-------------";
 	error_reporting(E_ALL);
@@ -73,9 +76,9 @@ $cardType = $_POST['cardType'];
 	*/
 
 		//$sqlp  = "Insert INTO CreditCards VALUES ($pcId, 34, 'visa', 23456, 09/09/3432, 'sfghjk', "city", "state", 789, 0000-00-00)";
-		$sqlcard  = "insert into CreditCards values('', $userID, '$cardType')";
+		$sqlcard  = "insert into CreditCards values('', $userID, '$card')";
 		
-  		//$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
+  		$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
 		
 		//$rowp = mysqli_fetch_row($resultp);
 		
