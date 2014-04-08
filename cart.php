@@ -48,7 +48,7 @@
 			//I am updating UserId and cartId with the session variables (global variables)			
 			$userID = $_SESSION['userId'];
 
-			$cartID = $_SESSION['currCartId'];
+			$cartID = $_SESSION['CartId'];
 
 				
 					
