@@ -49,9 +49,10 @@ $price = $_POST['price'];
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 	
 	
-
+    $total = $_POST['total'];
 	
 	if(isset($_POST['submit'])) {
+		if($total > 0){
 		if( isset($_POST['Cards']))	{
 		?>
                     <font size="18">
@@ -73,12 +74,24 @@ Submit Payment<p>Sending Email
                     
                     $userID = $_POST['userId'];
                     $cartID = $_POST['cartId'];
-                    $total = $_POST['total'];
+                
                     error_reporting(E_ALL);
                     
                     ini_set('display_errors', '1');
                     $mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
                     
+					$userID = $_SESSION['userID'];
+					$sqlCart  = "select cartID,storeID from Logins where userID = $userID";
+					$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
+					$rowCart = mysqli_fetch_row($resultCart);
+							
+					$cartID = $rowCart[0];// $_SESSION['cartId'];
+					$storeID = $rowCart[1];;
+					
+					
+					
+					
+					
                     $sql  = "Select firstName, lastName, email from Users WHERE userID = $userID";
                     $result = $mysqli->query($sql) or die( $mysqli->error );
                     $row = mysqli_fetch_row($result);
@@ -138,6 +151,16 @@ Submit Payment<p>Sending Email
 			print("Please add a credit card");	
 		}
 		
+	}
+	else{
+	?>
+                    <font size="18">
+                   <center>Current cart is empty
+                    </p>
+                    </center>
+                    </font>
+                  <?php
+	}
 	}
 	else if(isset($_POST['delete'])){
 		
