@@ -2,7 +2,7 @@
  session_start(); 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="https://www.w3.org/1999/xhtml"> 
 <head>
 
@@ -46,13 +46,13 @@
 					$userEmail = "<script>document.write(localStorage.getItem('userId'));</script>";
 			
 			//I am updating UserId and cartId with the session variables (global variables)			
-			$userID = $_SESSION['userId'];
+			$userID = $_SESSION['userID'];
 
-			$cartID = $_SESSION['CartId'];
+			$cartID = $_SESSION['cartID'];
 
 				
 					
-					$query = "SELECT * From cart where cartID = $cartID";
+					$query = "SELECT * FROM Carts WHERE cartID = '$cartID'";
 					$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
 					$total = 0;
 
@@ -61,7 +61,7 @@
 						while($row = mysqli_fetch_row($result))
 						{
 						
-							$sqlr  = "SELECT * From items where itemID = $row[1] ";
+							$sqlr  = "SELECT * From items where itemID = '$row[1]'";
 							$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
 							$rowr = mysqli_fetch_row($resultr);
 							
