@@ -22,7 +22,14 @@
 		<a href="checkout.php" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
 
 	</div>
-
+  				<script>
+						
+                      if (localStorage.getItem("userId") == "signOut") {
+                          alert("you are not logged in");
+                          window.location.assign("http://www.quikshop.co/")
+                      }
+					  
+                  </script>
 	<div data-role="content">  
 
 		<div id="landmark-1" data-landmark-id="1">
@@ -81,13 +88,13 @@ Submit Payment<p>Sending Email
                     $mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
                     
 					$userID = $_SESSION['userID'];
-					$sqlCart  = "select cartID,storeID from Logins where userID = $userID";
+					$sqlCart  = "select * from Logins where userID = $userID";
 					$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
 					$rowCart = mysqli_fetch_row($resultCart);
 							
 					$cartID = $rowCart[0];// $_SESSION['cartId'];
-					$storeID = $rowCart[1];;
-					
+					$storeID = $rowCart[2];
+					$time = $rowCart[3];
 					
 					
 					
@@ -111,10 +118,8 @@ Submit Payment<p>Sending Email
                     
                     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
                     
-                    $email_message = "Thank you for your purchase $firstName $lastName";
-                    
-                    $email_message .= "\n\n\nCart\n\nItems\t\t\t\t\tQuantity\tPrice\n\n";
-            
+  
+            	
                     
                     
                     function clean_string($string) {
@@ -124,7 +129,21 @@ Submit Payment<p>Sending Email
                         return str_replace($bad,"",$string);
                     
                     }
-                    
+					$sqlStore  = "select name, address, zip from Stores where storeID = $storeID";
+					$resultStore = $mysqli->query($sqlStore) or die( $mysqli->error );
+					$rowStore = mysqli_fetch_row($resultStore);
+					
+                    $message = '<html><body>';
+					$message .= '<h1>Thank you for choosing Quikshop<p><p><p></h1>';
+					$message .= "Thank you for visiting $rowStore[0] on $rowStore[1] $rowStore[2] at $time<p><p><p>";
+					$message .= '</body></html>';
+					
+					$message .= '<html><body>';
+					$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
+					$message .= "<tr style='background: #eee;'><td><strong>Items</strong> </td>";
+					$message .= "<td><strong>Quantity</strong> </td>";
+					$message .= "<td><strong>Price</strong></td>";
+					
                     $sqlinit  = "Select itemID, quantity from Carts WHERE cartID = $cartID";
                     $resultinit = $mysqli->query($sqlinit) or die( $mysqli->error );
                     
@@ -133,19 +152,33 @@ Submit Payment<p>Sending Email
                         $result = $mysqli->query($sql) or die( $mysqli->error );
                         $row = mysqli_fetch_row($result);
                                     
-                        $email_message .= "$row[0]\t\t\t\t\t$rowinit[1]\t$$row[1]\n";
-            
-                    }
+                    	$message .= "<tr><td><strong>$row[0]</strong> </td><td><center><strong>$rowinit[1]</strong></center> </td><td><strong>$row[1]</strong> </td></tr>";
+
+                     }
+					 
+					 
+					 
+					$message .= "<tr style='background: #eee;'><td><strong></strong> </td>";
+					$message .= "<td><strong>Total</strong> </td>";
+					$message .= "<td><strong>$total</strong></td>";
+					//$message .= "<tr><td><strong></strong> </td><td><center><strong>Total</strong></center> </td><td><strong>$total</strong> </td></tr>";
+                    $message .= "</table>";
+					$message .= "</body></html>";
+					
+					$headers = 'From: '.$email_from."\r\n";
+                    //$email_message .= "\n\t\t\t\t\t\tTotal: $$total\n\n\nWe appreciate your business please come back soon\nhttp://www.quikshop.co/";
                     
-                    $email_message .= "\n\t\t\t\t\t\tTotal: $$total\n\n\nWe appreciate your business please come back soon\nhttp://www.quikshop.co/";
                     
-                    $headers = 'From: '.$email_from."\r\n".
-                    
-                    'Reply-To: '.$email_from."\r\n" .
-                    
-                    'X-Mailer: PHP/' . phpversion();
-                    
-                    @mail($email_to, $email_subject, $email_message, $headers);  
+					
+					$headers .= "MIME-Version: 1.0\r\n";
+					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
+					 
+					'Reply-To: '.$email_from."\r\n" .
+					 
+					'X-Mailer: PHP/' . phpversion();
+					 
+					@mail($email_to, $email_subject, $message, $headers);   
+					
 		}
 		else{
 			print("Please add a credit card");	
