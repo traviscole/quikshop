@@ -41,15 +41,7 @@
 	<body>
 	<pre>
 	<?php
-    
-	
-//print_r($_POST);
-/*
-$cardNumber = $_POST['Cards'];
-$userID = $_POST['userId'];
-$cartID = $_POST['cartId'];
-$price = $_POST['price'];
-*/
+
 
 	error_reporting(E_ALL);
 	ini_set('display_errors', '1');
@@ -69,15 +61,7 @@ Submit Payment<p>Sending Email
                     </center>
                     </font>
                   <?php
-                // If we know the userID then we need to look at the loging table and find storeID and cartID so we can search the cart and create a receipt 
-                /*
-                $userID = $_SESSION('userID');
-                
-                $storeID = $SESSION('storeID');
-                
-                $total = $_SESSION('total')
-                    
-            */
+
                     
                     $userID = $_POST['userId'];
                     $cartID = $_POST['cartId'];
@@ -92,14 +76,11 @@ Submit Payment<p>Sending Email
 					$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
 					$rowCart = mysqli_fetch_row($resultCart);
 							
-					$cartID = $rowCart[0];// $_SESSION['cartId'];
+					$cartID = $rowCart[0];
 					$storeID = $rowCart[2];
 					$time = $rowCart[3];
 					
-					
-					
-					
-                    $sql  = "Select firstName, lastName, email from Users WHERE userID = $userID";
+					$sql  = "Select firstName, lastName, email from Users WHERE userID = $userID";
                     $result = $mysqli->query($sql) or die( $mysqli->error );
                     $row = mysqli_fetch_row($result);
                     
@@ -178,6 +159,13 @@ Submit Payment<p>Sending Email
 					'X-Mailer: PHP/' . phpversion();
 					 
 					@mail($email_to, $email_subject, $message, $headers);   
+					
+					$sql  = "insert into Logins values('', $userID, $storeID, 0000-00-00)";
+   					$result = $mysqli->query($sql) or die( $mysqli->error );
+					
+					
+					$sql  = "DELETE from Logins where cartID = $cartID";
+   					$result = $mysqli->query($sql) or die( $mysqli->error );
 					
 		}
 		else{
