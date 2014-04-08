@@ -48,9 +48,15 @@
   			// Various Includes --getting the userId and cartId from the current logged in user
   
   			$userID = $_SESSION['userID'];
-  
+  			$_SESSION['userID'] = $userID;
+			
   			print ("UserID:	$userID");
-  			$cartID = 3;// $_SESSION['cartId'];
+			
+			
+			$sqlCart  = "select cartID from Logins where userID = $userID";
+  			$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
+			$rowCart = mysqli_fetch_row($resultCart);
+  			$cartID = $rowCart[0];// $_SESSION['cartId'];
   			
 			
   			$sql  = "SELECT itemID, quantity From Carts where cartID = $cartID";
