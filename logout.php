@@ -26,7 +26,7 @@
 	</div> 
         </div>
 
-			    <script>
+	<script>
 		localStorage.setItem("userId", "signOut");
 	</script>
 		<?php
@@ -39,20 +39,18 @@
   
   			// Various Includes --getting the userId and cartId from the current logged in user
   
-  			//$userID = 7;//$_SESSION['name'];
+  			$userID = $_SESSION['userID'];
+			$sqlCart  = "select cartID from Logins where userID = $userID";
+  			$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
+			$rowCart = mysqli_fetch_row($resultCart);
 			
-  
-  			$cartID = 3;// $_SESSION['cartId'];
+  			$cartID = $rowCart[0];// $_SESSION['cartId'];
 		
+			//Delete user from logins
   			$sql  = "DELETE from Logins where cartID = $cartID";
-  
-  			//	Call the database, save the result in the variable RESULT
-  			$result = $mysqli->query($sql) or die( $mysqli->error );
+   			$result = $mysqli->query($sql) or die( $mysqli->error );
  			 
-			$userID = $_SESSION['userID'];
-			
-  			print ("UserID:	$userID");
-			
+		
 ?>
 	<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
 		<h1>&copy; Quikshop 2014</h1>
