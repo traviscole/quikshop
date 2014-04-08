@@ -28,8 +28,7 @@
 						
                       if (localStorage.getItem("userId") == "signOut") {
                           alert("you are not logged in");
-                          
-                      // window.location.assign("http://www.quikshop.co/")
+                          window.location.assign("http://www.quikshop.co/")
                       }
 					  
                   </script>
