@@ -68,18 +68,23 @@
 
 
 
-            <form id="checkin" action="checkout.php" method ="post" enctype="multipart/form-data">  
+            <form id="checkin" action="checkin.php" method ="post" enctype="multipart/form-data">  
 			<div id="response"><!--This will hold our error messages and the response from the server. --></div> 
             	<div style="text-align:center">  
                  <br />
           		 <br />
            		 <br />
-          		<input type="int" name="zipdode" id="zipcode" value="" placeholder="Enter Zipcode" class="required" autocorrect="off" autocapitalize="on" required autofocus/> 
+          		<input type="int" name="zipcode" id="zipcode" value="" placeholder="Enter Zipcode"  autocorrect="off" autocapitalize="on" required autofocus/>
+
+			<input type="hidden" name="long" id="long" />
+			<input type="hidden" name="lat" id="lat" />
+ 
              	 <br />
            		 <br />
             	<div data-role="fieldcontain" class="ui-hide-label"> 
             
-           			<input type="submit" id = "submit" name = "submit"  value="Search" />
+           			<input type="submit" id = "submit" name = "submit"  value="Search" /> 
+					<input type="submit" id = "location" name = "location"  value="Use Current Location" />
             
            		</div>	
 
