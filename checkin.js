@@ -1,197 +1,203 @@
-		$(document).ready(function() {
+$(document).ready(function() {
 
 
+    //this is to hide the div for the response
+    $('form #response').hide();
 
-		$('form #response').hide();
 
+    //this is called when the users clicks search
+    $('#submit').click(function(e) {
 
 
-		$('#submit').click(function(e) {
 
+        // prevent forms default action until
 
+        // error check has been performed
 
-		// prevent forms default action until
+        e.preventDefault();
 
-		// error check has been performed
 
-		e.preventDefault();
 
+        // grab form field values
 
+        var valid = '';		//if there is an error this is filled out
 
-		// grab form field values
+        var zipcode = $('form #zipcode').val();	//gets the values from the form fields
 
-		var valid = '';
+        var honeypot = $('form #honeypot').val();
 
-		var zipcode = $('form #zipcode').val();
+        var humancheck = $('form #humancheck').val();
 
-		var honeypot = $('form #honeypot').val();
 
-		var humancheck = $('form #humancheck').val();
+        // perform error checking
 
+        if (zipcode = '' || zipcode .length != 5) {
 
-		// perform error checking
+            valid = '<p>Please input a valid zipcode </p>';
 
-		if (zipcode = '' || zipcode .length != 5) {
+        }
 
-		valid = '<p>Please input a valid zipcode </p>';	
 
-		}
+        if (honeypot != 'http://') {
 
+            valid += '<p>Spambots are not allowed.</p>';
 
-		if (honeypot != 'http://') {
+        }
 
-		valid += '<p>Spambots are not allowed.</p>';	
 
-		}
 
+        if (humancheck != '') {
 
+            valid += '<p>A human user' + required + '</p>';
 
-		if (humancheck != '') {
+        }
 
-		valid += '<p>A human user' + required + '</p>';	
 
-		}
 
+        // let the user know if there are erros with the form
 
+        if (valid != '') {
 
-		// let the user know if there are erros with the form
 
-		if (valid != '') {
 
+            $('form #response').removeClass().addClass('error')
 
+            .html('<strong>Please correct the errors below.</strong>' +valid).fadeIn('fast');
 
-		$('form #response').removeClass().addClass('error')
+        }
 
-		.html('<strong>Please correct the errors below.</strong>' +valid).fadeIn('fast');			
+        // let the user know something is happening behind the scenes
 
-		}
+        // serialize the form data and send to our ajax function
 
-		// let the user know something is happening behind the scenes
+        else {
 
-		// serialize the form data and send to our ajax function
 
-		else {
 
-		
+            $('form #response').removeClass().addClass('processing').html('Processing...').fadeIn('fast');
 
-		$('form #response').removeClass().addClass('processing').html('Processing...').fadeIn('fast');										
 
+            var formData = $('form').serialize();
 
-		var formData = $('form').serialize();
 
+            submitForm(formData);
 
-		submitForm(formData);			
+        }
 
-		}			
 
 
+    });
 
-		});
 
-		$('#location').click(function(e) {
+    //this is called when the users clicks on Use current Location
+    $('#location').click(function(e) {
 
 
 
-		// prevent forms default action until
+        // prevent forms default action until
 
-		// error check has been performed
+        // error check has been performed
 
-		e.preventDefault();
+        e.preventDefault();
 
 
 
-		// grab form field values
+        // grab form field values
 
-		var valid = '';
+        var valid = '';
 
-		var honeypot = $('form #honeypot').val();
+        var honeypot = $('form #honeypot').val();
 
-		var humancheck = $('form #humancheck').val();
+        var humancheck = $('form #humancheck').val();
 
 
-			
-		if (navigator.geolocation)
-		{
-			var loc = navigator.geolocation.getCurrentPosition(showPosition);
+        //this is to get the current location which calls ShowPosition
+        if (navigator.geolocation)
+        {
+            var loc = navigator.geolocation.getCurrentPosition(showPosition);
 
-		}
-		else{
-			valid +="Geolocation is not supported by this browser.";
-		}
-		
-		
+        }
+        else {
+            valid +="Geolocation is not supported by this browser.";
+        }
 
 
-		
-		if (honeypot != 'http://') {
 
-		valid += '<p>Spambots are not allowed.</p>';	
 
-		}
 
+        if (honeypot != 'http://') {
 
+            valid += '<p>Spambots are not allowed.</p>';
 
-		if (humancheck != '') {
+        }
 
-		valid += '<p>A human user' + required + '</p>';	
 
-		}
 
+        if (humancheck != '') {
 
+            valid += '<p>A human user' + required + '</p>';
 
-		// let the user know if there are erros with the form
+        }
 
-		if (valid != '') {
 
 
+        // let the user know if there are erros with the form
 
-		$('form #response').removeClass().addClass('error')
+        if (valid != '') {
 
-		.html('<strong>Please correct the errors below.</strong>' +valid).fadeIn('fast');			
 
-		}
 
+            $('form #response').removeClass().addClass('error')
 
-		});
+            .html('<strong>Please correct the errors below.</strong>' +valid).fadeIn('fast');
 
-		
+        }
 
-	
-		function showPosition(position)
-		{
 
-			longitude = position.coords.longitude;
-			latitude = position.coords.latitude;
+    });
 
-			alert("Your current location:" + longitude + " , " + latitude);
 
 
-			$('form #response').removeClass().addClass('processing').html('Processing...').fadeIn('fast');
+    //this is the function that gets the coordinatees
+    function showPosition(position)
+    {
 
+        longitude = position.coords.longitude;
+        latitude = position.coords.latitude;
 
-			var elem = document.getElementById("long");
-			    elem.value = longitude;
 
-			var ele = document.getElementById("lat");
-			    ele.value = latitude;
-													
+        //this is for testing
+        alert("Your current location:" + longitude + " , " + latitude);
 
-			var formData = $('form').serialize();
+        //shows the gif
+        $('form #response').removeClass().addClass('processing').html('Processing...').fadeIn('fast');
 
-			submitForm(formData);	
-		}
-}); 
+        //changing the values of the forms so we can pass them
+        var elem = document.getElementById("long");
+        elem.value = longitude;
 
-		function submitForm(formData) {
+        var ele = document.getElementById("lat");
+        ele.value = latitude;
 
-		
-		alert("Your zipcode:" + formData );
+        //serializing the values
+        var formData = $('form').serialize();
 
-		$.ajax({	
+
+        //calling the submit form passing the values
+        submitForm(formData);
+    }
+});
+
+function submitForm(formData) {
+
+    //this is for testing
+    alert("Your zipcode:" + formData );
+
+    $.ajax( {
 
 		type: 'POST',
 
-		url: 'checkin.php',		
+		url: 'checkin.php',
 
 		data: formData,
 
@@ -201,61 +207,62 @@
 
 		timeout: 7000,
 
-		success: function(data) { 			
+		success: function(data) {
 
 
 
-		$('form #response').removeClass().addClass((data.error === true) ? 'error' : 'success')
+            $('form #response').removeClass().addClass((data.error === true) ? 'error' : 'success')
 
-		.html(data.msg).fadeIn('fast');	
-
-
-
-		if ($('form #response').hasClass('success')) {
+            .html(data.msg).fadeIn('fast');
 
 
 
-		setTimeout("$('form #response').fadeOut('fast')", 5000);
-
-
-			openWin();
-
-		}
+            if ($('form #response').hasClass('success')) {
 
 
 
-		},
+                setTimeout("$('form #response').fadeOut('fast')", 5000);
+
+
+                openWin();
+
+            }
+
+
+
+        },
 
 		error: function(XMLHttpRequest, textStatus, errorThrown) {
 
 
 
-		$('form #response').removeClass().addClass('error')
+            $('form #response').removeClass().addClass('error')
 
-		.html('<p>There was an<strong> ' + errorThrown +
+            .html('<p>There was an<strong> ' + errorThrown +
 
-		'</strong> error due to a<strong> ' + textStatus +
+                  '</strong> error due to a<strong> ' + textStatus +
 
-		'</strong> condition.</p>').fadeIn('fast');			
+                  '</strong> condition.</p>').fadeIn('fast');
 
-		},				
+        },
 
-		complete: function(XMLHttpRequest, status) { 			
+		complete: function(XMLHttpRequest, status) {
 
 
 
-		$('form')[0].reset();
+            $('form')[0].reset();
 
-		}
+        }
 
-		});	
+    });
 
-		};
+};
 
+//this is to call the form containing the stores in that area
 function openWin()
 {
-var myWindow = window.open("","MsgWindow","width=200,height=100");
-myWindow.document.write("<p>This is 'MsgWindow'. I am 200px wide and 100px tall!</p>");
+    var myWindow = window.open("https://quikshop.co","MsgWindow","width=200,height=100");
 }
+
 
 
