@@ -55,9 +55,10 @@ if ($honeypot == 'http://' && empty($humancheck)) {
 
         }
 
-
+		//creating an array to store the names of the stores and to say if it was succesful or not
         $return = array();
 
+		//getting all the names of the stores and we are going to store them in a json manner
         while ($t = mysqli_fetch_assoc($result)) {
             $return['stores'][] = $t['name'];
         }
@@ -69,11 +70,10 @@ if ($honeypot == 'http://' && empty($humancheck)) {
         //Close the connection
         $mysqli->close();
 
+		//making error = false
         $return['error'] = false;
-        $return['msg'] = "<p>Select one of the stores </p>";
-
-        //print json_encode($rows);
-
+		
+		//sending the data back to the user
         echo json_encode($return);
     }
 } else {
