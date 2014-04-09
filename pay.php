@@ -127,7 +127,7 @@ Submit Payment<p>Sending Email
 					
 					$message .= '<html><body>';
 					$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-					$message .= "<tr style='background-color:lightblue';><td><strong>Items</strong> </td>";
+					$message .= "<tr style='background-color: lightblue';><td><strong>Items</strong> </td>";
 					$message .= "<td><strong>Quantity</strong> </td>";
 					$message .= "<td><strong>Price</strong></td>";
 					
@@ -145,7 +145,7 @@ Submit Payment<p>Sending Email
 					 print("3CartID : $cartID------userID : $userID");
 					 
 					 
-					$message .= "<tr style='background-color:orange';><td><strong></strong> </td>";
+					$message .= "<tr style='background-color: orange'><td><strong></strong> </td>";
 					$message .= "<td><strong>Total</strong> </td>";
 					$message .= "<td><strong>$total</strong></td>";
 			
@@ -164,12 +164,12 @@ Submit Payment<p>Sending Email
 					@mail($email_to, $email_subject, $message, $headers);   
 				
 					
-					$sql  = "INSERT into Logins values('', $userID, $storeID, 0000-00-00)";
+					/*$sql  = "INSERT into Logins values('', $userID, $storeID, 0000-00-00)";
    					$result = $mysqli->query($sql) or die( $mysqli->error );
 					
 					
 					$sql  = "DELETE from Logins where cartID = $cartID";
-   					$result = $mysqli->query($sql) or die( $mysqli->error );
+   					$result = $mysqli->query($sql) or die( $mysqli->error );*/
 					
 		}
 		else{
