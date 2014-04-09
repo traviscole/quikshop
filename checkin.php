@@ -41,9 +41,9 @@ if ($honeypot == 'http://' && empty($humancheck)) {
 
 		//deciding which one to use depending on the user input
         if (!empty($zipcode))
-            $result = $mysqli->query("SELECT name from Stores where zip = $zipcode");
+            $result = $mysqli->query("SELECT name, storeId from Stores where zip = $zipcode");
         else
-            $result = $mysqli->query("SELECT name, address from Stores where zip = 32608");
+            $result = $mysqli->query("SELECT name, storeId from Stores where zip = 32608");
 
 		//throw an error if the query didn't work
         if ($result == False) {
@@ -60,7 +60,7 @@ if ($honeypot == 'http://' && empty($humancheck)) {
 
 		//getting all the names of the stores and we are going to store them in a json manner
         while ($t = mysqli_fetch_assoc($result)) {
-            $return['stores'][] = $t['name'];
+            $return['stores'][$t['name']][] = $t['storeId'];
         }
 
 
