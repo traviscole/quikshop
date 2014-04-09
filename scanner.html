@@ -1,58 +1,116 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
 <html xmlns="http://www.w3.org/1999/xhtml"> 
+
 <head>
 
+
+
 	<title>Scanner</title>   
+
 	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.css" />  
+
 	<script type="text/javascript" src="https://code.jquery.com/jquery-1.8.2.min.js"></script>
+
 	<script type="text/javascript" src="https://code.jquery.com/mobile/1.2.0/jquery.mobile-1.2.0.min.js"></script>
+	
+	<script type="text/javascript" src="scannerFunctions.js"></script>
+
     <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
     	<script>
+
             
-          if (localStorage.getItem("userId") == "signOut") {
+
+          if (localStorage.getItem("email") == "signOut") {
+
               alert("you are not logged in");
-              
-           window.location.assign("http://www.quikshop.co/")
+
+              window.location.assign("http://www.quikshop.co/")
+
           }
+
       </script>
+
 </head>
 
+
+
 <body>
+
 <div data-role="page" data-theme="b">
 
+
+
 	<div data-role="header" data-theme="b">
+
 		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
+
         	<a href="help.html" data-icon="info" class="ui-btn-right" position:absolute top:50% data-transition="slide">Help</a>
-        	<a href="logout.html" class="ui-btn-left" data-icon="delete" data-iconpos="left" data-transition="pop">Logout</a>
+
+        	<a href="logout.php" class="ui-btn-left" data-icon="delete" data-iconpos="left" data-transition="pop">Logout</a>
+
 	</div>
 
+
+
 	<div data-role="content">  
+
     	<div id="scanner" data-landmark-id="1">
+
         	<center><img src="scannerTempImg.png" width="300" height="250" /></center>
+
         	<form id="barcodeForm">
+
     			<div data-role="fieldcontain" class="ui-hide-label">
+
         			<input type="text" name="barcode" id="barcode" value="" placeholder="Barcode" class="required"/>
+
    	 		</div>        
+
     			<input type="submit" value="Scan"  id="scanButton"/>
+
                 		<br />
+
     		</form>
+
 	</div> 
+
         
+
         </br>
+
         
+
         <div data-role="filedcontain"> 
+
         	<ul data-role="listview" data-theme="b">
+
 			<li data-icon="arrow-r"><a href="cart.php" data-transition="slide">View Current Cart</a></li>
-                	<li data-icon="arrow-r"><a href="checkout.php" data-transition="slide">Checkout</a></li>
-			<li data-icon="arrow-r"><a href="EditCustomerAcc.html" data-transition="slide">Edit Account</a></li>
+
+                	<li data-icon="arrow-r"><a href="https://quikshop.co/checkout.php" data-transition="slide">Checkout</a></li>
+
+			<li data-icon="arrow-r"><a href="EditCustomerAcc.php" data-transition="slide">Edit Account</a></li>
+
 		</ul>	
+
         </div>
+
 	</div>
+
 	<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
+
 		<h1>&copy; Quikshop 2014</h1>
+
 	</div>
+
+
 
 </div>
 
+
+
 </body>
+
 </html>
+
