@@ -23,10 +23,10 @@
     		$username = mysqli_real_escape_string($mysqli,$_POST['username']);
     		$password = mysqli_real_escape_string($mysqli,$_POST['password']);
 
-<<<<<<< HEAD
+
 // This is the actual SQL query, read it left to right. Only return 1 row. Save as "sql"
 $sql = "SELECT * FROM Users WHERE email='$username' LIMIT 1";
-=======
+
 // Build the SQL call
      $sql = "SELECT userID, email, password FROM Users WHERE email='$username' LIMIT 1";
 // Call the database, save the result in the variable RESULT
@@ -35,7 +35,7 @@ $sql = "SELECT * FROM Users WHERE email='$username' LIMIT 1";
      $row = mysqli_fetch_assoc($result);
 // Extraxt the hashed password out of the database
      $hashDB = $row['password'];
->>>>>>> master
+
 
 // Run the query "SQL" against the database. Save as result, some error handling
     $result = $mysqli->query($sql) or die( $mysqli->error );
