@@ -268,14 +268,23 @@ function openWin(formData) {
 
 	alert("openWin:" + formData );
 
-	//var myWindow = window.open("https://quikshop.co","MsgWindow","width=200,height=100");
+	
 	$.ajax( {
 
+		type: 'POST',
 
-	
+		url: 'clickStore.html',
+
+		data: formData,
+
+		dataType: 'json',
+
+		cache: false,	
    
 
 	 });
+
+	var myWindow = window.open("https://quikshop.co","MsgWindow","width=200,height=100");
 };
 
 
