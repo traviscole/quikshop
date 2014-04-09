@@ -20,8 +20,8 @@
 	if (isset($_POST["username"]) && isset($_POST["password"])) {
 
 //	Assign the passed entry to variables
-    		$username = $data->username;
-		$password = $data->password;
+    		$username = mysqli_real_escape_string($mysqli,$_POST['username']);
+    		$password = mysqli_real_escape_string($mysqli,$_POST['password']);
 
 <<<<<<< HEAD
 // This is the actual SQL query, read it left to right. Only return 1 row. Save as "sql"
