@@ -24,7 +24,7 @@
 	</div>
   				<script>
 						
-                      if (localStorage.getItem("userId") == "signOut") {
+                      if (localStorage.getItem("email") == "signOut") {
                           alert("you are not logged in");
                           window.location.assign("http://www.quikshop.co/")
                       }
