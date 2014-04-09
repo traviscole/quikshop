@@ -52,6 +52,7 @@
 	
 	if(isset($_POST['submit'])) { 
 	$total = $_POST['total'];
+
 		if($total > 0){
 		if( isset($_POST['Cards']))	{
 		?>
@@ -64,8 +65,7 @@ Submit Payment<p>Sending Email
                   <?php
 
                     
-                    $userID = $_POST['userId'];
-                    $cartID = $_POST['cartId'];
+
                 
                     error_reporting(E_ALL);
                     
@@ -81,10 +81,13 @@ Submit Payment<p>Sending Email
 					$storeID = $rowCart[2];
 					$time = $rowCart[3];
 					
+					
+						
+						
 					$sql  = "Select firstName, lastName, email from Users WHERE userID = $userID";
                     $result = $mysqli->query($sql) or die( $mysqli->error );
                     $row = mysqli_fetch_row($result);
-                    
+                   
                     $firstName = $row[0];
                     
                     $lastName = $row[1];
@@ -111,24 +114,26 @@ Submit Payment<p>Sending Email
                         return str_replace($bad,"",$string);
                     
                     }
+			
 					$sqlStore  = "select name, address, zip from Stores where storeID = $storeID";
 					$resultStore = $mysqli->query($sqlStore) or die( $mysqli->error );
-					$rowStore = mysqli_fetch_row($resultStore);
+					$rowStore = mysqli_fetch_row($resultStore); 
 					
-                    $message = '<html><body>';
+					
+				    $message = '<html><body>';
 					$message .= '<h1>Thank you for choosing Quikshop<p><p><p></h1>';
 					$message .= "Thank you for visiting $rowStore[0] on $rowStore[1] $rowStore[2] at $time<p><p><p>";
 					$message .= '</body></html>';
 					
 					$message .= '<html><body>';
 					$message .= '<table rules="all" style="border-color: #666;" cellpadding="10">';
-					$message .= "<tr style='background: #eee;'><td><strong>Items</strong> </td>";
+					$message .= "<tr style='background-color:lightblue';><td><strong>Items</strong> </td>";
 					$message .= "<td><strong>Quantity</strong> </td>";
 					$message .= "<td><strong>Price</strong></td>";
 					
                     $sqlinit  = "Select itemID, quantity from Carts WHERE cartID = $cartID";
                     $resultinit = $mysqli->query($sqlinit) or die( $mysqli->error );
-                    
+                   
                     while($rowinit = mysqli_fetch_row($resultinit)){
                         $sql  = "Select name, price from Items WHERE itemID = $rowinit[0]";
                         $result = $mysqli->query($sql) or die( $mysqli->error );
@@ -137,21 +142,18 @@ Submit Payment<p>Sending Email
                     	$message .= "<tr><td>$row[0] </td><td><center>$rowinit[1]</center> </td><td><center>$row[1] </center></td></tr>";
 
                      }
+					 print("3CartID : $cartID------userID : $userID");
 					 
 					 
-					 
-					$message .= "<tr style='background: #eee;'><td><strong></strong> </td>";
+					$message .= "<tr style='background-color:orange';><td><strong></strong> </td>";
 					$message .= "<td><strong>Total</strong> </td>";
 					$message .= "<td><strong>$total</strong></td>";
-					//$message .= "<tr><td><strong></strong> </td><td><center><strong>Total</strong></center> </td><td><strong>$total</strong> </td></tr>";
+			
                     $message .= "</table>";
 					$message .= "</body></html>";
 					
 					$headers = 'From: '.$email_from."\r\n";
-                    //$email_message .= "\n\t\t\t\t\t\tTotal: $$total\n\n\nWe appreciate your business please come back soon\nhttp://www.quikshop.co/";
                     
-                    
-					
 					$headers .= "MIME-Version: 1.0\r\n";
 					$headers .= "Content-Type: text/html; charset=ISO-8859-1\r\n";
 					 
@@ -160,8 +162,9 @@ Submit Payment<p>Sending Email
 					'X-Mailer: PHP/' . phpversion();
 					 
 					@mail($email_to, $email_subject, $message, $headers);   
+				
 					
-					$sql  = "insert into Logins values('', $userID, $storeID, 0000-00-00)";
+					$sql  = "INSERT into Logins values('', $userID, $storeID, 0000-00-00)";
    					$result = $mysqli->query($sql) or die( $mysqli->error );
 					
 					
