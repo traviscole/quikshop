@@ -50,23 +50,46 @@ if ($honeypot == 'http://' && empty($humancheck)) {
 			}
 
 			$hashPassword = password_hash($password, PASSWORD_DEFAULT);
-							  
 
-			if($mysqli->query("INSERT INTO Users (firstName, lastName, email, password) values ('$name','$lname','$email','$hashPassword')") == False){
+			$check = $mysqli->query("Select * From Users where email ='$email'");
+			if($check == False){
 				$return['error'] = true;
 				$return['msg'] = "<h3>Oops! We could not do the query.</h3>".$error_message;					
 				echo json_encode($return);
 
     				exit();
 					
+			}else{
+
+				if(mysqli_num_rows($check) == 0){
+			  
+
+					if($mysqli->query("INSERT INTO Users (firstName, lastName, email, password) values ('$name','$lname','$email','$hashPassword')") == False){
+					$return['error'] = true;
+					$return['msg'] = "<h3>Oops! We could not do the query.</h3>".$error_message;					
+					echo json_encode($return);
+
+    					exit();
+					
+					}
+
+					//Close the connection
+					$mysqli->close();
+
+					$return['error'] = false;
+					$return['msg'] = "<p>Your account has been created! </p>"; 
+					echo json_encode($return);
+				}else{
+
+					$return['error'] = true;
+					$return['msg'] = "<h3>User already exists.</h3>".$error_message;					
+					echo json_encode($return);
+
+    					exit();
+
+
+				}
 			}
-
-			//Close the connection
-			$mysqli->close();
-
-			$return['error'] = false;
-			$return['msg'] = "<p>Your account has been created! </p>"; 
-			echo json_encode($return);
 		  }		
 } else {
 	
