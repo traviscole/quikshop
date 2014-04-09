@@ -96,7 +96,8 @@
          	if(data.status == 'success') {
 //	Save the authenticated username to the permanent variable userId   
 				//alert("Authentication Successful");      	
-         		localStorage.setItem("userId", data.userId);
+         		localStorage.setItem("userID", data.userID);
+         		localStorage.setItem("cartID", data.cartID);
          		
 //	Return          		
          		window.location.href = 'scanner.html';
