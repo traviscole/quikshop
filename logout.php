@@ -25,7 +25,7 @@
 	<div data-role="content">  
     	<div id="landmark-1" data-landmark-id="1">
             	<center> You have been logged out. </center>
-            	<center><a href="https://quikshop.co/default.html" data-role="button">Return To Login</a></center>
+            	<center><a href="https://quikshop.co/default.html" data-role="button" data-ajax="false">Return To Login</a></center>
 	</div> 
         </div>
 
