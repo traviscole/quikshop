@@ -225,7 +225,10 @@ function submitForm(formData) {
                 setTimeout("$('form #response').fadeOut('fast')", 5000);
 		
 				//going to call the new page and I am going to create a form in this page so the user can chose the store
-                openWin();
+
+			var formData = JSON.stringify(data.stores);
+
+	                openWin(formData );
 
             }
 
@@ -260,10 +263,20 @@ function submitForm(formData) {
 };
 
 //this is to call the form containing the stores in that area
-function openWin()
-{
-    var myWindow = window.open("https://quikshop.co","MsgWindow","width=200,height=100");
-}
+function openWin(formData) {
+
+
+	alert("openWin:" + formData );
+
+	//var myWindow = window.open("https://quikshop.co","MsgWindow","width=200,height=100");
+	$.ajax( {
+
+
+	
+   
+
+	 });
+};
 
 
 
