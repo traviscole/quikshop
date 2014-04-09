@@ -1,3 +1,6 @@
+<?php 
+   session_start(); 
+  ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
@@ -22,7 +25,7 @@
 	<div data-role="content">  
     	<div id="landmark-1" data-landmark-id="1">
             	<center> You have been logged out. </center>
-            	<center><a href="https://quikshop.co/" data-role="button">Return To Login</a></center>
+            	<center><a href="https://quikshop.co/default.html" data-role="button">Return To Login</a></center>
 	</div> 
         </div>
 
@@ -38,8 +41,9 @@
   			$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
   
   			// Various Includes --getting the userId and cartId from the current logged in user
-  
+  			
   			$userID = $_SESSION['userID'];
+			print ("User ID: $userID");
 			$sqlCart  = "select cartID from Logins where userID = $userID";
   			$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
 			$rowCart = mysqli_fetch_row($resultCart);
@@ -49,7 +53,7 @@
 			//Delete user from logins
   			$sql  = "DELETE from Logins where cartID = $cartID";
    			$result = $mysqli->query($sql) or die( $mysqli->error );
- 			 
+ 			
 		
 ?>
 	<div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
@@ -63,6 +67,7 @@
 </body>
 <?php 
 $mysqli->close();
+session_destroy();
 ?>
 </html>
 
