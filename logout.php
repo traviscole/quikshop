@@ -30,7 +30,9 @@
         </div>
 
 	<script>
-		localStorage.setItem("userId", "signOut");
+		localStorage.setItem("email", "signOut");
+		localStorage.setItem("cartID", 0);
+		localStorage.setItem("userID", 0);
 	</script>
 		<?php
 
