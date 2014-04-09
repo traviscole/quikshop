@@ -26,7 +26,7 @@
   	</div>
   				<script>
 						
-                      if (localStorage.getItem("userId") == "signOut") {
+                      if (localStorage.getItem("email") == "signOut") {
                           alert("you are not logged in");
                           window.location.assign("http://www.quikshop.co/")
                       }
@@ -53,13 +53,13 @@
   			print ("UserID:	$userID");
 			
 			
-			$sqlCart  = "select cartID from Logins where userID = '$userID'";
+			$sqlCart  = "select cartID from Logins where userID = $userID";
   			$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
 			$rowCart = mysqli_fetch_row($resultCart);
-  			$cartID = $rowCart[0];// $_SESSION['cartId'];
+  			$cartID = $rowCart[0];
   			
 			
-  			$sql  = "SELECT itemID, quantity From Carts where cartID = '$cartID'";
+  			$sql  = "SELECT itemID, quantity From Carts where cartID = $cartID";
   
   			//	Call the database, save the result in the variable RESULT
   			$result = $mysqli->query($sql) or die( $mysqli->error );
@@ -77,7 +77,7 @@
   			$quantity = $row[1];
 			
   			//look for the items price using 
-  			$sqlr  = "SELECT price From Items where itemID = '$itemID'";
+  			$sqlr  = "SELECT price From Items where itemID = $itemID ";
   			$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
   			$rowr = mysqli_fetch_row($resultr);
   
@@ -97,7 +97,7 @@
   			</center>
  
  			<?php
-   				$sqlcard  = "SELECT Type,ID From CreditCards where userID = '$userID'";
+   				$sqlcard  = "SELECT Type,ID From CreditCards where userID = $userID ";
   				$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
 						
   					
