@@ -28,7 +28,7 @@
 $sql = "SELECT * FROM Users WHERE email='$username' LIMIT 1";
 =======
 // Build the SQL call
-     $sql = "SELECT userId, email, password FROM Users WHERE email='$username' LIMIT 1";
+     $sql = "SELECT userID, email, password FROM Users WHERE email='$username' LIMIT 1";
 // Call the database, save the result in the variable RESULT
      $result = $mysqli->query($sql) or die( $mysqli->error );
 // Extract the row data of the result. Save as ROQ
