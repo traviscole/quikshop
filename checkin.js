@@ -216,14 +216,15 @@ function submitForm(formData) {
             .html(data.msg).fadeIn('fast');
 
 
-
+			//if it was succesful we go in here to put the check mark 
             if ($('form #response').hasClass('success')) {
 
-
-
+				//this is for testing
+				alert("Your names:" + JSON.stringify(data.stores));			
+		
                 setTimeout("$('form #response').fadeOut('fast')", 5000);
-
-
+		
+				//going to call the new page and I am going to create a form in this page so the user can chose the store
                 openWin();
 
             }
