@@ -142,9 +142,7 @@ Submit Payment<p>Sending Email
                     	$message .= "<tr><td>$row[0] </td><td><center>$rowinit[1]</center> </td><td><center>$row[1] </center></td></tr>";
 
                      }
-					 print("3CartID : $cartID------userID : $userID");
-					 
-					 
+									 
 					$message .= "<tr style='background-color: orange'><td><strong></strong> </td>";
 					$message .= "<td><strong>Total</strong> </td>";
 					$message .= "<td><strong>$total</strong></td>";
