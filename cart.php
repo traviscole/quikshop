@@ -2,7 +2,7 @@
  session_start(); 
 ?>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="https://www.w3.org/1999/xhtml"> 
 <head>
 
@@ -48,11 +48,15 @@
 			//I am updating UserId and cartId with the session variables (global variables)			
 			$userID = $_SESSION['userID'];
 
-			$cartID = $_SESSION['cartID'];
+			$query1 = "SELECT cartID FROM Logins WHERE userID = $userID";
+			$result1 = $mysqli->query($query1) or die("Unable to get result".$mysqli->error);
+			
+			$cartID = $_SESSION['$result1'];
+			
 
-				
 					
-					$query = "SELECT * FROM Carts WHERE cartID = '$cartID'";
+					
+					$query = "SELECT * FROM Carts WHERE cartID = $cartID";
 					$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
 					$total = 0;
 
@@ -61,7 +65,7 @@
 						while($row = mysqli_fetch_row($result))
 						{
 						
-							$sqlr  = "SELECT * From items where itemID = '$row[1]'";
+							$sqlr  = "SELECT * FROM Items WHERE itemID = $row[1]";
 							$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
 							$rowr = mysqli_fetch_row($resultr);
 							
@@ -70,8 +74,8 @@
 							
 							$qt = $row[3];
 							$price = $rowr[3];
+							$price *= $qt;
 							$total += $price;
-							$total *= $qt;
 							echo "<li data-transition='slide'><a href='itemDetail.php?ID=$itemId'>$itemName</a></li>";
 						}
 					?>
