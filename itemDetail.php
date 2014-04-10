@@ -1,4 +1,3 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"> 
 <head>
@@ -24,11 +23,11 @@
     
     <?php 
 	$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
-	$itemID = $_GET["ID"]; 
+	$itemID = $_GET["itemID"]; 
 	$query = "SELECT * FROM items WHERE itemID = $itemID";
 	$result = $mysqli->query($query) or die("Unable to get item data".$mysqli->error);
 	$row = $result->fetch_assoc();
-	$itemName = $row["itemName"];
+	$itemName = $row["name"];
 	$price = $row["price"];
 	$description = $row["description"];
 	?>
