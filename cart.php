@@ -26,7 +26,7 @@
 
 	</div>
     	<script>
-		if (localStorage.getItem("userId") === "signOut") {
+		if (localStorage.getItem("email") === "signOut") {
 			alert("you are not logged in");
 			
 			window.location.assign("http://www.quikshop.co/")
@@ -50,8 +50,10 @@
 
 			$query1 = "SELECT cartID FROM Logins WHERE userID = $userID";
 			$result1 = $mysqli->query($query1) or die("Unable to get result".$mysqli->error);
+			$row =  mysqli_fetch_row($result1);
+			$cartID = $row[0];
 			
-			$cartID = $_SESSION['$result1'];
+	
 			
 
 					
@@ -64,19 +66,26 @@
 						//creating the list
 						while($row = mysqli_fetch_row($result))
 						{
+							$ID = $row[0];
 						
-							$sqlr  = "SELECT * FROM Items WHERE itemID = $row[1]";
+							$sqlr  = "SELECT itemID, name, price FROM Items WHERE itemID = $row[2]";
 							$resultr = $mysqli->query($sqlr) or die( $mysqli->error );
 							$rowr = mysqli_fetch_row($resultr);
 							
 							$itemId = $rowr[0];
-							$itemName = $rowr[2];
+							$itemName = $rowr[1];
 							
-							$qt = $row[3];
-							$price = $rowr[3];
+							$query2 = "Select quantity FROM Carts WHERE itemID = $itemId";
+							$result2 = $mysqli->query($query2) or die("Unable to get result".$mysqli->error);
+							$row1 = mysqli_fetch_row($result2);
+							
+							$qt = $row1[0];
+							$price = $rowr[2];
 							$price *= $qt;
-							$total += $price;
-							echo "<li data-transition='slide'><a href='itemDetail.php?ID=$itemId'>$itemName</a></li>";
+							$total = $total + $price;
+							
+							
+							echo "<li data-transition='slide'><a href='itemDetail.php?ID=$itemId&quant=$qt&SWAG=$ID'>$itemName										Quantity: $qt</a></li>";
 						}
 					?>
 
