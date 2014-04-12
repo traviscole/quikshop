@@ -83,7 +83,7 @@ $(document).ready(function() {
 
 			var formData = $('form').serialize();
 
-			alert("the info " + formData);
+			//alert("the info " + formData);
 
 			submitForm(formData);			
 
@@ -101,7 +101,7 @@ $(document).ready(function() {
 
 function submitForm(formData) {
 
-	alert("before calling php " + formData);
+	//alert("before calling php " + formData);
 
 	$.ajax({	
 
@@ -137,8 +137,10 @@ function submitForm(formData) {
 					var quantity=prompt(info);
 
 					if (quantity!=null) {
-						//submitQuantity(quantity.serialize());
-  						alert("thank you " + quantity + " going to fix this later");
+						data.qt = quantity;
+						
+  						//alert("thank you " + data.qt + " going to fix this later");
+						submitQuantity(data);
   					}
 
 			}
@@ -176,7 +178,6 @@ function submitForm(formData) {
 
 function submitQuantity(formData) {
 
-	alert("before calling php " + formData);
 
 	$.ajax({	
 
@@ -205,7 +206,7 @@ function submitQuantity(formData) {
 			if ($('form #response').hasClass('success')) {
 				
 
-				
+				//alert("before calling php from submit " + data.cartID + data.qt);
 
 				setTimeout("$('form #response').fadeOut('fast')", 500);
 
