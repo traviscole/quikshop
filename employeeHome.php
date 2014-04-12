@@ -13,7 +13,12 @@
 <div data-role="content">  
         
         <div data-role="filedcontain"> 
-        
+    <form id ="changeCustomer" method="post" action="search.php"> 
+ 		<center>
+        <input type="int" name="cart" id="cart" placeholder="Enter Customer ID" />
+	    <input type="submit" name="search" id="search" value="Search" />
+     	</center>
+    </form>
         
         
         	</br>
@@ -25,22 +30,13 @@
 					//creating connection 
 					$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
-					$userEmail = "<script>document.write(localStorage.getItem('userId'));</script>";
+			
 			
 			//I am updating UserId and cartId with the session variables (global variables)			
-			$userID = $_SESSION['userID'];
-
-			$query1 = "SELECT cartID FROM Logins WHERE userID = $userID";
-			$result1 = $mysqli->query($query1) or die("Unable to get result".$mysqli->error);
-			$row =  mysqli_fetch_row($result1);
-			$cartID = $row[0];
-			
-	
-			
-
-					
-					
-					$query = "SELECT * FROM Carts WHERE cartID = $cartID";
+			if(isset($_SESSION['customerCart'])) {
+					$customerCart = $_SESSION['customerCart'];
+							
+					$query = "SELECT * FROM Carts WHERE cartID = $customerCart";
 					$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
 					$total = 0;
 
@@ -67,7 +63,7 @@
 							$total = $total + $price;
 							
 							
-							echo "<li data-transition='slide'><a href='details.php?ID=$itemId&quant=$qt&SWAG=$ID'>$itemName										Quantity: $qt</a></li>";
+							echo "<li data-transition='slide'><a href='details.php?ID=$itemId&quant=$qt&SWAG=$ID'>$itemName	(Qty): $qt</a></li>";
 						}
 					?>
 
@@ -85,6 +81,7 @@
 
 	<?php
 		$mysqli->close();
+	}
 	?>
 
 </body>
