@@ -30,9 +30,14 @@ $mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quiksho
 $userID = $_SESSION['userID'];
 
 
-$ID = $_GET['SWAG'];
+$ID = $_GET['customerID'];
 $itemID = $_GET['ID'];
-$quant = $_GET['quant'];
+
+$queryQ = "SELECT quantity FROM Carts WHERE ID = $ID";
+$resultQ = $mysqli->query($queryQ) or die("Unable to get item data".$mysqli->error);
+$rowQ = mysqli_fetch_row($resultQ);
+
+$quant = $rowQ[0];
 
 $query = "SELECT * FROM Items WHERE itemID = $itemID";
 $result = $mysqli->query($query) or die("Unable to get item data".$mysqli->error);
