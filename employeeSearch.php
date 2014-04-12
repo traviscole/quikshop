@@ -10,9 +10,11 @@
 </head>
 
 <body>
-<?php
-$userID = $_SESSION['userID'];
-print "userID is: $userID";
-?>
+ 	<form id ="changeCustomer" method="post" action="search.php"> 
+ 		<input type="int" name="cart" id="cart" placeholder="Enter Customer ID" />
+	    <input type="submit" name="search" id="search" value="Search" />
+     
+    </form>
+
 </body>
 </html>
