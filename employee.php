@@ -1,3 +1,7 @@
+<?php 
+   session_start(); 
+  ?>
+  
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -27,10 +31,35 @@
 
 		<a href="https://quikshop.co/employee.php" class="ui-btn-left" data-icon="home" data-iconpos="left" data-transition="pop">Home</a>
 	</div>
+    <form>
+        <div id="menu">
+            <center>
+                    <a href="employee.php?page=home" class="ui-btn-left"><input type="submit" name="home" id="home" value="Home" /></a>
+                    <a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Search" /></a>
+          
+            </center>
+        </div>
+    </form>
+
+    <?php
+		$options = $_GET['page'];
+		
+		switch($options){
+			
+			case "home":
+				include('employee/employeeHome.php');
+			break;
+			case "search":
+				include('employee/employeeSearch.php');
+			break;
+			default:
+				include('employee/employeeHome.php');
+			break;	
+		}
+		
+	?>
     
-    
-    
-    
+   
     
     
     <div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
