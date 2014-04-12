@@ -129,7 +129,9 @@ function submitForm(formData) {
 
 			if ($('form #response').hasClass('success')) {
 				
-				alert("the data is :" + data.name);
+
+				promptFuntion(data);
+
 				
 
 				setTimeout("$('form #response').fadeOut('fast')", 50);
@@ -164,5 +166,19 @@ function submitForm(formData) {
 
 	});	
 
+};
+
+function promptFuntion( data)
+{
+
+var info = "Please put the quantity for " + data.name + " \n " + data.desc +  "\n " + data.brand + " \n $" + data.price;
+
+
+var person=prompt( info);
+
+if (person!=null)
+  {
+  	alert("thank you" + person);
+  }
 };
 
