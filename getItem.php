@@ -1,7 +1,7 @@
 <?php 
 //Jose Prado
 
-sleep(2);
+sleep(1);
 //Sanitize incoming data and store in variable
 $itemID = trim(stripslashes(htmlspecialchars($_POST['barcode'])));	   
 $humancheck = $_POST['humancheck'];
