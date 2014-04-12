@@ -97,7 +97,7 @@ $(document).ready(function() {
 
 
 
-// make our ajax request to the server
+// make our ajax request to the server to get the item info
 
 function submitForm(formData) {
 
@@ -128,13 +128,18 @@ function submitForm(formData) {
 						
 
 			if ($('form #response').hasClass('success')) {
-				
-
-				promptFuntion(data);
-
-				
 
 				setTimeout("$('form #response').fadeOut('fast')", 50);
+
+					var info = "Please put the quantity for " + data.name + " \n " + data.desc +  "\n " + data.brand + " \n $" + data.price;
+
+
+					var quantity=prompt(info);
+
+					if (quantity!=null) {
+						//submitQuantity(quantity.serialize());
+  						alert("thank you " + quantity + " going to fix this later");
+  					}
 
 			}
 
@@ -168,17 +173,70 @@ function submitForm(formData) {
 
 };
 
-function promptFuntion( data)
-{
 
-var info = "Please put the quantity for " + data.name + " \n " + data.desc +  "\n " + data.brand + " \n $" + data.price;
+function submitQuantity(formData) {
 
+	alert("before calling php " + formData);
 
-var person=prompt( info);
+	$.ajax({	
 
-if (person!=null)
-  {
-  	alert("thank you" + person);
-  }
+		type: 'POST',
+
+		url: 'updateCart.php',		
+
+		data: formData,
+
+		dataType: 'json',
+
+		cache: false,
+
+		timeout: 7000,
+
+		success: function(data) { 			
+
+			
+
+			$('form #response').removeClass().addClass((data.error === true) ? 'error' : 'success')
+
+						.html(data.msg).fadeIn('fast');	
+
+						
+
+			if ($('form #response').hasClass('success')) {
+				
+
+				
+
+				setTimeout("$('form #response').fadeOut('fast')", 500);
+
+			}
+
+		
+
+		},
+
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
+
+						
+
+			$('form #response').removeClass().addClass('error')
+
+						.html('<p>There was an<strong> ' + errorThrown +
+
+							  '</strong> error due to a<strong> ' + textStatus +
+
+							  '</strong> condition.</p>').fadeIn('fast');			
+
+		},				
+
+		complete: function(XMLHttpRequest, status) { 			
+
+			
+
+			$('form')[0].reset();
+
+		}
+
+	});	
+
 };
-
