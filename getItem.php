@@ -1,6 +1,8 @@
 <?php 
 //Jose Prado
 
+session_start();
+
 sleep(1);
 //Sanitize incoming data and store in variable
 $itemID = trim(stripslashes(htmlspecialchars($_POST['barcode'])));	   
@@ -63,6 +65,9 @@ if ($honeypot == 'http://' && empty($humancheck)) {
 				 $return['desc'] = $itemInfo['description'];
 				 $return['name'] = $itemInfo['name'];
 				 $return['brand'] = $itemInfo['brand'];
+				 $return['id'] = $itemInfo['itemID'];
+				 $return['qt'] = " ";
+				 //$return['cartID] = $_SESSION['cartID'];
        			 //Close the connection
        			 $mysqli->close();
 
