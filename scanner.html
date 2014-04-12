@@ -16,6 +16,8 @@
 	
 	<script type="text/javascript" src="scannerFunctions.js"></script>
 
+	<link href="styles.css" rel="stylesheet" type="text/css" />
+
     <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 
     	<script>
@@ -24,7 +26,7 @@
 
           if (localStorage.getItem("email") == "signOut") {
 
-              alert("you are not logged in");
+              alert("You are not logged in");
 
               window.location.assign("http://www.quikshop.co/")
 
@@ -60,19 +62,31 @@
 
         	<center><img src="scannerTempImg.png" width="300" height="250" /></center>
 
-        	<form id="barcodeForm">
+		<form id="createAcct" action="create.php" enctype="multipart/form-data" method="post">
+       
+          	<div id="response"><!--This will hold our error messages and the response from the server. --></div>           
 
-    			<div data-role="fieldcontain" class="ui-hide-label">
+           <input type="text" name="barcode" id="barcode" value="01215908" placeholder="Barcode" class="required"/>
+		                     
 
-        			<input type="text" name="barcode" id="barcode" value="" placeholder="Barcode" class="required"/>
+			<div class="button">
 
-   	 		</div>        
+                <input type="submit" name="submit" id="submit" value="Submit" />
 
-    			<input type="submit" value="Scan"  id="scanButton"/>
+            </div>
+			
+			 <!-- to check for spams -->
+                <div class="inputs">
 
-                		<br />
+                    <input type="hidden" name="honeypot" id="honeypot" value="http://" />            
 
-    		</form>
+                    <input type="hidden" name="humancheck" id="humancheck" class="clear" value="" />
+
+                </div>
+
+        </form>
+
+
 
 	</div> 
 
