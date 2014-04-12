@@ -61,12 +61,16 @@ $sql="INSERT INTO Logins(userID) VALUES('$userIdResponse')";
      $result3 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
      $row3 = mysqli_fetch_assoc($result3);
      $response_array['cartID'] = $row3['cartID'];
+	$_SESSION['cartID'] = $row3['cartID'];
+
      }
 }
 else {
      $result2 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
      $row2 = mysqli_fetch_assoc($result2);
      $response_array['cartID'] = $row2['cartID'];
+ 	$_SESSION['cartID'] = $row2['cartID'];
+
      }
      }
      else
@@ -84,6 +88,7 @@ shouldn't once these are working */
      if (password_verify($password, $hashedPW))
      {
 	$_SESSION['userID'] = $userIdResponse;
+	
      $response_array['status'] = 'success'; // The program uses the value of "status" to know to move to logged in state or not
      }
      else
