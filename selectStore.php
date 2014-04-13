@@ -17,6 +17,11 @@
 </html>
 
 <script>
+
+var stores = trim(stripslashes(htmlspecialchars($_POST['stores'])));
+
+alert("from the selectStore" +stores);
+
 //create a form
 var f = document.createElement("form");
 f.setAttribute('method',"post");
