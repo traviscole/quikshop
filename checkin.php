@@ -63,10 +63,6 @@ if ($honeypot == 'http://' && empty($humancheck)) {
             $return['stores'][$t['name']][] = $t['storeId'];
         }
 
-
-
-
-
         //Close the connection
         $mysqli->close();
 
