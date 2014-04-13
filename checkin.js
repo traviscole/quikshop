@@ -167,7 +167,7 @@ $(document).ready(function() {
 
 
         //this is for testing
-        alert("Your current location:" + longitude + " , " + latitude);
+      //  alert("Your current location:" + longitude + " , " + latitude);
 
         //shows the gif
         $('form #response').removeClass().addClass('processing').html('Processing...').fadeIn('fast');
@@ -223,7 +223,7 @@ function submitForm(formData) {
 
 
 
-				alert("Your names:" + JSON.stringify(data));			
+				//alert("Your names:" + JSON.stringify(data));			
 		
                 setTimeout("$('form #response').fadeOut('fast')", 5000);
 		
@@ -270,25 +270,39 @@ function openWin(Data) {
 
 	alert("openWin:" + JSON.stringify(Data) );
 
+	document.getElementById("insideForm").remove();
 	
-	
-	 $.ajax( {
+	 //create a form
+var f = document.createElement("form");
+f.setAttribute('method',"post");
+f.setAttribute('action',"submit.php");
 
-		type: 'POST',
 
-		url: 'selectStore.php',
+//create a checkbox
+var c = document.createElement("input");
+c.type = "checkbox";
+c.id = "checkbox1";
+c.name = "check1";
 
-		data: Data,
+//create input element
+var i = document.createElement("input");
+i.type = "text";
+i.name = "user_name";
+i.id = "user_name1";
+i.placeholder = "name" ;
+//create a button
+var s = document.createElement("input");
+s.type = "submit";
+s.value = "Check-IN";
 
-		dataType: 'json',
+// add all elements to the form
+f.appendChild(i);
+f.appendChild(c);
+f.appendChild(s);
 
-		cache: false,
-
-		timeout: 7000,
-
-	});
-
-	window.location.href = 'selectStore.php';
+// add the form inside the body
+$("form").append(f);   //using jQuery or
+document.getElementsByTagName('form')[0].appendChild(f); //pure javascript   
 };
 
 
