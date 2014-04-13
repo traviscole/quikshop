@@ -25,53 +25,48 @@ session_start();
 </div>
     
     <?php
-$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
-
-$userID = $_SESSION['userID'];
-
-
-$ID = $_GET['customerID'];
-$itemID = $_GET['ID'];
-
-$queryQ = "SELECT quantity FROM Carts WHERE ID = $ID";
-$resultQ = $mysqli->query($queryQ) or die("Unable to get item data".$mysqli->error);
-$rowQ = mysqli_fetch_row($resultQ);
-
-$quant = $rowQ[0];
-
-$query = "SELECT * FROM Items WHERE itemID = $itemID";
-$result = $mysqli->query($query) or die("Unable to get item data".$mysqli->error);
-$row = mysqli_fetch_row($result);
-$itemName = $row[2];
-$price = $row[5];
-$description = $row[3];
-?>
-<div data-role="content">
-<div data-role="filedcontain">
-<center><b><?php echo ucwords($itemName); ?></b></center>
-</br>
-<ul data-role="listview" data-inset="true" data-divider-theme="a" data-theme="c">
-<li data-role="list-divider">Price</li>
-<li> $<?php echo $price; ?></li>
-<li data-role="list-divider">Description</li>
-<li> <?php echo $description; ?></li>
-
-<li> 
-<form id = "Update Quantity" method = "post" action = "quantity.php">
-
-<input type = "int" name = "quantity" value = <?php echo $quant; ?>>
-<input type = "hidden" name = "ID" value = <?php echo $ID; ?>>
-<input type = "hidden" name = "itemID" value = <?php echo $itemID; ?>>
-
-<input type = "submit" name = "submit" value = "Update">
-
-</form>
-
-</li>
-</ul>
-</div>
-</div>
-
+		$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
+		
+		$userID = $_SESSION['userID'];
+		$ID = $_GET['customerID'];
+		$itemID = $_GET['ID'];
+		
+		$queryQ = "SELECT quantity FROM Carts WHERE ID = $ID";
+		$resultQ = $mysqli->query($queryQ) or die("Unable to get item data".$mysqli->error);
+		$rowQ = mysqli_fetch_row($resultQ);
+		
+		$quant = $rowQ[0];
+		
+		$query = "SELECT * FROM Items WHERE itemID = $itemID";
+		$result = $mysqli->query($query) or die("Unable to get item data".$mysqli->error);
+		$row = mysqli_fetch_row($result);
+		$itemName = $row[2];
+		$price = $row[5];
+		$description = $row[3];
+	?>
+    <div data-role="content">
+        <div data-role="filedcontain">
+        <center><b><?php echo ucwords($itemName); ?></b></center>
+        </br>
+            <ul data-role="listview" data-inset="true" data-divider-theme="a" data-theme="c">
+                <li data-role="list-divider">Price</li>
+                <li> $<?php echo $price; ?></li>
+                <li data-role="list-divider">Description</li>
+                <li> <?php echo $description; ?></li>
+                
+                <li> 
+                    <form id = "Update Quantity" method = "post" action = "quantity.php">
+                    <center>
+                        <input type = "int" name = "quantity" value = <?php echo $quant; ?>>
+                        <input type = "hidden" name = "ID" value = <?php echo $ID; ?>>
+                        <input type = "hidden" name = "itemID" value = <?php echo $itemID; ?>>
+                        <input type = "submit" name = "submit" value = "Update">
+                    </center>
+                    </form>
+                </li>
+            </ul>
+        </div>
+    </div>
 
 <div data-role="footer" data-position="fixed" data-theme="b" data--tap-toggle="false">
 <h1>&copy; Quikshop 2014</h1>
