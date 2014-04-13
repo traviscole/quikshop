@@ -63,14 +63,14 @@
 	<div data-role="content">  
 
 
-    	<div id="landmark-1" data-landmark-id="1">
+    	<div id="form" data-landmark-id="1" style="text-align:center">
         	<center>Search for stores near you </center>
 
 
 
             <form id="checkin" action="checkin.php" method ="post" enctype="multipart/form-data">  
 			<div id="response"><!--This will hold our error messages and the response from the server. --></div> 
-            	<div style="text-align:center">  
+            	<div id = "insideForm" style="text-align:center">  
                  <br />
           		 <br />
            		 <br />
@@ -81,7 +81,7 @@
  
              	 <br />
            		 <br />
-            	<div data-role="fieldcontain" class="ui-hide-label"> 
+            	<div data-role="fieldcontain" class="ui-hide-label" id = "buttons"> 
             
            			<input type="submit" id = "submit" name = "submit"  value="Search" /> 
 					<input type="submit" id = "location" name = "location"  value="Use Current Location" />
@@ -96,7 +96,7 @@
                     <input type="hidden" name="humancheck" id="humancheck" class="clear" value="" />
 
                 </div>
-
+		</div>
              </form>          
 
     	            
