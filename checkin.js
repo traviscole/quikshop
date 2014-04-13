@@ -220,15 +220,17 @@ function submitForm(formData) {
             if ($('form #response').hasClass('success')) {
 
 				//this is for testing
-				alert("Your names:" + JSON.stringify(data.stores));			
+
+
+
+				alert("Your names:" + JSON.stringify(data));			
 		
                 setTimeout("$('form #response').fadeOut('fast')", 5000);
 		
 				//going to call the new page and I am going to create a form in this page so the user can chose the store
 
-			var formData = JSON.stringify(data.stores);
-
-	                openWin(formData );
+			
+	               openWin(data);
 
             }
 
@@ -263,28 +265,30 @@ function submitForm(formData) {
 };
 
 //this is to call the form containing the stores in that area
-function openWin(formData) {
+function openWin(Data) {
 
 
-	alert("openWin:" + formData );
+	alert("openWin:" + JSON.stringify(Data) );
 
 	
-	$.ajax( {
+	
+	 $.ajax( {
 
 		type: 'POST',
 
-		url: 'clickStore.html',
+		url: 'selectStore.php',
 
-		data: formData,
+		data: Data,
 
 		dataType: 'json',
 
-		cache: false,	
-   
+		cache: false,
 
-	 });
+		timeout: 7000,
 
-	var myWindow = window.open("https://quikshop.co","MsgWindow","width=200,height=100");
+	});
+
+	window.location.href = 'selectStore.php';
 };
 
 
