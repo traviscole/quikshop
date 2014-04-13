@@ -36,7 +36,9 @@
             <center>
                     <a href="employee.php?page=home" class="ui-btn-left"><input type="submit" name="home" id="home" value="Home" /></a>
                     <a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Search" /></a>
-          
+          			<a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Pay" /></a>
+                    <a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Add Employee" /></a>
+                    
             </center>
         </div>
     </form>
@@ -58,10 +60,7 @@
 		}
 		
 	?>
-    
    
-    
-    
     <div data-role="footer" data-position="fixed"  data-theme="b" data--tap-toggle="false">
         <h1>&copy; Quikshop 2014</h1>
     </div>
