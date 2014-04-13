@@ -41,26 +41,20 @@
 			$ID = $_POST['ID'];
 			$quant = $_POST['quantity'];
 			
-
-			
 			if($quant <= 0){
 				$query = "DELETE FROM Carts WHERE ID = $ID";
 				$result = $mysqli->query($query) or die("Unable to get item data".$mysqli->error);
-				//$row = mysqli_fetch_row($result);
-				include('https://quikshop.co/employee.php');
 				
 			}
 			else{
 				$query = "UPDATE Carts SET quantity = $quant WHERE ID = $ID";
 				$result = $mysqli->query($query) or die("Unable to get item data".$mysqli->error);
-				//$row = mysqli_fetch_row($result);
-				include('https://quikshop.co/employee.php');
-			}
-				include('https://quikshop.co/employee.php');
+				}
+				
 			}
 			$mysqli->close();
 			?>
-
+			 <meta http-equiv="refresh" content="0" />
   		
   	</div> 
   </div>
