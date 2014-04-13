@@ -101,8 +101,14 @@
          		localStorage.setItem("email", data.email);
          		
 //	Return          		
-         		window.location.href = 'scanner.html';
-			return true;
+			alert(data.customer);
+			if(data.customer == false){
+         			window.location.href = 'employee.php';
+				return true;
+			}else{
+				window.location.href = 'scanner.html';
+				return true;
+			}
 		}
 
 //	Bad name / pass
