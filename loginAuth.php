@@ -20,63 +20,52 @@
 	if (isset($_POST["username"]) && isset($_POST["password"])) {
 
 //	Assign the passed entry to variables
-    		$username = mysqli_real_escape_string($mysqli,$_POST['username']);
-    		$password = mysqli_real_escape_string($mysqli,$_POST['password']);
+    $username = mysqli_real_escape_string($mysqli,$_POST['username']);
+    $password = mysqli_real_escape_string($mysqli,$_POST['password']);
 
 
 // This is the actual SQL query, read it left to right. Only return 1 row. Save as "sql"
-$sql = "SELECT * FROM Users WHERE email='$username' LIMIT 1";
-
-// Build the SQL call
-     $sql = "SELECT userID, email, password FROM Users WHERE email='$username' LIMIT 1";
+	$sql = "SELECT * FROM Users WHERE email='$username' LIMIT 1";
 // Call the database, save the result in the variable RESULT
      $result = $mysqli->query($sql) or die( $mysqli->error );
-// Extract the row data of the result. Save as ROQ
-     $row = mysqli_fetch_assoc($result);
-// Extraxt the hashed password out of the database
-     $hashDB = $row['password'];
-
-
-// Run the query "SQL" against the database. Save as result, some error handling
-    $result = $mysqli->query($sql) or die( $mysqli->error );
-    
+	 $row = " ";
 // If there was a response, perform more actions, else return "error"
      if($result)
      {
-     $row = mysqli_fetch_assoc($result);	// Gather the data (row in DB) that was found when the DB was queried
-     $hashedPW = $row['password'];	// Get the value listed in the passHash field, save to a local PHP variable: hashedPW
-     $userIdResponse = $row['userID'];	// Get the value listed in the userId field, save to local PHP variable: userIdResponse
+		$row = mysqli_fetch_assoc($result);	// Gather the data (row in DB) that was found when the DB was queried
+		$hashedPW = $row['password'];	// Get the value listed in the passHash field, save to a local PHP variable: hashedPW
+		$userIdResponse = $row['userID'];	// Get the value listed in the userId field, save to local PHP variable: userIdResponse
     
-     /*Response Array is what is returned. It is built dynamically and does not need to
-be initialized to an inital size. These simply add a slot and assign a value */
-     $response_array['userID'] = $userIdResponse;
-     $response_array['email'] = $username;
+		/*Response Array is what is returned. It is built dynamically and does not need to
+		be initialized to an inital size. These simply add a slot and assign a value */
+		$response_array['userID'] = $userIdResponse;
+		$response_array['email'] = $username;
     
-     $check = $mysqli->query("SELECT * FROM Logins WHERE userID='$userIdResponse';");
-if (mysqli_num_rows($check) == 0) {
-$sql="INSERT INTO Logins(userID) VALUES('$userIdResponse')";
-     $result = $mysqli->query($sql) or die( $mysqli->error );
-     if($result)
-     {
-     $result3 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
-     $row3 = mysqli_fetch_assoc($result3);
-     $response_array['cartID'] = $row3['cartID'];
-	$_SESSION['cartID'] = $row3['cartID'];
+		$check = $mysqli->query("SELECT * FROM Logins WHERE userID='$userIdResponse';");
+		if (mysqli_num_rows($check) == 0) {
+			$sql="INSERT INTO Logins(userID) VALUES('$userIdResponse')";
+			$result = $mysqli->query($sql) or die( $mysqli->error );
+			if($result)
+			{
+				$result3 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
+				$row3 = mysqli_fetch_assoc($result3);
+				$response_array['cartID'] = $row3['cartID'];
+				$_SESSION['cartID'] = $row3['cartID'];
 
-     }
-}
-else {
-     $result2 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
-     $row2 = mysqli_fetch_assoc($result2);
-     $response_array['cartID'] = $row2['cartID'];
- 	$_SESSION['cartID'] = $row2['cartID'];
+			}
+		}
+		else {
+		$result2 = $mysqli->query("SELECT cartID FROM Logins WHERE userID='$userIdResponse';");
+		$row2 = mysqli_fetch_assoc($result2);
+		$response_array['cartID'] = $row2['cartID'];
+		$_SESSION['cartID'] = $row2['cartID'];
 
-     }
+		}
      }
      else
      {
-     $response_array['status'] = 'error';
-     $response_array['reason'] = 'ERROR: Query Was Unsuccessful';
+		$response_array['status'] = 'error';
+		$response_array['reason'] = 'ERROR: Query Was Unsuccessful';
      }
     
     /* PHP function to see if "password" (from the calling program) matches the value
@@ -87,9 +76,17 @@ shouldn't once these are working */
     
      if (password_verify($password, $hashedPW))
      {
-	$_SESSION['userID'] = $userIdResponse;
+		$_SESSION['userID'] = $userIdResponse;
+			
+			if($row['adminStore'] != NULL || $row['empStore'] != NULL ){
+					
+				$response_array['customer'] = false;
+			}else{
+			
+				$response_array['customer'] = true;
+			}
 	
-     $response_array['status'] = 'success'; // The program uses the value of "status" to know to move to logged in state or not
+		$response_array['status'] = 'success'; // The program uses the value of "status" to know to move to logged in state or not
      }
      else
      {
