@@ -267,9 +267,8 @@ function submitForm(formData) {
 //this is to call the form containing the stores in that area
 function openWin(Data) {
 
-
-	alert("openWin:" + JSON.stringify(Data) );
-
+	alert("Your names:" + JSON.stringify(Data));
+	
 	document.getElementById("insideForm").remove();
 
 	document.getElementById("selectStore").style.visibility = "visible";
@@ -278,9 +277,10 @@ function openWin(Data) {
 	$("#storeNames").html("");
 
 	var store = Data.stores;
-
-	for(var name in store){
-	
-		$("#storeNames").append("<option value=\""+Data.stores.name+"\">"+name);
-	} 
+	for(var name in store){	
+		$("#storeNames").append("<option value=\""+store[name]+"\">"+name);
+	}	 
 };
+
+
+
