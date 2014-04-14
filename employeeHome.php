@@ -15,7 +15,7 @@
         <div data-role="filedcontain"> 
     <form id ="changeCustomer" method="post" action="search.php"> 
  		<center>
-        <input type="int" name="cart" id="cart" placeholder="Enter Customer ID" autofocus/>
+        <input type="int" name="customerID" id="customerID" placeholder="Enter Customer ID" autofocus/>
         <input type="submit" name="search" id="search" value="Search" style="background-color:red"/>
      	</center>
     </form>
@@ -29,8 +29,13 @@
 
 					$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 		
-			if(isset($_SESSION['customerCart']) &&  $_SESSION['customerCart'] != ''){
-					$customerCart = $_SESSION['customerCart'];
+			if(isset($_SESSION['customerID']) &&  $_SESSION['customerID'] != ''){
+					$customerID = $_SESSION['customerID'];
+					
+					$queryID = "SELECT cartID FROM Logins WHERE userID = $customerID";
+					$resultID = $mysqli->query($queryID) or die("Unable to get result".$mysqli->error);
+					$rowID = mysqli_fetch_row($resultID);
+					$customerCart = $rowID[0];
 				
 					$query = "SELECT * FROM Carts WHERE cartID = $customerCart";
 					$result = $mysqli->query($query) or die("Unable to get result".$mysqli->error);
