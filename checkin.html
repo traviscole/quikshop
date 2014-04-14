@@ -66,11 +66,11 @@
     	<div id="form" data-landmark-id="1" style="text-align:center">
         	<center>Search for stores near you </center>
 
-		<select name="storeNames" id = "storeNames"></select>
 
+	<div id = "insideForm">
             <form id="checkin" action="checkin.php" method ="post" enctype="multipart/form-data">  
 			<div id="response"><!--This will hold our error messages and the response from the server. --></div> 
-            	<div id = "insideForm" style="text-align:center">  
+            	<div id = "inside" style="text-align:center">  
                  <br />
           		 <br />
            		 <br />
@@ -98,8 +98,15 @@
                 </div>
 		</div>
              </form>          
+		</div>
 
-    	            
+			     <div id="selectStore" style="visibility:hidden;" >
+		<form id="selectStore" action="selectStore.php" method ="post" >
+			<select name="storeNames" id = "storeNames"></select>
+			<input type="submit" id = "submitStore" name = "submitStore"  value="Check-IN" />
+		</form>
+
+	     </div>    	            
 
 		</div> 
 
