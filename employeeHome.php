@@ -19,12 +19,16 @@
         <input type="submit" name="search" id="search" value="Search" style="background-color:red"/>
      	</center>
     </form>
-        
+        	<?php
+				//query to find store
+				$storeName = "Publix";
+				
+			?>
         
         	</br>
         	<ul data-role="listview" data-filter="true" data-filter-placeholder="Search Cart..." data-inset="true" data-divider-theme="a" data-theme="c"> 	
 
-            	<li data-role="list-divider">Publix</li>
+            	<li data-role="list-divider"><?php echo $storeName; ?></li>
                 	<?php
 
 					$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
