@@ -15,7 +15,7 @@
         <div data-role="filedcontain"> 
     <form id ="changeCustomer" method="post" action="search.php"> 
  		<center>
-        <input type="int" name="cart" id="cart" placeholder="Enter Customer ID" />
+        <input type="int" name="cart" id="cart" placeholder="Enter Customer ID" autofocus/>
         <input type="submit" name="search" id="search" value="Search" style="background-color:red"/>
      	</center>
     </form>
