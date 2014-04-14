@@ -21,7 +21,7 @@
   	<div data-role="header" data-theme="b">
   		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
   		<a href="help.html" data-icon="info" class="ui-btn-right" position:absolute top:50% data-transition="slide">Help</a>
-  		<a href="scanner.html" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
+  		<a href="https://quikshop.co/employee.php" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
   
   	</div>
  
@@ -36,18 +36,14 @@
   
   			$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
   
-  		
+  			
   
-			/*$customerCart = $
-  			print ("UserID:	$userID");
+			$customerID = $_POST['customerID'];
+			$_SESSION['customerID'] = $customerID;
 			
 			
-			$sqlCart  = "select cartID from Logins where userID = $customerCart";
-  			$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
-			$rowCart = mysqli_fetch_row($resultCart);
-  			$cartID = $rowCart[0];
-  			*/
 		?>
+         <meta http-equiv="refresh" content="0" />
   	</div> 
   </div>
   
@@ -60,6 +56,6 @@
   		<?php
   		$mysqli->close();
   		?>
-  
+ 
   </body>
   </html>
