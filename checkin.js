@@ -272,45 +272,14 @@ function openWin(Data) {
 
 	document.getElementById("insideForm").remove();
 	
-	 //create a form
-var f = document.createElement("form");
-f.setAttribute('method',"post");
-f.setAttribute('action',"submit.php");
+	$("#storeNames").html("");
 
 	var store = Data.stores;
-	var elem2 = document.createElement('label');
 
 	for(var name in store){
-
-		
-		elem2.innerHTML = name;
-
-	}
-
-
- 
-
-
-//create a checkbox
-var c = document.createElement("input");
-c.type = "checkbox";
-c.id = "checkbox1";
-c.name = "check1";
-
-
-//create a button
-var s = document.createElement("input");
-s.type = "submit";
-s.value = "Check-IN";
-
-// add all elements to the form
-f.appendChild(elem2);
-f.appendChild(c);
-f.appendChild(s);
-
-// add the form inside the body
-$("form").append(f);   //using jQuery or
-//document.getElementsByTagName('form')[0].appendChild(f); //pure javascript   
+	
+		$("#storeNames").append("<option value=\""+Data.stores.name+"\">"+name);
+	} 
 };
 
 
