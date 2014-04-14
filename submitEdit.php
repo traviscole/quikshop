@@ -60,19 +60,25 @@
 					$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 					
 					if($password ==''){
-					$sqlCart  = "UPDATE Users set firstName = '$first_name', lastName ='$last_name', email = '$email' where userID = $userID";
-					$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
+						$sqlCart  = "UPDATE Users set firstName = '$first_name', lastName ='$last_name', email = '$email' where userID = $userID";
+						$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
 					}
-					else{
-						print("pass match");
+					else if ($password != ''){
+						$hashPassword = password_hash($password, PASSWORD_DEFAULT);
+						$sqlPass = "UPDATE Users set firstName = '$first_name', lastName ='$last_name', email = '$email', password = '$hashPassword' where userID = $userID";
+						$resultPass = $mysqli->query($sqlPass) or die($mysqli->error);
 					}
-					
 					?>
-					<meta http-equiv="refresh" content="0" />
+					
+					<center>
+		  
+					<font size="18">Your account has been updated
+					
 					</font>
+					</center>
 					<?php
-								
 					}
+				
 				else{
 						?>
 					<center>
@@ -83,15 +89,12 @@
 					</font>
 					</center>
 		 
-					<?php
+				<?php
 				}
 			
 			}
-			else{
-			print ("Not good");	
-			}
 				
-				?>
+			?>	
 				
  		
   
