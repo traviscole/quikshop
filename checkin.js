@@ -281,6 +281,3 @@ function openWin(Data) {
 		$("#storeNames").append("<option value=\""+store[name]+"\">"+name);
 	}	 
 };
-
-
-
