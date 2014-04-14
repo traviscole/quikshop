@@ -26,6 +26,14 @@
 
     <meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 
+	<script>
+
+	function jsFunction(){
+  var myselect = document.getElementById("storeNames");
+  alert(myselect.options[myselect.selectedIndex].value);
+}
+
+</script>
 	
 
 </head>
@@ -100,13 +108,10 @@
              </form>          
 		</div>
 
-			     <div id="selectStore" style="visibility:hidden;" >
-		<form id="selectStore" action="selectStore.php" method ="post" >
-			<select name="storeNames" id = "storeNames"></select>
-			<input type="submit" id = "submitStore" name = "submitStore"  value="Check-IN" />
-		</form>
+		<div id="selectStore" style="visibility:hidden;" >
+			<select name="storeNames" id = "storeNames" onChange = "jsFunction()"></select>
 
-	     </div>    	            
+	     	</div>    	            
 
 		</div> 
 
