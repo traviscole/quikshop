@@ -271,7 +271,10 @@ function openWin(Data) {
 	alert("openWin:" + JSON.stringify(Data) );
 
 	document.getElementById("insideForm").remove();
-	
+
+	document.getElementById("selectStore").style.visibility = "visible";
+
+
 	$("#storeNames").html("");
 
 	var store = Data.stores;
