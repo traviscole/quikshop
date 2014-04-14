@@ -133,10 +133,17 @@
 
 <script>
 
-	function jsFunction(){
- 		 var myselect = document.getElementById("storeNames");
- 		 alert(myselect.options[myselect.selectedIndex].value);
-	}
+function jsFunction(){
+	 var myselect = document.getElementById("storeNames");
+	
+	var r=confirm("Are you sure you are in " + myselect.options[myselect.selectedIndex].text);
+	if (r==true)
+ 	{
+  		 var Data = myselect.value;
+ 		 alert(Data);
+  	}	
+		
+}
 
 </script>
 
