@@ -64,9 +64,6 @@ Submit Payment<p>Sending Email
                     </font>
                   <?php
 
-                    
-
-                
                     error_reporting(E_ALL);
                     
                     ini_set('display_errors', '1');
@@ -81,9 +78,6 @@ Submit Payment<p>Sending Email
 					$storeID = $rowCart[2];
 					$time = $rowCart[3];
 					
-					
-						
-						
 					$sql  = "Select firstName, lastName, email from Users WHERE userID = $userID";
                     $result = $mysqli->query($sql) or die( $mysqli->error );
                     $row = mysqli_fetch_row($result);
@@ -103,9 +97,6 @@ Submit Payment<p>Sending Email
                     
                     $email_exp = '/^[A-Za-z0-9._%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}$/';
                     
-  
-            	
-                    
                     
                     function clean_string($string) {
                     
@@ -114,12 +105,11 @@ Submit Payment<p>Sending Email
                         return str_replace($bad,"",$string);
                     
                     }
-			
+					
 					$sqlStore  = "select name, address, zip from Stores where storeID = $storeID";
 					$resultStore = $mysqli->query($sqlStore) or die( $mysqli->error );
 					$rowStore = mysqli_fetch_row($resultStore); 
-					
-					
+									
 				    $message = '<html><body>';
 					$message .= '<h1>Thank you for choosing Quikshop<p><p><p></h1>';
 					$message .= "Thank you for visiting $rowStore[0] on $rowStore[1] $rowStore[2] at $time<p><p><p>";
@@ -142,8 +132,8 @@ Submit Payment<p>Sending Email
                     	$message .= "<tr><td>$row[0] </td><td><center>$rowinit[1]</center> </td><td><center>$row[1] </center></td></tr>";
 
                      }
-									 
-					$message .= "<tr style='background-color: orange'><td><strong></strong> </td>";
+							 
+					$message .= "<tr style='background-color: orange';><td><strong></strong> </td>";
 					$message .= "<td><strong>Total</strong> </td>";
 					$message .= "<td><strong>$total</strong></td>";
 			
