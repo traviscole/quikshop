@@ -42,7 +42,7 @@
   			
   
   			// Various Includes --getting the userId and cartId from the current logged in user
-  
+  if(isset($_SESSION['userID']) &&  $_SESSION['userID'] != ''){
   			$userID = $_SESSION['userID'];
   			$_SESSION['userID'] = $userID;
 			
@@ -111,6 +111,17 @@
   		<?php
 
   		$mysqli->close();
+				}
+		else{
+			?>
+				<script>
+                {	
+                	alert("You are not logged in");
+					window.location.assign("http://www.quikshop.co/")
+                }				  
+                </script>	
+			<?php
+		}
   		?>
   
   </body>
