@@ -39,7 +39,7 @@
         	<ul data-role="listview" data-filter="true" data-filter-placeholder="Search Cart..." data-inset="true" data-divider-theme="a" data-theme="c">
             	<li data-role="list-divider">Publix</li>
                 	<?php
-
+			if(isset($_SESSION['userID']) &&  $_SESSION['userID'] != ''){
 					//creating connection 
 					$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 
@@ -108,6 +108,18 @@
 
 	<?php
 		$mysqli->close();
+			}
+			else{
+				
+			?>
+				<script>
+                {	
+                	alert("You are not logged in");
+					window.location.assign("http://www.quikshop.co/")
+                }				  
+                </script>	
+			<?php	
+			}
 	?>
 
 </body>
