@@ -34,9 +34,9 @@
     <form>
         <div id="menu">
             <center>
-            		<a href="https://quikshop.co/scanner.html" class="ui-btn-left"><input type="submit" name="home" id="home" value="Switch" /></a>
+            		<a href="https://quikshop.co/scanner.html" class="ui-btn-left"><input type="submit" name="home" id="home" value="Switch " /></a>
                     <a href="employee.php?page=home" class="ui-btn-left"><input type="submit" name="home" id="home" value="Home" /></a>
-                   	<a href="employee.php?page=pay"class="ui-btn-right"><input type="submit" name="search" id="search" value="Pay" /></a>
+                   	<a href="employee.php?page=pay"class="ui-btn-right"><input type="submit" name="search" id="search" value="Payment" /></a>
                     <a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Search" /></a>
                     <a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Add Employee" /></a>
                     
