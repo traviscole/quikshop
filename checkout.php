@@ -49,9 +49,9 @@
   		if(isset($_SESSION['userID']) &&  $_SESSION['userID'] != ''){
   			$userID = $_SESSION['userID'];
   			$_SESSION['userID'] = $userID;
-			
-  			print ("UserID:	$userID");
-			
+			?>
+  			<font size="6"> <?php	echo "User ID: $userID ";?></font>
+			<?php
 			
 			$sqlCart  = "select cartID from Logins where userID = $userID";
   			$resultCart = $mysqli->query($sqlCart) or die( $mysqli->error );
@@ -169,6 +169,16 @@
     } 
 */
   		$mysqli->close();
+		}
+		else{
+			?>
+				<script>
+                {	
+                	alert("You are not logged in");
+					window.location.assign("http://www.quikshop.co/")
+                }				  
+                </script>	
+			<?php
 		}
   		?>
   
