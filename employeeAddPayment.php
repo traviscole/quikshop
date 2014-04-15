@@ -13,13 +13,9 @@
 	<?php
     
   			$userID = $_SESSION['customerID'];
-  	
-			$cardNumber = $_POST['cardNumber'];
-			
+  			$cardNumber = $_POST['cardNumber'];
 			$cardType = $_POST['cardType'];
-			
 			$cardShown = substr($cardNumber, -4);
-				
 			$card = "$cardType - $cardShown";
 			
 			error_reporting(E_ALL);
@@ -28,11 +24,7 @@
 		
 		
 				$sqlcard  = "insert into CreditCards values('', $userID, '$card')";
-				
 				$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
-				
-		
-				
 				
 						?>
 				<font size="18">
@@ -43,7 +35,6 @@
 				</center>
 				</font>
 				 <?php
-			
 			
 				$mysqli->close();
 			?>
