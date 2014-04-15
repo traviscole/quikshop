@@ -27,7 +27,7 @@
   				<script>
 						
                       if (localStorage.getItem("email") == "signOut") {
-                          alert("you are not logged in");
+                          alert("You are not logged in");
                           window.location.assign("http://www.quikshop.co/")
                       }
 					  
@@ -46,7 +46,7 @@
   			$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
   
   			// Various Includes --getting the userId and cartId from the current logged in user
-  
+  		if(isset($_SESSION['userID']) &&  $_SESSION['userID'] != ''){
   			$userID = $_SESSION['userID'];
   			$_SESSION['userID'] = $userID;
 			
@@ -169,6 +169,7 @@
     } 
 */
   		$mysqli->close();
+		}
   		?>
   
   </body>
