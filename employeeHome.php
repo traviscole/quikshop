@@ -55,7 +55,7 @@
 							$itemId = $rowr[0];
 							$itemName = $rowr[1];
 							
-							$query2 = "Select quantity FROM Carts WHERE itemID = $itemId";
+							$query2 = "Select quantity FROM Carts WHERE itemID = $itemId and cartID = $customerCart";
 							$result2 = $mysqli->query($query2) or die("Unable to get result".$mysqli->error);
 							$row1 = mysqli_fetch_row($result2);
 							
