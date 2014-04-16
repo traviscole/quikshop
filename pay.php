@@ -78,7 +78,7 @@ Submit Payment<p>Sending Email
 					$rowCart = mysqli_fetch_row($resultCart);
 							
 					$cartID = $rowCart[0];
-					$storeID = $rowCart[2];
+					$storeID = 2;//$rowCart[2];
 					$time = $rowCart[3];
 					
 					
@@ -169,7 +169,9 @@ Submit Payment<p>Sending Email
 					
 					$sql  = "DELETE from Logins where cartID = $cartID";
    					$result = $mysqli->query($sql) or die( $mysqli->error );
-					
+					?>
+					<meta http-equiv="refresh" content="0" />
+                    <?php
 		}
 		else{
 			print("Please add a credit card");	
