@@ -20,8 +20,7 @@
      	</center>
     </form>
         	<?php
-				//query to find store
-				$storeName = "Publix";
+				$storeName = "Current Store Name";
 				
 			?>
         
