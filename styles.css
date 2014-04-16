@@ -1,0 +1,55 @@
+@charset "utf-8";
+
+
+
+
+form#createAcct div#response {	
+
+	color: #333;
+
+	border: 1px solid #404040;
+
+	width: 360px;	
+
+	margin: 0 auto 20px auto;
+
+	height: auto;
+
+	padding: 10px 10px 10px 70px;
+
+	min-height: 45px;
+
+}
+
+form#createAcct div#response p {
+
+	margin: 0;
+
+	padding: 0;
+
+}
+
+.clear {
+
+	clear: both;
+
+}
+
+.error {	
+
+	background: #FF9F9F url(error.png) no-repeat 5px 10px;						
+
+}
+
+.success {
+
+	background: #B8F5B1 url(icon_ok.png) no-repeat 5px 10px;
+
+}
+
+.processing {
+
+	background: #DED5AB url(ajax-loader.gif) no-repeat 5px 10px;	
+
+}
+
