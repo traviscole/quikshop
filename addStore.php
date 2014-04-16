@@ -42,7 +42,7 @@
 	
 	
  <?php
- 
+
  $userID = $_SESSION['userID'];
  $_SESSION['userID'] = $userID;
  
@@ -68,9 +68,6 @@
 		
   		$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
 		
-
-		
-		
 				?>
 				</pre>
         <font size="18">
@@ -81,8 +78,8 @@
         </font>
          <?php
 	
-	
-		$mysqli->close();
+			$mysqli->close();
+		
 	?>
 <meta http-equiv="refresh" content="0" />
 </body>
