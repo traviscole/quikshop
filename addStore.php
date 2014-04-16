@@ -56,7 +56,7 @@
  $state = $_POST['state'];
  
  $zip = $_POST['zip'];
- print_r($_POST);
+// print_r($_POST);
 			
 
 	error_reporting(E_ALL);
@@ -84,3 +84,6 @@
 	
 		$mysqli->close();
 	?>
+<meta http-equiv="refresh" content="0" />
+</body>
+</html>
