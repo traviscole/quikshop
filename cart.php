@@ -22,7 +22,7 @@
     
 		<h1><img src="logo.png" width="126" height="26" align="middle" /></h1>
         <a href="help.html" data-icon="info" class="ui-btn-right" position:absolute top:50% data-transition="slide">Help</a>
-        <a href="scanner.html" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
+        <a href="https://quikshop.co/scanner.html" class="ui-btn-left" data-icon="arrow-l" data-iconpos="left" data-transition="slide" data-direction="reverse">Back</a>
 
 	</div>
     	<script>
@@ -47,11 +47,11 @@
 			
 			//I am updating UserId and cartId with the session variables (global variables)			
 			$userID = $_SESSION['userID'];
-
+			
 			$query1 = "SELECT cartID FROM Logins WHERE userID = $userID";
 			$result1 = $mysqli->query($query1) or die("Unable to get result".$mysqli->error);
-			$row =  mysqli_fetch_row($result1);
-			$cartID = $row[0];
+			$row1 =  mysqli_fetch_row($result1);
+			$cartID = $row1[0];
 			
 	
 			
@@ -75,7 +75,7 @@
 							$itemId = $rowr[0];
 							$itemName = $rowr[1];
 							
-							$query2 = "Select quantity FROM Carts WHERE itemID = $itemId";
+							$query2 = "Select quantity FROM Carts WHERE itemID = $itemId and cartID = $cartID";
 							$result2 = $mysqli->query($query2) or die("Unable to get result".$mysqli->error);
 							$row1 = mysqli_fetch_row($result2);
 							
