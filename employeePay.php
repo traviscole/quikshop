@@ -48,7 +48,7 @@ Submit Payment<p>Sending Email
 					$rowCart = mysqli_fetch_row($resultCart);
 							
 					$cartID = $rowCart[0];
-					$storeID = $rowCart[2];
+					$storeID = 2;//$rowCart[2];
 					$time = $rowCart[3];
 					
 					
