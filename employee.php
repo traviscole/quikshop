@@ -38,7 +38,7 @@
                     <a href="employee.php?page=home" class="ui-btn-left"><input type="submit" name="home" id="home" value="Home" /></a>
                    	<a href="employee.php?page=pay"class="ui-btn-right"><input type="submit" name="search" id="search" value="Payment" /></a>
                     <a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Search" /></a>
-                    <a href="employee.php?page=search"class="ui-btn-right"><input type="submit" name="search" id="search" value="Add Employee" /></a>
+                    <a href="employee.php?page=store"class="ui-btn-right"><input type="submit" name="search" id="search" value="Add Store" /></a>
                     
             </center>
         </div>
@@ -60,6 +60,9 @@
 			break;
 			case "switch":
 				include('https://quikshop.co/scanner.html');
+			break;
+			case "store":
+				include('addStore.html');
 			break;
 			default:
 				include('employee/employeeHome.php');
