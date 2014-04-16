@@ -130,15 +130,16 @@ Submit Payment<p>Sending Email
 					 
 					'X-Mailer: PHP/' . phpversion();
 					 
-					@mail($email_to, $email_subject, $message, $headers);   
-				
-					
-					/*$sql  = "INSERT into Logins values('', $userID, $storeID, 0000-00-00)";
+					@mail($email_to, $email_subject, $message, $headers); 
+					?>
+					<meta http-equiv="refresh" content="0" />
+					<?php
+					$sql  = "INSERT into Logins values('', $userID, $storeID, 0000-00-00)";
    					$result = $mysqli->query($sql) or die( $mysqli->error );
 					
 					
 					$sql  = "DELETE from Logins where cartID = $cartID";
-   					$result = $mysqli->query($sql) or die( $mysqli->error );*/
+   					$result = $mysqli->query($sql) or die( $mysqli->error );
 					
 		}
 		else{
