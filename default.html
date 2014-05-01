@@ -9,7 +9,17 @@
 	<!-- Fix View on Phones -->
     	<meta content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	
+	<script> $( window ).load(function() {
+		
 	
+		if(localStorage.getItem("userID") > "0" ){
+			
+			window.location.href = 'https://quikshop.co/scanner.html';
+			
+		}		
+		
+		
+	}); </script>
 	
 </head>
 
@@ -47,6 +57,8 @@
     		</form>            
 	</div> 
 
+		</br>
+		</br>
 <!-- Create Acct Buttons (below form) -->       
         <div data-role="filedcontain"> 
         	<ul data-role="listview" data-theme="e">   <!-- data-ajax="false") to prevent the $(document).ready() from running when we go to the oper page-->   
@@ -105,7 +117,7 @@
          			window.location.href = 'employee.php';
 				return true;
 			}else{
-				window.location.href = 'scanner.html';
+				window.location.href = 'checkin.html';
 				return true;
 			}
 		}
