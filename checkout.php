@@ -25,8 +25,7 @@
   
   	</div>
   				<script>
-						
-                      if (localStorage.getItem("email") == "signOut") {
+					if (localStorage.getItem("email") == "signOut") {
                           alert("You are not logged in");
                           window.location.assign("http://www.quikshop.co/")
                       }
@@ -37,7 +36,7 @@
   		<div id="landmark-1" data-landmark-id="1">
   		
   			<?php
-  		
+			
   			// Allow for errors
   			error_reporting(E_ALL);
   			ini_set('display_errors', '1');
@@ -84,7 +83,7 @@
   			$sum = $sum + $quantity*$rowr[0];
   				
   			}
-			
+			//$sum = 145;
   			?>
   			<center>
   
@@ -95,13 +94,35 @@
   				?>
   			</font>
   			</center>
- 
+				
  			<?php
+			
    				$sqlcard  = "SELECT Type,ID From CreditCards where userID = $userID ";
   				$resultcard = $mysqli->query($sqlcard) or die( $mysqli->error );
-						
-  					
+				
+				$sqlemail  = "SELECT email from Users where userID = $userID ";
+  				$resultemail = $mysqli->query($sqlemail) or die( $mysqli->error );				
+				$rowemail = mysqli_fetch_row($resultemail);
+				
+				$email = $rowemail[0];
   			?>
+			
+					
+		<form action="https://www.paypal.com/cgi-bin/webscr" method="post" name="platnosci">
+		 
+		 
+		   <input type="hidden" name="cmd" value="_cart">
+			<input type="hidden" name="upload" value="1">
+			<input type="hidden" name="business" value="bonilla.robinsonrod@gmail.com">
+			<input type="hidden" name="notify_url" value="http://www.google.pl/paypal.php">
+			<input type="hidden" name="item_name_1" value="Quikshop Cart Total">
+			<input type="hidden" name="amount_1" value=<?php echo $sum ?>>
+			<input type="hidden" name="currency_code" value="PLN">
+			<input type="hidden" name="shopping_url" value="http://www.quikshop.co/scanner.html">
+			<input type="hidden" name="email" value=<?php echo $email?>>
+			
+			<input type="submit" value = "PayPal">
+		</form>
   		<form id ="payNow" method="post" action="pay.php">
   		<div data-role="fieldcontain" class="ui-hide-label">  
   			<div style="text-align:center">  
