@@ -20,9 +20,21 @@
      	</center>
     </form>
         	<?php
-				$storeName = "Current Store Name";
+					
+			$mysqli = new mysqli("quikshop.co","cx300_cen3031","[cEn..3031!]","cx300_quikshop");
 				
+			if( isset($_SESSION['storeID'])){
+			$storeID = trim(stripslashes(htmlspecialchars($_SESSION["storeID"]))); 
+			$sql  = "SELECT name FROM Stores WHERE storeID = $storeID";
+			$result = $mysqli->query($sql) or die( $mysqli->error );
+			$row = mysqli_fetch_row($result);
+			$storeName = $row[0];
+			}
+			else{
+			$storeName = "Please Scan an Item";
+			}
 			?>
+			
         
         	</br>
         	<ul data-role="listview" data-filter="true" data-filter-placeholder="Search Cart..." data-inset="true" data-divider-theme="a" data-theme="c"> 	
@@ -37,7 +49,7 @@
 					
 					$queryID = "SELECT cartID FROM Logins WHERE userID = $customerID";
 					$resultID = $mysqli->query($queryID) or die("Unable to get result".$mysqli->error);
-					$rowID = mysqli_fetch_row($resultID);
+					while($rowID = mysqli_fetch_row($resultID)){
 					$customerCart = $rowID[0];
 				
 					$query = "SELECT * FROM Carts WHERE cartID = $customerCart";
@@ -66,6 +78,7 @@
 							
 							
 							echo "<li data-transition='slide'><a href='details.php?ID=$itemId&quant=$qt&customerID=$ID'>$itemName	(Qty): $qt</a></li>";
+						}
 						}
 					?>
 
